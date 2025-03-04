@@ -4,16 +4,19 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Lakshay Chawla | Data Scientist & AI Researcher</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <style>
         /* Modern Dark Theme */
         :root {
             --bg-primary: #0f0f0f;
             --bg-secondary: #1a1a1a;
             --text-primary: #f0f0f0;
-            --text-secondary: #a0a0a0;
+            --text-secondary: #195e34; /* Dark forest green for better visibility */
             --accent: #4f46e5;
             --accent-hover: #6366f1;
             --border: #333333;
+            --gradient-start: #4f46e5;
+            --gradient-end: #a16bfe;
         }
         
         * {
@@ -109,7 +112,7 @@
         .logo {
             font-size: 24px;
             font-weight: 700;
-            background: linear-gradient(to right, var(--accent), #a16bfe);
+            background: linear-gradient(to right, var(--gradient-start), var(--gradient-end));
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             animation: fadeIn 1s ease-in;
@@ -121,15 +124,13 @@
         }
         
         .nav-links a {
-            color: var(--text-primary);
             text-decoration: none;
             font-weight: 500;
             transition: color 0.3s ease;
             position: relative;
-        }
-        
-        .nav-links a:hover {
-            color: var(--accent);
+            background: linear-gradient(to right, var(--gradient-start), var(--gradient-end));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
         }
         
         .nav-links a::after {
@@ -139,7 +140,7 @@
             height: 2px;
             bottom: -5px;
             left: 0;
-            background-color: var(--accent);
+            background: linear-gradient(to right, var(--gradient-start), var(--gradient-end));
             transition: width 0.3s ease;
         }
         
@@ -160,7 +161,7 @@
             font-size: 4rem;
             margin-bottom: 20px;
             line-height: 1.2;
-            background: linear-gradient(to right, #ffffff, #b8b8b8);
+            background: linear-gradient(to right, var(--gradient-start), var(--gradient-end));
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             animation: fadeInUp 1s ease-out;
@@ -194,11 +195,12 @@
             justify-content: center;
             transition: all 0.3s ease;
             border: 1px solid rgba(255, 255, 255, 0.1);
+            color: var(--text-primary);
         }
         
         .social-icon:hover {
             transform: translateY(-5px);
-            background-color: var(--accent);
+            background: linear-gradient(to right, var(--gradient-start), var(--gradient-end));
             color: white;
             box-shadow: 0 10px 20px rgba(79, 70, 229, 0.2);
         }
@@ -216,7 +218,7 @@
         .section-header h2 {
             font-size: 2.5rem;
             margin-bottom: 15px;
-            background: linear-gradient(to right, #ffffff, #b8b8b8);
+            background: linear-gradient(to right, var(--gradient-start), var(--gradient-end));
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             animation: fadeInLeft 1s ease-out;
@@ -432,23 +434,6 @@
             color: var(--text-secondary);
         }
         
-        .footer-links {
-            display: flex;
-            justify-content: center;
-            gap: 20px;
-            margin-bottom: 30px;
-        }
-        
-        .footer-link {
-            color: var(--text-primary);
-            text-decoration: none;
-            transition: color 0.3s ease;
-        }
-        
-        .footer-link:hover {
-            color: var(--accent);
-        }
-        
         /* Animations */
         @keyframes fadeIn {
             from {
@@ -542,16 +527,16 @@
             
             <div class="social-icons">
                 <a href="https://github.com/Lakshay-13" class="social-icon" title="GitHub">
-                    <span>&#xf09b;</span>
+                    <i class="fab fa-github"></i>
                 </a>
                 <a href="mailto:your-email@example.com" class="social-icon" title="Email">
-                    <span>&#x2709;</span>
+                    <i class="fas fa-envelope"></i>
                 </a>
-                <a href="https://linkedin.com/in/your-profile" class="social-icon" title="LinkedIn">
-                    <span>&#xf08c;</span>
+                <a href="https://www.linkedin.com/in/lakshaychawla13" class="social-icon" title="LinkedIn">
+                    <i class="fab fa-linkedin-in"></i>
                 </a>
-                <a href="https://drive.google.com/your-resume-link" class="social-icon" title="Resume">
-                    <span>&#xf15c;</span>
+                <a href="https://drive.google.com/file/d/1Ts9XRjdSr6KLHI6jTE11Ybc70nW2ppes/view?usp=sharing" class="social-icon" title="Resume">
+                    <i class="fas fa-file-alt"></i>
                 </a>
             </div>
         </div>
@@ -699,7 +684,9 @@
             </div>
             <div class="contact-details">
                 <div class="contact-item">
-                    <div class="contact-icon">📧</div>
+                    <div class="contact-icon">
+                        <i class="fas fa-envelope"></i>
+                    </div>
                     <div>
                         <h3>Email</h3>
                         <a href="mailto:your-email@example.com">your-email@example.com</a>
@@ -707,15 +694,19 @@
                 </div>
                 
                 <div class="contact-item">
-                    <div class="contact-icon">📱</div>
+                    <div class="contact-icon">
+                        <i class="fas fa-phone-alt"></i>
+                    </div>
                     <div>
                         <h3>Phone</h3>
-                        <p>+91 98765 43210</p>
+                        <p>+91 9811096411</p>
                     </div>
                 </div>
                 
                 <div class="contact-item">
-                    <div class="contact-icon">👨‍💻</div>
+                    <div class="contact-icon">
+                        <i class="fab fa-github"></i>
+                    </div>
                     <div>
                         <h3>GitHub</h3>
                         <a href="https://github.com/Lakshay-13" target="_blank">github.com/Lakshay-13</a>
@@ -723,18 +714,22 @@
                 </div>
                 
                 <div class="contact-item">
-                    <div class="contact-icon">🔗</div>
+                    <div class="contact-icon">
+                        <i class="fab fa-linkedin-in"></i>
+                    </div>
                     <div>
                         <h3>LinkedIn</h3>
-                        <a href="https://linkedin.com/in/your-profile" target="_blank">linkedin.com/in/your-profile</a>
+                        <a href="https://www.linkedin.com/in/lakshaychawla13" target="_blank">linkedin.com/in/lakshaychawla13</a>
                     </div>
                 </div>
                 
                 <div class="contact-item">
-                    <div class="contact-icon">📄</div>
+                    <div class="contact-icon">
+                        <i class="fas fa-file-alt"></i>
+                    </div>
                     <div>
                         <h3>Resume</h3>
-                        <a href="https://drive.google.com/your-resume-link" target="_blank">View Resume</a>
+                        <a href="https://drive.google.com/file/d/1Ts9XRjdSr6KLHI6jTE11Ybc70nW2ppes/view?usp=sharing" target="_blank">View Resume</a>
                     </div>
                 </div>
             </div>
@@ -743,20 +738,6 @@
     
     <footer>
         <div class="container">
-            <div class="social-icons" style="justify-content: center; margin-bottom: 30px;">
-                <a href="https://github.com/Lakshay-13" class="social-icon" title="GitHub">
-                    <span>&#xf09b;</span>
-                </a>
-                <a href="mailto:your-email@example.com" class="social-icon" title="Email">
-                    <span>&#x2709;</span>
-                </a>
-                <a href="https://linkedin.com/in/your-profile" class="social-icon" title="LinkedIn">
-                    <span>&#xf08c;</span>
-                </a>
-                <a href="https://drive.google.com/your-resume-link" class="social-icon" title="Resume">
-                    <span>&#xf15c;</span>
-                </a>
-            </div>
             <p>Lakshay Chawla &copy; 2025. All rights reserved.</p>
         </div>
     </footer>
