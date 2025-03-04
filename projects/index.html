@@ -4,161 +4,108 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Projects | Lakshay Chawla</title>
-    <meta name="description" content="Research projects and technical work by Lakshay Chawla, focusing on PINNs and AI research.">
-    <script src="https://cdn.tailwindcss.com"></script>
+    <meta name="description" content="Research projects by Lakshay Chawla, focusing on Physics-Informed Neural Networks and AI applications">
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
     <link href="../css/styles.css" rel="stylesheet">
 </head>
-<body class="bg-gray-50 text-gray-900 dark:bg-gray-900 dark:text-gray-100">
-    <!-- Navigation -->
-    <header class="fixed w-full bg-white/95 dark:bg-gray-800/95 backdrop-blur-sm shadow-md z-50">
-        <nav class="container mx-auto px-6 py-4">
-            <div class="flex items-center justify-between">
-                <a href="/" class="text-xl font-bold text-gray-900 dark:text-white">Lakshay Chawla</a>
-                <div class="hidden md:block">
-                    <ul class="flex space-x-8">
-                        <li><a href="/" class="text-gray-600 hover:text-blue-600 dark:text-gray-300 dark:hover:text-blue-400 transition-colors">Home</a></li>
-                        <li><a href="/#experience" class="text-gray-600 hover:text-blue-600 dark:text-gray-300 dark:hover:text-blue-400 transition-colors">Experience</a></li>
-                        <li><a href="#" class="text-blue-600 dark:text-blue-400 transition-colors">Projects</a></li>
-                        <li><a href="../publications/index.html" class="text-gray-600 hover:text-blue-600 dark:text-gray-300 dark:hover:text-blue-400 transition-colors">Publications</a></li>
-                    </ul>
-                </div>
-                <button id="theme-toggle" class="p-2 rounded-full bg-gray-100 dark:bg-gray-700">
-                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 hidden dark:block" viewBox="0 0 20 20" fill="currentColor">
-                        <path fill-rule="evenodd" d="M10 2a1 1 0 011 1v1a1 1 0 11-2 0V3a1 1 0 011-1zm4 8a4 4 0 11-8 0 4 4 0 018 0zm-.464 4.95l.707.707a1 1 0 001.414-1.414l-.707-.707a1 1 0 00-1.414 1.414zm2.12-10.607a1 1 0 010 1.414l-.706.707a1 1 0 11-1.414-1.414l.707-.707a1 1 0 011.414 0zM17 11a1 1 0 100-2h-1a1 1 0 100 2h1zm-7 4a1 1 0 011 1v1a1 1 0 11-2 0v-1a1 1 0 011-1zM5.05 6.464A1 1 0 106.465 5.05l-.708-.707a1 1 0 00-1.414 1.414l.707.707zm1.414 8.486l-.707.707a1 1 0 01-1.414-1.414l.707-.707a1 1 0 011.414 1.414zM4 11a1 1 0 100-2H3a1 1 0 000 2h1z" clip-rule="evenodd" />
-                    </svg>
-                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 dark:hidden" viewBox="0 0 20 20" fill="currentColor">
-                        <path d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z" />
-                    </svg>
-                </button>
-            </div>
+<body class="bg-gray-100 dark:bg-gray-900 text-gray-900 dark:text-gray-100">
+    <header class="fixed w-full bg-white dark:bg-gray-800 shadow-md z-10">
+        <nav class="container mx-auto px-6 py-3">
+            <ul class="flex justify-center space-x-8">
+                <li><a href="../index.html" class="hover:text-blue-600 transition duration-300">Home</a></li>
+                <li><a href="#projects" class="font-semibold text-blue-600">Projects</a></li>
+                <li><a href="../publications/index.html" class="hover:text-blue-600 transition duration-300">Publications</a></li>
+            </ul>
         </nav>
     </header>
 
-    <main class="pt-24 pb-16">
-        <section class="container mx-auto px-6">
-            <h1 class="text-4xl font-bold mb-12 text-center">Research Projects</h1>
+    <main class="pt-20">
+        <div class="container mx-auto px-6 py-8">
+            <h1 class="text-4xl font-bold mb-10">Research Projects</h1>
             
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-                <!-- NeuroDiffHub -->
-                <div class="bg-white dark:bg-gray-800 rounded-lg shadow-md overflow-hidden transition-transform duration-300 hover:shadow-xl hover:-translate-y-1">
-                    <div class="h-48 bg-gradient-to-r from-blue-500 to-indigo-600 flex items-center justify-center">
-                        <svg xmlns="http://www.w3.org/2000/svg" class="h-16 w-16 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 3v2m6-2v2M9 19v2m6-2v2M5 9H3m2 6H3m18-6h-2m2 6h-2M7 19h10a2 2 0 002-2V7a2 2 0 00-2-2H7a2 2 0 00-2 2v10a2 2 0 002 2zM9 9h6v6H9V9z" />
-                        </svg>
-                    </div>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                <!-- Project 1 -->
+                <div class="bg-white dark:bg-gray-800 rounded-lg shadow-lg overflow-hidden">
                     <div class="p-6">
-                        <h3 class="text-xl font-semibold mb-2 text-gray-900 dark:text-white">NeuroDiffHub</h3>
-                        <p class="text-gray-600 dark:text-gray-400 mb-4">A platform to save all your PINNs solvers, facilitating research and collaboration in neural network-based differential equation solving.</p>
-                        <a href="https://github.com/Lakshay-13/NeuroDiffHub" class="inline-flex items-center text-blue-600 dark:text-blue-400 hover:underline" target="_blank">
-                            View on GitHub
-                            <svg class="w-5 h-5 ml-1" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
-                                <path fill-rule="evenodd" d="M12.293 5.293a1 1 0 011.414 0l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-2.293-2.293a1 1 0 010-1.414z" clip-rule="evenodd"></path>
-                            </svg>
-                        </a>
+                        <h2 class="text-2xl font-bold mb-4">NeuroDiffHub</h2>
+                        <p class="mb-4">A comprehensive platform designed to save and manage PINNs (Physics-Informed Neural Networks) solvers. This project aims to create a centralized repository for researchers working with differential equations and neural network-based solvers.</p>
+                        <div class="flex items-center text-sm text-gray-600 dark:text-gray-400">
+                            <span class="bg-blue-100 dark:bg-blue-900 text-blue-800 dark:text-blue-200 px-2 py-1 rounded mr-3">PINNs</span>
+                            <span class="bg-green-100 dark:bg-green-900 text-green-800 dark:text-green-200 px-2 py-1 rounded">Python</span>
+                        </div>
+                        <a href="https://github.com/Lakshay-13/NeuroDiffHub" class="mt-4 inline-block text-blue-600 hover:underline" target="_blank">View on GitHub →</a>
                     </div>
                 </div>
                 
-                <!-- PINNs Applications -->
-                <div class="bg-white dark:bg-gray-800 rounded-lg shadow-md overflow-hidden transition-transform duration-300 hover:shadow-xl hover:-translate-y-1">
-                    <div class="h-48 bg-gradient-to-r from-green-500 to-teal-600 flex items-center justify-center">
-                        <svg xmlns="http://www.w3.org/2000/svg" class="h-16 w-16 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z" />
-                        </svg>
-                    </div>
+                <!-- Project 2 -->
+                <div class="bg-white dark:bg-gray-800 rounded-lg shadow-lg overflow-hidden">
                     <div class="p-6">
-                        <h3 class="text-xl font-semibold mb-2 text-gray-900 dark:text-white">Applications of PINNs</h3>
-                        <p class="text-gray-600 dark:text-gray-400 mb-4">Exploring Physics Informed Neural Networks and their applications in solving complex physical systems and differential equations.</p>
-                        <a href="#" class="inline-flex items-center text-blue-600 dark:text-blue-400 hover:underline">
-                            View Project Details
-                            <svg class="w-5 h-5 ml-1" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
-                                <path fill-rule="evenodd" d="M12.293 5.293a1 1 0 011.414 0l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-2.293-2.293a1 1 0 010-1.414z" clip-rule="evenodd"></path>
-                            </svg>
-                        </a>
+                        <h2 class="text-2xl font-bold mb-4">Applications of PINNs</h2>
+                        <p class="mb-4">Exploring various applications of Physics-Informed Neural Networks in solving complex physical systems. This research focuses on novel applications in fluid dynamics, heat transfer, and other domains governed by differential equations.</p>
+                        <div class="flex items-center text-sm text-gray-600 dark:text-gray-400">
+                            <span class="bg-blue-100 dark:bg-blue-900 text-blue-800 dark:text-blue-200 px-2 py-1 rounded mr-3">PINNs</span>
+                            <span class="bg-purple-100 dark:bg-purple-900 text-purple-800 dark:text-purple-200 px-2 py-1 rounded">TensorFlow</span>
+                        </div>
                     </div>
                 </div>
                 
-                <!-- Spectral Analysis -->
-                <div class="bg-white dark:bg-gray-800 rounded-lg shadow-md overflow-hidden transition-transform duration-300 hover:shadow-xl hover:-translate-y-1">
-                    <div class="h-48 bg-gradient-to-r from-purple-500 to-pink-600 flex items-center justify-center">
-                        <svg xmlns="http://www.w3.org/2000/svg" class="h-16 w-16 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 12l3-3 3 3 4-4M8 21l4-4 4 4M3 4h18M4 4h16v12a1 1 0 01-1 1H5a1 1 0 01-1-1V4z" />
-                        </svg>
-                    </div>
+                <!-- Project 3 -->
+                <div class="bg-white dark:bg-gray-800 rounded-lg shadow-lg overflow-hidden">
                     <div class="p-6">
-                        <h3 class="text-xl font-semibold mb-2 text-gray-900 dark:text-white">Spectral Analysis of Crops</h3>
-                        <p class="text-gray-600 dark:text-gray-400 mb-4">Utilizing spectral data analysis techniques to assess crop health, growth patterns, and environmental impacts.</p>
-                        <a href="#" class="inline-flex items-center text-blue-600 dark:text-blue-400 hover:underline">
-                            View Project Details
-                            <svg class="w-5 h-5 ml-1" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
-                                <path fill-rule="evenodd" d="M12.293 5.293a1 1 0 011.414 0l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-2.293-2.293a1 1 0 010-1.414z" clip-rule="evenodd"></path>
-                            </svg>
-                        </a>
+                        <h2 class="text-2xl font-bold mb-4">Spectral Analysis of Crops</h2>
+                        <p class="mb-4">Utilizing advanced spectral analysis techniques to study crop health, growth patterns, and potential yield. This project incorporates remote sensing data and machine learning to extract meaningful insights from spectral signatures.</p>
+                        <div class="flex items-center text-sm text-gray-600 dark:text-gray-400">
+                            <span class="bg-yellow-100 dark:bg-yellow-900 text-yellow-800 dark:text-yellow-200 px-2 py-1 rounded mr-3">Remote Sensing</span>
+                            <span class="bg-red-100 dark:bg-red-900 text-red-800 dark:text-red-200 px-2 py-1 rounded">Machine Learning</span>
+                        </div>
                     </div>
                 </div>
                 
-                <!-- Yield Prediction -->
-                <div class="bg-white dark:bg-gray-800 rounded-lg shadow-md overflow-hidden transition-transform duration-300 hover:shadow-xl hover:-translate-y-1">
-                    <div class="h-48 bg-gradient-to-r from-yellow-500 to-orange-600 flex items-center justify-center">
-                        <svg xmlns="http://www.w3.org/2000/svg" class="h-16 w-16 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 17v-2m3 2v-4m3 4v-6m2 10H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
-                        </svg>
-                    </div>
+                <!-- Project 4 -->
+                <div class="bg-white dark:bg-gray-800 rounded-lg shadow-lg overflow-hidden">
                     <div class="p-6">
-                        <h3 class="text-xl font-semibold mb-2 text-gray-900 dark:text-white">Yield Prediction of Crops Across Santiago</h3>
-                        <p class="text-gray-600 dark:text-gray-400 mb-4">Developing models to predict crop yields in the Santiago region using machine learning approaches and environmental data.</p>
-                        <a href="#" class="inline-flex items-center text-blue-600 dark:text-blue-400 hover:underline">
-                            View Project Details
-                            <svg class="w-5 h-5 ml-1" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
-                                <path fill-rule="evenodd" d="M12.293 5.293a1 1 0 011.414 0l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-2.293-2.293a1 1 0 010-1.414z" clip-rule="evenodd"></path>
-                            </svg>
-                        </a>
+                        <h2 class="text-2xl font-bold mb-4">Yield Prediction of Crops Across Santiago</h2>
+                        <p class="mb-4">Developing predictive models for crop yield estimation in the Santiago region. This research combines climate data, soil conditions, and historical yield information to create accurate forecasting models for agricultural planning.</p>
+                        <div class="flex items-center text-sm text-gray-600 dark:text-gray-400">
+                            <span class="bg-green-100 dark:bg-green-900 text-green-800 dark:text-green-200 px-2 py-1 rounded mr-3">Data Science</span>
+                            <span class="bg-indigo-100 dark:bg-indigo-900 text-indigo-800 dark:text-indigo-200 px-2 py-1 rounded">Statistical Modeling</span>
+                        </div>
                     </div>
                 </div>
                 
-                <!-- LLM Course -->
-                <div class="bg-white dark:bg-gray-800 rounded-lg shadow-md overflow-hidden transition-transform duration-300 hover:shadow-xl hover:-translate-y-1">
-                    <div class="h-48 bg-gradient-to-r from-red-500 to-pink-600 flex items-center justify-center">
-                        <svg xmlns="http://www.w3.org/2000/svg" class="h-16 w-16 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253" />
-                        </svg>
-                    </div>
+                <!-- Project 5 -->
+                <div class="bg-white dark:bg-gray-800 rounded-lg shadow-lg overflow-hidden">
                     <div class="p-6">
-                        <h3 class="text-xl font-semibold mb-2 text-gray-900 dark:text-white">Understanding LLMs (Course Development)</h3>
-                        <p class="text-gray-600 dark:text-gray-400 mb-4">Creating educational content on Large Language Models, covering theory, implementation, and applications.</p>
-                        <a href="#" class="inline-flex items-center text-blue-600 dark:text-blue-400 hover:underline">
-                            View Course Materials
-                            <svg class="w-5 h-5 ml-1" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
-                                <path fill-rule="evenodd" d="M12.293 5.293a1 1 0 011.414 0l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-2.293-2.293a1 1 0 010-1.414z" clip-rule="evenodd"></path>
-                            </svg>
-                        </a>
+                        <h2 class="text-2xl font-bold mb-4">Understanding LLMs (Course Development)</h2>
+                        <p class="mb-4">Creating comprehensive educational content on Large Language Models. This project focuses on developing accessible learning materials that explain the architecture, training methodologies, and applications of modern LLMs.</p>
+                        <div class="flex items-center text-sm text-gray-600 dark:text-gray-400">
+                            <span class="bg-pink-100 dark:bg-pink-900 text-pink-800 dark:text-pink-200 px-2 py-1 rounded mr-3">NLP</span>
+                            <span class="bg-blue-100 dark:bg-blue-900 text-blue-800 dark:text-blue-200 px-2 py-1 rounded">Education</span>
+                        </div>
                     </div>
                 </div>
             </div>
-        </section>
+            
+            <div class="mt-12 text-center">
+                <p class="text-lg">For more projects and code repositories, visit my <a href="https://github.com/Lakshay-13" class="text-blue-600 hover:underline" target="_blank">GitHub profile</a>.</p>
+            </div>
+        </div>
     </main>
 
-    <footer class="bg-gray-800 text-white py-12">
-        <div class="container mx-auto px-6">
-            <div class="flex flex-col md:flex-row justify-between">
-                <div class="mb-6 md:mb-0">
-                    <h3 class="text-2xl font-bold mb-4">Lakshay Chawla</h3>
-                    <p class="text-gray-400">Data Scientist & AI Researcher</p>
-                </div>
-                <div>
-                    <h4 class="text-lg font-semibold mb-4">Quick Links</h4>
-                    <ul class="space-y-2">
-                        <li><a href="/" class="text-gray-400 hover:text-white transition-colors">Home</a></li>
-                        <li><a href="/#about" class="text-gray-400 hover:text-white transition-colors">About</a></li>
-                        <li><a href="/#experience" class="text-gray-400 hover:text-white transition-colors">Experience</a></li>
-                        <li><a href="#" class="text-gray-400 hover:text-white transition-colors">Projects</a></li>
-                        <li><a href="../publications/index.html" class="text-gray-400 hover:text-white transition-colors">Publications</a></li>
-                    </ul>
-                </div>
+    <footer class="bg-gray-200 dark:bg-gray-800 py-6 mt-12">
+        <div class="container mx-auto px-6 text-center">
+            <p>&copy; 2025 Lakshay Chawla. All rights reserved.</p>
+            <div class="flex justify-center space-x-4 mt-4">
+                <a href="https://github.com/Lakshay-13" target="_blank" class="text-gray-600 dark:text-gray-400 hover:text-blue-600 dark:hover:text-blue-400">
+                    <span class="sr-only">GitHub</span>
+                    <svg class="h-6 w-6" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                        <path fill-rule="evenodd" d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z" clip-rule="evenodd" />
+                    </svg>
+                </a>
             </div>
-            <div class="border-t border-gray-700 mt-8 pt-8 flex flex-col md:flex-row justify-between items-center">
-                <p class="text-gray-400">&copy; 2025 Lakshay Chawla. All rights reserved.</p>
-                <div class="flex space-x-4 mt-4 md:mt-0">
-                    <a href="https://github.com/Lakshay-13" class="text-gray-400 hover:text-white" target="_blank">
-                        <span class="sr-only">GitHub</span>
-                        <svg class="h-6 w-6" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
-                            <path fill-rule="evenodd" d="M
+        </div>
+    </footer>
+
+    <script src="../js/main.js"></script>
+</body>
+</html>
