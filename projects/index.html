@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="scroll-smooth">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -8,20 +8,50 @@
     <link href="../css/styles.css" rel="stylesheet">
 </head>
 <body class="bg-gray-100 dark:bg-gray-900 text-gray-900 dark:text-gray-100">
-    <header>
-        <!-- Add navigation here -->
+    <header class="fixed w-full bg-white dark:bg-gray-800 shadow-md">
+        <nav class="container mx-auto px-6 py-3">
+            <ul class="flex justify-center space-x-4">
+                <li><a href="../index.html" class="hover:text-blue-600">Home</a></li>
+                <li><a href="#projects" class="hover:text-blue-600">Projects</a></li>
+                <li><a href="../publications/index.html" class="hover:text-blue-600">Publications</a></li>
+            </ul>
+        </nav>
     </header>
 
     <main class="container mx-auto px-6 py-20">
         <h1 class="text-4xl font-bold mb-10">My Projects</h1>
-        <!-- Add project details here -->
+        <section id="projects">
+            <ul class="list-disc list-inside">
+                <li class="mb-4">
+                    <h3 class="text-2xl font-semibold">NeuroDiffHub</h3>
+                    <p>A platform to save all your PINNs solvers.</p>
+                </li>
+                <li class="mb-4">
+                    <h3 class="text-2xl font-semibold">Applications of PINNs</h3>
+                    <p>Exploring Physics Informed Neural Networks and their applications.</p>
+                </li>
+                <li class="mb-4">
+                    <h3 class="text-2xl font-semibold">Spectral Analysis of Crops</h3>
+                    <p>Utilizing spectral data for crop analysis and research.</p>
+                </li>
+                <li class="mb-4">
+                    <h3 class="text-2xl font-semibold">Yield Prediction of Crops Across Santiago</h3>
+                    <p>Developing models to predict crop yields in the Santiago region.</p>
+                </li>
+                <li class="mb-4">
+                    <h3 class="text-2xl font-semibold">Understanding LLMs (Course Development)</h3>
+                    <p>Creating educational content on Large Language Models.</p>
+                </li>
+            </ul>
+        </section>
     </main>
 
-    <footer>
-        <!-- Add footer content here -->
+    <footer class="bg-gray-200 dark:bg-gray-700 py-6">
+        <div class="container mx-auto px-6 text-center">
+            <p>&copy; 2025 Lakshay Chawla. All rights reserved.</p>
+        </div>
     </footer>
 
     <script src="../js/main.js"></script>
 </body>
 </html>
-ß

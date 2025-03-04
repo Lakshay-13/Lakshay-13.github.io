@@ -1,19 +1,28 @@
 # Lakshay Chawla - Personal Portfolio
 
-This repository contains the source code for my personal portfolio website, hosted on GitHub Pages. The site showcases my work as a Data Scientist specializing in Physics-Informed Neural Networks (PINNs) and AI research.
+This repository contains the source code for my personal portfolio website, showcasing my work as a Data Scientist specializing in Physics-Informed Neural Networks (PINNs) and AI research.
 
-## Structure
+## About Me
 
-- `index.html`: Main landing page
-- `css/styles.css`: Custom styles using Tailwind CSS
-- `js/main.js`: JavaScript for interactive elements
-- `images/`: Directory containing image assets
-- `projects/`: Directory for project showcase pages
-- `publications/`: Directory for academic publications
+I'm a Data Scientist intrigued by the possibilities of transforming our brains with AI. Currently pursuing a Master of Technology in Artificial Intelligence at IIT Jodhpur, with experience at Harvard SEAS and various research positions.
 
-## Technologies Used
+## Projects
 
-- HTML5
-- Tailwind CSS
-- JavaScript (ES6+)
-- GitHub Pages for hosting
+- NeuroDiffHub: A platform for PINNs solvers
+- Applications of PINNs
+- Spectral Analysis of crops
+- Yield prediction of crops across Santiago
+- Understanding LLMs (Course development)
+
+## Skills
+
+- Physics Informed Neural Networks (PINNs)
+- Machine Learning and Artificial Intelligence
+- Data Science
+- Python, Hive, Hadoop, SQL
+
+## Fun Fact
+
+I have interests in behavioral economics, strategic gaming, and clinical psychology. I also enjoy writing and music.
+
+For more information, please visit my website: [lakshay-13.github.io](https://lakshay-13.github.io)
