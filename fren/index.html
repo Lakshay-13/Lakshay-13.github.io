@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Support FREN 🐾</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=Nunito:wght@400;700&display=swap" rel="stylesheet">
+
+  <style>
+    /* --- Base & Body Styles --- */
+    :root {
+      --primary-purple: #5865F2; /* Discord Purple */
+      --dark-bg: #23272A;
+      --glow-pink: #ff80ff;
+      --light-pink: #ffe3ff;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: 'Nunito', sans-serif;
+      background: #1e1b2e; /* Dark purple from banner */
+      background-image: radial-gradient(circle at top, #4a3e6e, #1e1b2e 70%);
+      color: #fff;
+      text-align: center;
+      overflow-x: hidden;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      min-height: 100vh;
+      padding: 20px;
+    }
+
+    /* --- Main Content Card --- */
+    .content-wrapper {
+      background: rgba(0, 0, 0, 0.25);
+      backdrop-filter: blur(10px);
+      border-radius: 20px;
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
+      max-width: 700px;
+      width: 100%;
+      padding-top: 0;
+      overflow: hidden; /* Ensures banner corners are rounded */
+    }
+    
+    /* --- Header & Images --- */
+    header {
+      position: relative;
+      margin-bottom: 80px; /* Space for the overlapping avatar */
+    }
+
+    .banner {
+      width: 100%;
+      height: auto;
+      display: block;
+    }
+
+    .bot-avatar {
+      width: 130px;
+      height: 130px;
+      border-radius: 50%;
+      border: 5px solid #fff;
+      box-shadow: 0 0 25px var(--glow-pink);
+      position: absolute;
+      bottom: -65px; /* Halfway overlap */
+      left: 50%;
+      transform: translateX(-50%);
+    }
+    
+    /* --- Text & Typography --- */
+    .text-content {
+      padding: 0 30px 30px;
+    }
+
+    h1 {
+      font-family: 'Press Start 2P', cursive;
+      color: var(--light-pink);
+      text-shadow: 0 0 10px var(--glow-pink), 0 0 25px var(--glow-pink);
+      margin-bottom: 20px;
+      font-size: 2em;
+      animation: glow 1.5s infinite alternate;
+    }
+    h1::after { content: " 🐾"; }
+
+    p {
+      font-size: 1.1em;
+      line-height: 1.6;
+      max-width: 500px;
+      margin: 0 auto 40px auto;
+      text-shadow: 0 0 5px #000;
+    }
+
+    @keyframes glow {
+      from { text-shadow: 0 0 10px #ffb3ff, 0 0 25px #ffa3ff; }
+      to { text-shadow: 0 0 25px var(--glow-pink), 0 0 50px var(--glow-pink); }
+    }
+    
+    /* --- PayPal Button --- */
+    .paypal-form {
+      display: inline-grid;
+      justify-items: center;
+      gap: 0.75rem;
+    }
+    
+    .paypal-button {
+      font-family: 'Nunito', sans-serif;
+      font-weight: bold;
+      font-size: 1.1rem;
+      background: linear-gradient(90deg, #ffb3ff, var(--glow-pink));
+      border: none;
+      color: var(--dark-bg);
+      border-radius: 1.5rem;
+      padding: 0.75rem 2.5rem;
+      cursor: pointer;
+      transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+    }
+    
+    .paypal-button:hover {
+      transform: scale(1.05);
+      box-shadow: 0 0 20px var(--glow-pink);
+    }
+    
+    .paypal-info {
+      font-size: 0.75rem;
+    }
+    
+    .paypal-info img {
+      height: 0.875rem;
+      vertical-align: middle;
+    }
+
+    /* --- Footer --- */
+    footer {
+      font-size: 0.9em;
+      color: var(--light-pink);
+      margin-top: 30px;
+      opacity: 0.8;
+    }
+    
+    /* --- Sparkles (decorative) --- */
+    .sparkle-container {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        pointer-events: none; /* Allows clicks to go through */
+        z-index: -1;
+    }
+    .sparkle {
+      position: absolute;
+      width: 6px;
+      height: 6px;
+      background: #fff;
+      border-radius: 50%;
+      animation: sparkle 2.5s infinite linear;
+      opacity: 0;
+    }
+
+    @keyframes sparkle {
+      0% { opacity: 0; transform: translateY(0); }
+      20% { opacity: 1; }
+      80% { opacity: 1; }
+      100% { opacity: 0; transform: translateY(-50px); }
+    }
+    
+    /* --- Mobile Responsiveness --- */
+    @media (max-width: 600px) {
+      body {
+        padding: 10px;
+      }
+      .bot-avatar {
+        width: 100px;
+        height: 100px;
+        border-width: 3px;
+        bottom: -50px;
+      }
+      header {
+        margin-bottom: 60px;
+      }
+      h1 {
+        font-size: 1.5em;
+      }
+      p {
+        font-size: 1em;
+      }
+      .text-content {
+        padding: 0 20px 20px;
+      }
+    }
+
+  </style>
+</head>
+<body>
+
+  <div class="sparkle-container">
+    <div class="sparkle" style="top:20%; left:15%; animation-delay:0s;"></div>
+    <div class="sparkle" style="top:40%; left:75%; animation-delay:0.8s;"></div>
+    <div class="sparkle" style="top:60%; left:35%; animation-delay:1.5s;"></div>
+    <div class="sparkle" style="top:80%; left:55%; animation-delay:2s;"></div>
+    <div class="sparkle" style="top:50%; left:10%; animation-delay:2.5s;"></div>
+    <div class="sparkle" style="top:70%; left:90%; animation-delay:0.3s;"></div>
+  </div>
+
+  <main class="content-wrapper">
+    <header>
+      <img src="https://i.postimg.cc/vHsdL2tv/11.png" alt="FREN Banner with tiger and kittens" class="banner">
+      
+      <img src="https://i.postimg.cc/PxGWv9df/fren.png" alt="FREN Bot" class="bot-avatar">
+    </header>
+
+    <div class="text-content">
+      <h1>Support FREN</h1>
+      <p>Enjoying FREN in your server? Your support helps keep the bot running smoothly and allows for the development of more meowsome features!</p>
+    </div>
+
+    <div class="paypal-container">
+      <form action="https://www.paypal.com/ncp/payment/WQRDFMJX9ET6U" method="post" target="_blank" class="paypal-form">
+        <input class="paypal-button" type="submit" value="Donate with PayPal">
+        <img src="https://www.paypalobjects.com/images/Debit_Credit_APM.svg" alt="Visa, Mastercard, AMEX, and PayPal logos">
+        <section class="paypal-info">
+          Powered by <img src="https://www.paypalobjects.com/paypal-ui/logos/svg/paypal-wordmark-color.svg" alt="PayPal wordmark logo">
+        </section>
+      </form>
+    </div>
+  </main>
+  
+  <footer>Thank you for supporting FREN! 💜</footer>
+
+</body>
+</html>
