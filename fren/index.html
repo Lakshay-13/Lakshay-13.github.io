@@ -162,23 +162,9 @@
       gap: 28px;
     }
 
-    .intro {
-      background: linear-gradient(160deg, rgba(255, 255, 255, 0.06), rgba(255, 255, 255, 0.03));
-      border: 1px solid var(--border);
-      border-radius: 18px;
-      padding: 24px;
-    }
-
-    .intro h2,
     .features h2 {
       font-size: clamp(1.3rem, 2.2vw, 1.8rem);
       margin-bottom: 8px;
-    }
-
-    .intro p {
-      color: var(--text-muted);
-      font-size: 1.03rem;
-      max-width: 900px;
     }
 
     .quick-links {
@@ -186,17 +172,7 @@
       display: flex;
       flex-wrap: wrap;
       gap: 12px;
-    }
-
-    .games-spotlight {
-      margin-top: 12px;
-      padding: 12px 14px;
-      border: 1px solid rgba(123, 231, 208, 0.4);
-      background: rgba(123, 231, 208, 0.1);
-      border-radius: 12px;
-      color: #dffbf5;
-      font-size: 0.96rem;
-      font-weight: 700;
+      justify-content: center;
     }
 
     .btn {
@@ -342,7 +318,6 @@
         margin-bottom: 8px;
       }
 
-      .intro,
       .features {
         padding: 18px;
       }
@@ -359,9 +334,9 @@
     <div class="header-inner">
       <div class="brand">FREN Bot</div>
       <div class="header-actions">
-        <a class="chip-link" href="https://discod.gg/frenbot" target="_blank" rel="noopener noreferrer">discod.gg/frenbot</a>
-        <a class="chip-link" href="https://www.nextgenaischool.in/fren" target="_blank" rel="noopener noreferrer">Fren Shop</a>
-        <a class="chip-link" href="/">Profile</a>
+        <a class="chip-link" href="https://www.nextgenaischool.in/fren" target="_blank" rel="noopener noreferrer">Visit Fren Shop</a>
+        <a class="chip-link" href="https://discord.gg/frenbot" target="_blank" rel="noopener noreferrer">Join Discord Community</a>
+        <a class="chip-link" href="/">Developer's Profile</a>
       </div>
     </div>
   </header>
@@ -378,47 +353,44 @@
   </section>
 
   <main class="content">
-    <section class="intro" aria-labelledby="intro-title">
-      <h2 id="intro-title">What Is FREN?</h2>
-      <p>
-        FREN is a feature-rich Discord bot designed to make servers smarter, safer, and more fun. It combines AI utilities,
-        moderation workflows, reminders, and a growing game ecosystem in one system. Use this page as the bot info hub,
-        then jump into Fren Shop for subscriptions, premium drops, and support items.
-      </p>
-      <p class="games-spotlight">Upcoming Fren Games are a major focus, including competitive modes, seasonal quests, and collectible-based progression.</p>
-      <div class="quick-links">
-        <a class="btn primary" href="https://www.nextgenaischool.in/fren" target="_blank" rel="noopener noreferrer">Visit Fren Shop</a>
-        <a class="btn secondary" href="https://discod.gg/frenbot" target="_blank" rel="noopener noreferrer">Join Discord Community</a>
-        <a class="btn secondary" href="/">Back to Main Profile</a>
-      </div>
-    </section>
-
     <section class="features" aria-labelledby="features-title">
       <h2 id="features-title">Explore Features</h2>
-      <p class="features-intro">Click any feature to expand and see details. Game-related updates are being shipped actively.</p>
+      <p class="features-intro">Click any feature to expand and see details.</p>
 
       <div class="toggle-grid">
-        <details class="feature-toggle" open>
-          <summary>Upcoming Fren Games (Roadmap)</summary>
+        <details class="feature-toggle">
+          <summary>Fren Cat Game Loop</summary>
           <div class="feature-content">
-            <p>New game loops are being designed to make FREN a true community game engine inside Discord.</p>
+            <p>FREN runs an active cat-based gameplay system with progression and economy mechanics.</p>
             <ul>
-              <li>Competitive matchups with leaderboard-driven progression.</li>
-              <li>Seasonal quests and time-limited challenges for active members.</li>
-              <li>Reward tracks tied to collectibles, server activity, and events.</li>
-              <li>Community playtests announced in the Discord server first.</li>
+              <li>Core flow: `game start` -> `discover/scavenge` -> `shelter/habitat` -> `rescue/merge/sell`.</li>
+              <li>Collection-oriented progression with cats, materials, and strategy choices.</li>
+              <li>Leaderboards and stats via `fren game lb` and `fren game stats`.</li>
+              <li>Built for daily gameplay loops and long-term retention.</li>
             </ul>
           </div>
         </details>
 
         <details class="feature-toggle">
-          <summary>Current Games, Economy & Engagement</summary>
+          <summary>Puzzle & Word Games</summary>
           <div class="feature-content">
-            <p>Interactive mechanics already keep members active and reward participation.</p>
+            <p>Multiple fast-turn games run directly in channels with individual command groups.</p>
             <ul>
-              <li>Game-style commands and progression-style loops.</li>
-              <li>Economy and collectible mechanics for retention and activity.</li>
-              <li>Designed to make daily participation fun and repeatable.</li>
+              <li>`fren sudoku` with difficulty/mode options, hints, and leaderboards.</li>
+              <li>`fren hangman`, `fren scramble`, and `fren guessnumber` for casual play.</li>
+              <li>`fren gtw` (Guess The Word) with hint support and closeness reactions.</li>
+            </ul>
+          </div>
+        </details>
+
+        <details class="feature-toggle">
+          <summary>Social & Party Games</summary>
+          <div class="feature-content">
+            <p>FREN also supports social game formats for group participation and events.</p>
+            <ul>
+              <li>`fren story` collaborative storytelling with channel history.</li>
+              <li>`fren truthordare` with lobbies, scoring, and leaderboards.</li>
+              <li>`fren ematch` real-time emoji match challenges between members.</li>
             </ul>
           </div>
         </details>
@@ -470,6 +442,12 @@
             </ul>
           </div>
         </details>
+      </div>
+
+      <div class="quick-links">
+        <a class="btn primary" href="https://www.nextgenaischool.in/fren" target="_blank" rel="noopener noreferrer">Visit Fren Shop</a>
+        <a class="btn secondary" href="https://discord.gg/frenbot" target="_blank" rel="noopener noreferrer">Join Discord Community</a>
+        <a class="btn secondary" href="/">Developer's Profile</a>
       </div>
     </section>
   </main>
