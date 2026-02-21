@@ -85,6 +85,9 @@
     }
 
     .chip-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
       border: 1px solid var(--border);
       background: rgba(255, 255, 255, 0.06);
       color: var(--text-main);
@@ -185,7 +188,9 @@
     }
 
     .btn {
-      display: inline-block;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
       padding: 11px 18px;
       border-radius: 12px;
       border: 1px solid var(--border);
@@ -209,6 +214,14 @@
       transform: translateY(-2px);
       box-shadow: 0 10px 22px rgba(0, 0, 0, 0.22);
       border-color: rgba(123, 231, 208, 0.45);
+    }
+
+    .link-icon {
+      width: 16px;
+      height: 16px;
+      border-radius: 4px;
+      object-fit: cover;
+      flex-shrink: 0;
     }
 
     .features {
@@ -333,6 +346,7 @@
 
       .btn {
         width: 100%;
+        justify-content: center;
         text-align: center;
       }
     }
@@ -345,7 +359,10 @@
       <div class="header-actions">
         <a class="chip-link" href="https://www.nextgenaischool.in/fren" target="_blank" rel="noopener noreferrer">Visit Fren Shop</a>
         <a class="chip-link" href="https://discord.gg/frenbot" target="_blank" rel="noopener noreferrer">Join Discord Community</a>
-        <a class="chip-link" href="/">Developer's Profile</a>
+        <a class="chip-link" href="/">
+          <img src="/icon.png" alt="" class="link-icon" aria-hidden="true">
+          Developer's Profile
+        </a>
       </div>
     </div>
   </header>
@@ -456,7 +473,10 @@
       <div class="quick-links">
         <a class="btn primary" href="https://www.nextgenaischool.in/fren" target="_blank" rel="noopener noreferrer">Visit Fren Shop</a>
         <a class="btn secondary" href="https://discord.gg/frenbot" target="_blank" rel="noopener noreferrer">Join Discord Community</a>
-        <a class="btn secondary" href="/">Developer's Profile</a>
+        <a class="btn secondary" href="/">
+          <img src="/icon.png" alt="" class="link-icon" aria-hidden="true">
+          Developer's Profile
+        </a>
       </div>
     </section>
   </main>

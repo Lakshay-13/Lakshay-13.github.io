@@ -117,12 +117,27 @@
         }
         
         .logo {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            animation: fadeIn 1s ease-in;
+        }
+
+        .logo-icon {
+            width: 30px;
+            height: 30px;
+            border-radius: 8px;
+            object-fit: cover;
+            box-shadow: 0 0 12px rgba(10, 250, 158, 0.25);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .logo-text {
             font-size: 24px;
             font-weight: 700;
             background: linear-gradient(to right, var(--gradient-start), var(--gradient-end));
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
-            animation: fadeIn 1s ease-in;
         }
         
         .nav-links {
@@ -549,7 +564,10 @@
     <header>
         <div class="container">
             <nav>
-                <div class="logo">LC</div>
+                <div class="logo">
+                    <img src="/icon.png" alt="Site icon" class="logo-icon">
+                    <span class="logo-text">LC</span>
+                </div>
                 <div class="nav-links">
                     <a href="#about">About</a>
                     <a href="#experience">Experience</a>
