@@ -3,18 +3,19 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Support FREN 🐾</title>
+  <title>FREN Bot | Info & Shop</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=Nunito:wght@400;700&display=swap" rel="stylesheet">
-
+  <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet">
   <style>
-    /* --- Base & Body Styles --- */
     :root {
-      --primary-purple: #5865F2; /* Discord Purple */
-      --dark-bg: #23272A;
-      --glow-pink: #ff80ff;
-      --light-pink: #ffe3ff;
+      --bg-deep: #121126;
+      --bg-glass: rgba(255, 255, 255, 0.08);
+      --text-main: #ffffff;
+      --text-muted: #d7d7eb;
+      --accent: #86ffcc;
+      --accent-2: #6cc7ff;
+      --border: rgba(255, 255, 255, 0.16);
     }
 
     * {
@@ -25,215 +26,186 @@
 
     body {
       font-family: 'Nunito', sans-serif;
-      background: #1e1b2e; /* Dark purple from banner */
-      background-image: radial-gradient(circle at top, #4a3e6e, #1e1b2e 70%);
-      color: #fff;
-      text-align: center;
-      overflow-x: hidden;
+      color: var(--text-main);
+      min-height: 100vh;
+      background:
+        radial-gradient(circle at 10% 10%, rgba(108, 199, 255, 0.28), transparent 34%),
+        radial-gradient(circle at 90% 15%, rgba(134, 255, 204, 0.22), transparent 30%),
+        linear-gradient(135deg, #1d1a3a 0%, #121126 55%, #0a1020 100%);
       display: flex;
-      flex-direction: column;
       align-items: center;
       justify-content: center;
-      min-height: 100vh;
       padding: 20px;
     }
 
-    /* --- Main Content Card --- */
-    .content-wrapper {
-      background: rgba(0, 0, 0, 0.25);
-      backdrop-filter: blur(10px);
-      border-radius: 20px;
-      border: 1px solid rgba(255, 255, 255, 0.1);
-      box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
-      max-width: 700px;
+    .page {
       width: 100%;
-      padding-top: 0;
-      overflow: hidden; /* Ensures banner corners are rounded */
+      max-width: 840px;
+      border: 1px solid var(--border);
+      border-radius: 22px;
+      overflow: hidden;
+      background: var(--bg-glass);
+      backdrop-filter: blur(10px);
+      box-shadow: 0 24px 70px rgba(0, 0, 0, 0.35);
     }
-    
-    /* --- Header & Images --- */
-    header {
+
+    .hero {
       position: relative;
-      margin-bottom: 80px; /* Space for the overlapping avatar */
+      margin-bottom: 70px;
     }
 
     .banner {
+      display: block;
       width: 100%;
       height: auto;
-      display: block;
     }
 
-    .bot-avatar {
-      width: 130px;
-      height: 130px;
-      border-radius: 50%;
-      border: 5px solid #fff;
-      box-shadow: 0 0 25px var(--glow-pink);
+    .avatar {
       position: absolute;
-      bottom: -65px; /* Halfway overlap */
       left: 50%;
+      bottom: -60px;
       transform: translateX(-50%);
+      width: 120px;
+      height: 120px;
+      border-radius: 50%;
+      border: 4px solid #ffffff;
+      box-shadow: 0 0 30px rgba(134, 255, 204, 0.6);
+      background: #fff;
     }
-    
-    /* --- Text & Typography --- */
-    .text-content {
-      padding: 0 30px 30px;
+
+    .content {
+      padding: 0 28px 30px;
+      text-align: center;
     }
 
     h1 {
       font-family: 'Press Start 2P', cursive;
-      color: var(--light-pink);
-      text-shadow: 0 0 10px var(--glow-pink), 0 0 25px var(--glow-pink);
-      margin-bottom: 20px;
-      font-size: 2em;
-      animation: glow 1.5s infinite alternate;
-    }
-    h1::after { content: " 🐾"; }
-
-    p {
-      font-size: 1.1em;
-      line-height: 1.6;
-      max-width: 500px;
-      margin: 0 auto 40px auto;
-      text-shadow: 0 0 5px #000;
+      font-size: 1.6rem;
+      line-height: 1.45;
+      margin-bottom: 16px;
+      color: #f5efff;
+      text-shadow: 0 0 16px rgba(134, 255, 204, 0.6);
     }
 
-    @keyframes glow {
-      from { text-shadow: 0 0 10px #ffb3ff, 0 0 25px #ffa3ff; }
-      to { text-shadow: 0 0 25px var(--glow-pink), 0 0 50px var(--glow-pink); }
-    }
-    
-    /* --- PayPal Button --- */
-    .paypal-form {
-      display: inline-grid;
-      justify-items: center;
-      gap: 0.75rem;
-    }
-    
-    .paypal-button {
-      font-family: 'Nunito', sans-serif;
-      font-weight: bold;
-      font-size: 1.1rem;
-      background: linear-gradient(90deg, #ffb3ff, var(--glow-pink));
-      border: none;
-      color: var(--dark-bg);
-      border-radius: 1.5rem;
-      padding: 0.75rem 2.5rem;
-      cursor: pointer;
-      transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
-    }
-    
-    .paypal-button:hover {
-      transform: scale(1.05);
-      box-shadow: 0 0 20px var(--glow-pink);
-    }
-    
-    .paypal-info {
-      font-size: 0.75rem;
-    }
-    
-    .paypal-info img {
-      height: 0.875rem;
-      vertical-align: middle;
+    .lead {
+      max-width: 640px;
+      margin: 0 auto 22px;
+      color: var(--text-muted);
+      font-size: 1.05rem;
+      line-height: 1.7;
     }
 
-    /* --- Footer --- */
-    footer {
-      font-size: 0.9em;
-      color: var(--light-pink);
-      margin-top: 30px;
-      opacity: 0.8;
-    }
-    
-    /* --- Sparkles (decorative) --- */
-    .sparkle-container {
-        position: fixed;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        pointer-events: none; /* Allows clicks to go through */
-        z-index: -1;
-    }
-    .sparkle {
-      position: absolute;
-      width: 6px;
-      height: 6px;
-      background: #fff;
-      border-radius: 50%;
-      animation: sparkle 2.5s infinite linear;
-      opacity: 0;
+    .badge-row {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 10px;
+      margin-bottom: 24px;
     }
 
-    @keyframes sparkle {
-      0% { opacity: 0; transform: translateY(0); }
-      20% { opacity: 1; }
-      80% { opacity: 1; }
-      100% { opacity: 0; transform: translateY(-50px); }
+    .badge {
+      border: 1px solid var(--border);
+      background: rgba(255, 255, 255, 0.07);
+      color: var(--text-main);
+      padding: 7px 12px;
+      border-radius: 999px;
+      font-size: 0.88rem;
+      font-weight: 700;
+      letter-spacing: 0.2px;
     }
-    
-    /* --- Mobile Responsiveness --- */
-    @media (max-width: 600px) {
-      body {
-        padding: 10px;
+
+    .links {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      justify-content: center;
+      margin-bottom: 18px;
+    }
+
+    .btn {
+      display: inline-block;
+      text-decoration: none;
+      color: #0c1230;
+      font-weight: 800;
+      background: linear-gradient(90deg, var(--accent), var(--accent-2));
+      padding: 11px 20px;
+      border-radius: 12px;
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+
+    .btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 20px rgba(134, 255, 204, 0.35);
+    }
+
+    .btn.secondary {
+      background: rgba(255, 255, 255, 0.12);
+      color: #ffffff;
+      border: 1px solid var(--border);
+    }
+
+    .note {
+      margin-top: 8px;
+      font-size: 0.9rem;
+      color: #c8c8e6;
+    }
+
+    @media (max-width: 640px) {
+      .hero {
+        margin-bottom: 56px;
       }
-      .bot-avatar {
-        width: 100px;
-        height: 100px;
-        border-width: 3px;
-        bottom: -50px;
+
+      .avatar {
+        width: 96px;
+        height: 96px;
+        bottom: -48px;
       }
-      header {
-        margin-bottom: 60px;
-      }
+
       h1 {
-        font-size: 1.5em;
+        font-size: 1.15rem;
       }
-      p {
-        font-size: 1em;
+
+      .content {
+        padding: 0 18px 24px;
       }
-      .text-content {
-        padding: 0 20px 20px;
+
+      .lead {
+        font-size: 0.98rem;
       }
     }
-
   </style>
 </head>
 <body>
-
-  <div class="sparkle-container">
-    <div class="sparkle" style="top:20%; left:15%; animation-delay:0s;"></div>
-    <div class="sparkle" style="top:40%; left:75%; animation-delay:0.8s;"></div>
-    <div class="sparkle" style="top:60%; left:35%; animation-delay:1.5s;"></div>
-    <div class="sparkle" style="top:80%; left:55%; animation-delay:2s;"></div>
-    <div class="sparkle" style="top:50%; left:10%; animation-delay:2.5s;"></div>
-    <div class="sparkle" style="top:70%; left:90%; animation-delay:0.3s;"></div>
-  </div>
-
-  <main class="content-wrapper">
-    <header>
-      <img src="https://i.postimg.cc/vHsdL2tv/11.png" alt="FREN Banner with tiger and kittens" class="banner">
-      
-      <img src="https://i.postimg.cc/PxGWv9df/fren.png" alt="FREN Bot" class="bot-avatar">
+  <main class="page">
+    <header class="hero">
+      <img src="https://i.postimg.cc/vHsdL2tv/11.png" alt="FREN banner" class="banner">
+      <img src="https://i.postimg.cc/PxGWv9df/fren.png" alt="FREN bot avatar" class="avatar">
     </header>
 
-    <div class="text-content">
-      <h1>Support FREN</h1>
-      <p>Enjoying FREN in your server? Your support helps keep the bot running smoothly and allows for the development of more meowsome features!</p>
-    </div>
+    <section class="content">
+      <h1>FREN BOT INFO</h1>
+      <p class="lead">
+        FREN is a community-first Discord bot for AI chat, study buddy help, reminders, moderation, and game/economy features.
+        This page is the official bot info hub, while subscriptions, collectibles, and support items are on Fren Shop.
+      </p>
 
-    <div class="paypal-container">
-      <form action="https://www.paypal.com/ncp/payment/WQRDFMJX9ET6U" method="post" target="_blank" class="paypal-form">
-        <input class="paypal-button" type="submit" value="Donate with PayPal">
-        <img src="https://www.paypalobjects.com/images/Debit_Credit_APM.svg" alt="Visa, Mastercard, AMEX, and PayPal logos">
-        <section class="paypal-info">
-          Powered by <img src="https://www.paypalobjects.com/paypal-ui/logos/svg/paypal-wordmark-color.svg" alt="PayPal wordmark logo">
-        </section>
-      </form>
-    </div>
+      <div class="badge-row">
+        <span class="badge">AI Study Buddy</span>
+        <span class="badge">AI Chat</span>
+        <span class="badge">Moderation</span>
+        <span class="badge">Reminders</span>
+        <span class="badge">Memes & Fun</span>
+        <span class="badge">Server Tools</span>
+      </div>
+
+      <div class="links">
+        <a class="btn" href="https://www.nextgenaischool.in/fren" target="_blank" rel="noopener noreferrer">Visit Fren Shop</a>
+        <a class="btn secondary" href="https://github.com/Lakshay-13/fren" target="_blank" rel="noopener noreferrer">Bot Repository</a>
+        <a class="btn secondary" href="/">Back to Profile</a>
+      </div>
+
+      <p class="note">Use Fren Shop for premium plans, collectible drops, and payment/support management.</p>
+    </section>
   </main>
-  
-  <footer>Thank you for supporting FREN! 💜</footer>
-
 </body>
 </html>
