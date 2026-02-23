@@ -4,10 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="icon" type="image/png" href="/icon.png">
-  <title>FREN Bot | Info & Features</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800&family=Press+Start+2P&display=swap" rel="stylesheet">
+  <title>FREN Bot</title>
   <style>
     :root {
       --bg-main: #0b1220;
@@ -36,7 +33,7 @@
     }
 
     body {
-      font-family: 'Nunito', sans-serif;
+      font-family: "Avenir Next", "Segoe UI", "Trebuchet MS", sans-serif;
       color: var(--text-main);
       background:
         radial-gradient(circle at 15% 12%, rgba(128, 182, 255, 0.2), transparent 30%),
@@ -58,9 +55,12 @@
       backdrop-filter: blur(8px);
       background: rgba(7, 12, 22, 0.72);
       border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+      overflow: hidden;
     }
 
     .header-inner {
+      position: relative;
+      z-index: 2;
       max-width: 1080px;
       margin: 0 auto;
       padding: 14px 20px;
@@ -151,7 +151,7 @@
     }
 
     .hero-title {
-      font-family: 'Press Start 2P', cursive;
+      font-family: "Trebuchet MS", "Segoe UI", sans-serif;
       font-size: clamp(1rem, 2.8vw, 2rem);
       letter-spacing: 1px;
       line-height: 1.5;
@@ -369,9 +369,9 @@
 
   <section class="hero" aria-label="FREN hero banner">
     <div class="hero-banner-wrap">
-      <img src="https://i.postimg.cc/vHsdL2tv/11.png" alt="FREN purple themed banner" class="hero-banner">
+      <img src="assets/fren-banner.png" alt="FREN purple themed banner" class="hero-banner">
       <div class="hero-title-box">
-        <img src="https://i.postimg.cc/PxGWv9df/fren.png" alt="FREN cat profile" class="hero-avatar-inline">
+        <img src="assets/fren-avatar.png" alt="FREN cat profile" class="hero-avatar-inline">
         <h1 class="hero-title">FREN BOT</h1>
         <p class="hero-subtitle">Discord companion focused on games, community events, AI utilities, and moderation.</p>
       </div>

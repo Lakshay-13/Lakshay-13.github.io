@@ -1,0 +1,479 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="icon" type="image/png" href="/icon.png">
+  <title>Zinging Bot</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800&family=Press+Start+2P&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg-main: #06140e;
+      --bg-surface: #0d2319;
+      --bg-surface-soft: #123025;
+      --text-main: #eafcf1;
+      --text-muted: #bee8cf;
+      --accent: #71f2a4;
+      --accent-2: #38dcb0;
+      --border: rgba(255, 255, 255, 0.14);
+      --shadow: 0 18px 45px rgba(0, 0, 0, 0.3);
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html {
+      min-height: 100%;
+      background:
+        radial-gradient(circle at 12% 10%, rgba(56, 220, 176, 0.18), transparent 32%),
+        radial-gradient(circle at 88% 18%, rgba(113, 242, 164, 0.18), transparent 28%),
+        linear-gradient(160deg, #06140e 0%, #081b12 52%, #0f2b1f 100%);
+    }
+
+    body {
+      font-family: 'Nunito', sans-serif;
+      color: var(--text-main);
+      background:
+        radial-gradient(circle at 12% 10%, rgba(56, 220, 176, 0.18), transparent 32%),
+        radial-gradient(circle at 88% 18%, rgba(113, 242, 164, 0.18), transparent 28%),
+        linear-gradient(160deg, #06140e 0%, #081b12 52%, #0f2b1f 100%);
+      min-height: 100vh;
+      line-height: 1.6;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    .site-header {
+      position: sticky;
+      top: 0;
+      z-index: 10;
+      backdrop-filter: blur(8px);
+      background: rgba(6, 20, 14, 0.72);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+    }
+
+    .header-inner {
+      max-width: 1080px;
+      margin: 0 auto;
+      padding: 14px 20px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 14px;
+    }
+
+    .brand {
+      font-weight: 800;
+      letter-spacing: 0.5px;
+      color: #ffffff;
+    }
+
+    .header-actions {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      flex-wrap: wrap;
+      justify-content: flex-end;
+    }
+
+    .chip-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      border: 1px solid var(--border);
+      background: rgba(255, 255, 255, 0.06);
+      color: var(--text-main);
+      padding: 8px 14px;
+      border-radius: 999px;
+      font-weight: 700;
+      font-size: 0.9rem;
+      transition: transform 0.2s ease, border-color 0.2s ease;
+    }
+
+    .chip-link:hover {
+      transform: translateY(-1px);
+      border-color: rgba(113, 242, 164, 0.66);
+    }
+
+    .hero {
+      max-width: 1080px;
+      margin: 24px auto 0;
+      padding: 0 20px;
+    }
+
+    .hero-banner-wrap {
+      position: relative;
+      border-radius: 22px;
+      overflow: hidden;
+      border: 1px solid var(--border);
+      box-shadow: var(--shadow);
+    }
+
+    .hero-banner {
+      width: 100%;
+      display: block;
+      height: clamp(185px, 23vw, 245px);
+      object-fit: cover;
+      background:
+        radial-gradient(circle at 20% 20%, rgba(113, 242, 164, 0.28), transparent 40%),
+        radial-gradient(circle at 80% 35%, rgba(56, 220, 176, 0.2), transparent 45%),
+        linear-gradient(130deg, #154431 0%, #1e6145 50%, #0f3225 100%);
+    }
+
+    .hero-title-box {
+      position: absolute;
+      left: 50%;
+      top: 50%;
+      transform: translate(-50%, -50%);
+      width: min(94%, 720px);
+      text-align: center;
+      padding: 12px 16px;
+      background: rgba(8, 22, 17, 0.56);
+      border: 1px solid rgba(255, 255, 255, 0.22);
+      border-radius: 16px;
+      backdrop-filter: blur(6px);
+    }
+
+    .hero-avatar-inline {
+      width: 80px;
+      height: 80px;
+      border-radius: 50%;
+      border: 3px solid #fff;
+      box-shadow: 0 0 0 5px rgba(113, 242, 164, 0.26), 0 6px 18px rgba(0, 0, 0, 0.32);
+      background: #fff;
+      margin: 0 auto 10px;
+      display: block;
+    }
+
+    .hero-title {
+      font-family: 'Press Start 2P', cursive;
+      font-size: clamp(1rem, 2.4vw, 1.8rem);
+      letter-spacing: 1px;
+      line-height: 1.5;
+      color: #f2fff7;
+      text-shadow: 0 0 14px rgba(56, 220, 176, 0.45);
+    }
+
+    .hero-subtitle {
+      margin-top: 8px;
+      color: #d9f8e6;
+      font-weight: 700;
+      font-size: clamp(0.85rem, 1.8vw, 1.05rem);
+    }
+
+    .content {
+      max-width: 1080px;
+      margin: 30px auto 40px;
+      padding: 0 20px;
+      display: grid;
+      gap: 28px;
+    }
+
+    .features {
+      background: linear-gradient(170deg, rgba(255, 255, 255, 0.05), rgba(255, 255, 255, 0.02));
+      border: 1px solid var(--border);
+      border-radius: 18px;
+      padding: 24px;
+    }
+
+    .features h2 {
+      font-size: clamp(1.3rem, 2.2vw, 1.8rem);
+      margin-bottom: 8px;
+    }
+
+    .features-intro {
+      color: var(--text-muted);
+      margin-bottom: 14px;
+    }
+
+    .toggle-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 12px;
+    }
+
+    .feature-toggle {
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      background: var(--bg-surface);
+      overflow: hidden;
+    }
+
+    .feature-toggle[open] {
+      background: var(--bg-surface-soft);
+      border-color: rgba(113, 242, 164, 0.42);
+    }
+
+    .feature-toggle summary {
+      list-style: none;
+      cursor: pointer;
+      padding: 14px 16px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 10px;
+      font-weight: 800;
+      font-size: 1rem;
+    }
+
+    .feature-toggle summary::-webkit-details-marker {
+      display: none;
+    }
+
+    .feature-toggle summary::after {
+      content: "+";
+      font-size: 1.2rem;
+      color: var(--accent);
+      line-height: 1;
+    }
+
+    .feature-toggle[open] summary::after {
+      content: "-";
+    }
+
+    .feature-content {
+      border-top: 1px solid rgba(255, 255, 255, 0.08);
+      padding: 12px 16px 16px;
+      color: #d7f6e3;
+      font-size: 0.96rem;
+    }
+
+    .feature-content p {
+      margin-bottom: 8px;
+    }
+
+    .feature-content ul {
+      padding-left: 18px;
+      display: grid;
+      gap: 4px;
+    }
+
+    .quick-links {
+      margin-top: 18px;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      justify-content: center;
+    }
+
+    .player-shot {
+      margin-top: 16px;
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      background: rgba(255, 255, 255, 0.05);
+      padding: 12px;
+    }
+
+    .player-shot img {
+      width: 100%;
+      display: block;
+      border-radius: 10px;
+      border: 1px solid rgba(255, 255, 255, 0.14);
+    }
+
+    .player-shot p {
+      margin-top: 8px;
+      color: var(--text-muted);
+      font-size: 0.93rem;
+      text-align: center;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 11px 18px;
+      border-radius: 12px;
+      border: 1px solid var(--border);
+      font-weight: 800;
+      font-size: 0.96rem;
+      transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
+    }
+
+    .btn.primary {
+      background: linear-gradient(90deg, var(--accent), var(--accent-2));
+      color: #05120c;
+      border: none;
+    }
+
+    .btn.secondary {
+      background: rgba(255, 255, 255, 0.07);
+      color: var(--text-main);
+    }
+
+    .btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 10px 22px rgba(0, 0, 0, 0.22);
+      border-color: rgba(113, 242, 164, 0.45);
+    }
+
+    .link-icon {
+      width: 16px;
+      height: 16px;
+      border-radius: 4px;
+      object-fit: cover;
+      flex-shrink: 0;
+    }
+
+    .site-footer {
+      max-width: 1080px;
+      margin: 0 auto 30px;
+      padding: 0 20px;
+      color: #9cd7b7;
+      font-size: 0.92rem;
+      text-align: center;
+    }
+
+    @media (max-width: 860px) {
+      .toggle-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    @media (max-width: 580px) {
+      .header-inner {
+        padding: 12px 14px;
+      }
+
+      .hero,
+      .content,
+      .site-footer {
+        padding-left: 14px;
+        padding-right: 14px;
+      }
+
+      .hero-banner {
+        height: clamp(160px, 34vw, 205px);
+      }
+
+      .hero-title-box {
+        padding: 10px 10px;
+      }
+
+      .hero-avatar-inline {
+        width: 66px;
+        height: 66px;
+        margin-bottom: 8px;
+      }
+
+      .features {
+        padding: 18px;
+      }
+
+      .btn {
+        width: 100%;
+        justify-content: center;
+        text-align: center;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header class="site-header">
+    <div class="header-inner">
+      <div class="brand">Zinging Bot</div>
+      <div class="header-actions">
+        <a class="chip-link" href="https://discord.gg/frenbot" target="_blank" rel="noopener noreferrer">Join Discord Community</a>
+        <a class="chip-link" href="/">
+          <img src="/icon.png" alt="" class="link-icon" aria-hidden="true">
+          Developer's Profile
+        </a>
+      </div>
+    </div>
+  </header>
+
+  <section class="hero" aria-label="Zinging hero banner">
+    <div class="hero-banner-wrap">
+      <div class="hero-banner" role="img" aria-label="Green Zinging banner"></div>
+      <div class="hero-title-box">
+        <img src="/zinging/zinging.png" alt="Zinging bot profile" class="hero-avatar-inline">
+        <h1 class="hero-title">ZINGING BOT</h1>
+        <p class="hero-subtitle">A community music bot for smooth playback, queue control, and smart recommendations.</p>
+      </div>
+    </div>
+  </section>
+
+  <main class="content">
+    <section class="features" aria-labelledby="features-title">
+      <h2 id="features-title">Explore Features</h2>
+      <p class="features-intro">Click any feature to expand and see details.</p>
+
+      <div class="toggle-grid">
+        <details class="feature-toggle">
+          <summary>Playback & Queue Flow</summary>
+          <div class="feature-content">
+            <p>Zinging is built around channel-based music flow with quick queue handling.</p>
+            <ul>
+              <li>Type song names or paste links in the configured music channel.</li>
+              <li>Queue controls are accessible through player buttons.</li>
+              <li>Designed for continuous listening sessions in active servers.</li>
+            </ul>
+          </div>
+        </details>
+
+        <details class="feature-toggle">
+          <summary>Player Controls</summary>
+          <div class="feature-content">
+            <p>Interactive controls are first-class in the player experience.</p>
+            <ul>
+              <li>Play/Pause, Skip, Stop/Disconnect actions.</li>
+              <li>Queue view, volume up/down, and random controls.</li>
+              <li>Fast control path for live voice channel usage.</li>
+            </ul>
+          </div>
+        </details>
+
+        <details class="feature-toggle">
+          <summary>Library & Music Setup</summary>
+          <div class="feature-content">
+            <p>Server admins can shape how Zinging behaves for their community.</p>
+            <ul>
+              <li>`setchannel` for dedicated playback channels.</li>
+              <li>`setvolume` for default volume control.</li>
+              <li>`library` browsing plus clean disconnect/reset commands.</li>
+            </ul>
+          </div>
+        </details>
+
+        <details class="feature-toggle">
+          <summary>Recommendation Engine</summary>
+          <div class="feature-content">
+            <p>Zinging includes recommendation commands for smarter music discovery.</p>
+            <ul>
+              <li>`recommend` for tailored suggestions.</li>
+              <li>Preference reset and auto-history cleanup commands.</li>
+              <li>Tier-aware recommendation support for advanced usage.</li>
+            </ul>
+          </div>
+        </details>
+
+      </div>
+
+      <div class="player-shot">
+        <img src="/zinging/player.png" alt="Zinging player screenshot">
+        <p>Live player preview</p>
+      </div>
+
+      <div class="quick-links">
+        <a class="btn primary" href="https://discord.gg/frenbot" target="_blank" rel="noopener noreferrer">Join Discord Community</a>
+        <a class="btn secondary" href="/">
+          <img src="/icon.png" alt="" class="link-icon" aria-hidden="true">
+          Developer's Profile
+        </a>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    Zinging | Music-first Discord automation for modern communities.
+  </footer>
+</body>
+</html>
