@@ -26,3 +26,9 @@ I'm a Data Scientist intrigued by the possibilities of transforming our brains w
 I have interests in behavioral economics, strategic gaming, and clinical psychology. I also enjoy writing and music.
 
 For more information, please visit my website: [lakshay-13.github.io](https://lakshay-13.github.io)
+
+## License
+
+This project is proprietary and all rights are reserved. No copying, reuse, distribution,
+modification, or derivative use is allowed without prior written permission.
+See the [LICENSE](LICENSE) file for full terms.
