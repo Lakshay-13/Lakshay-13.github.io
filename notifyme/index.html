@@ -533,6 +533,79 @@
       </article>
     </section>
 
+    <section class="docs-layout">
+      <article class="section-card">
+        <details>
+          <summary><strong>Show Python callback wait example</strong></summary>
+          <code class="code-block">import json
+import secrets
+import time
+import uuid
+from urllib import parse, request
+
+API_KEY = "nm_live_your_device_key_here"
+BASE_URL = "https://www.nextgenaischool.in"
+
+session_id = str(uuid.uuid4())
+session_token = secrets.token_urlsafe(24)
+
+callback_url = (
+    BASE_URL.rstrip("/") +
+    "/api/notifyme/action-await/" +
+    parse.quote(session_id) +
+    "?token=" +
+    parse.quote(session_token)
+)
+
+send_body = {
+    "notificationId": f"job-{uuid.uuid4()}",
+    "title": "Task Reminder",
+    "body": "Mark this as done.",
+    "actionType": "open_home",
+    "buttonLabel": "Done",
+    "buttonAction": "done",
+    "textReplyEnabled": True,
+    "textReplyLabel": "Reply",
+    "callbackUrl": callback_url,
+}
+
+def post_json(url, body, headers=None):
+    req = request.Request(url, method="POST")
+    req.add_header("Content-Type", "application/json")
+    for key, value in (headers or {}).items():
+        req.add_header(key, value)
+    with request.urlopen(req, data=json.dumps(body).encode()) as response:
+        return json.loads(response.read().decode())
+
+def get_json(url):
+    with request.urlopen(url) as response:
+        return json.loads(response.read().decode())
+
+send_result = post_json(
+    f"{BASE_URL}/api/notifyme/send",
+    send_body,
+    headers={"Authorization": f"Bearer {API_KEY}"},
+)
+
+print("sent:", send_result)
+
+while True:
+    wait_result = get_json(callback_url)
+    if wait_result.get("pending") is False and wait_result.get("payload"):
+        callback = wait_result["payload"]
+        print("confirmed:", callback)
+
+        if callback["action"] == "done":
+            print("finalize: task completed")
+        elif callback["action"] == "reply":
+            print("finalize with reply:", callback.get("replyText"))
+        break
+
+    time.sleep(2)</code>
+        </details>
+      </article>
+    </section>
+
     <p class="footer">
       NotifyMe by Lakshay Chawla. Direct installs may require enabling “Install unknown apps” on Android.
     </p>
