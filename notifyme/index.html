@@ -405,12 +405,12 @@
           <img src="/notifyme-logo.png" alt="NotifyMe logo">
         </div>
         <div>
-          <h2>Cleaner delivery flow, no raw FCM token sharing</h2>
+          <h2>Reliable visible delivery, no raw FCM token sharing</h2>
           <p>
             NotifyMe now exposes a managed API Keys screen instead of asking you to share the raw
-            token. Fren stores the Firebase delivery credential, sends high-priority data messages,
-            keeps background deliveries visible inside app history, and broadcasts new app updates
-            to registered devices.
+            token. Fren stores the Firebase delivery credential, sends normal high-priority
+            notifications for better lock-screen reliability, syncs interactive actions into app
+            history, and broadcasts new app updates to registered devices.
           </p>
         </div>
       </div>
@@ -421,7 +421,8 @@
         <h3>What It Does</h3>
         <p>
           Receive Firebase Cloud Messaging alerts, save them to local history, trigger update
-          installs from the web, and route notifications through your own backend.
+          installs from the web, route notifications through your own backend, and let users send
+          confirmations or replies from the app after a notification is received.
         </p>
       </article>
 
@@ -471,9 +472,10 @@
           <li>Header: <code>Authorization: Bearer &lt;YOUR_API_KEY&gt;</code></li>
           <li>Body: <code>title</code>, <code>body</code>, and <code>actionType</code> are the core fields</li>
           <li>Optional: <code>url</code> for <code>open_url</code>, <code>customRoute</code> for <code>open_custom</code></li>
-          <li>Actions: add <code>buttonLabel</code> and <code>buttonAction</code> for a quick action</li>
-          <li>Reply: add <code>textReplyEnabled</code>: <code>true</code> and optionally <code>textReplyLabel</code></li>
-          <li>Callbacks: add <code>callbackUrl</code> and optional <code>callbackSecret</code> to receive the response</li>
+          <li>Delivery stays normal and visible even when action fields are present</li>
+          <li>Actions: add <code>buttonLabel</code> and <code>buttonAction</code> to show a quick response inside app history</li>
+          <li>Reply: add <code>textReplyEnabled</code>: <code>true</code> and optionally <code>textReplyLabel</code> to allow typed replies from history</li>
+          <li>Callbacks: add <code>callbackUrl</code> and optional <code>callbackSecret</code> so Fren can POST the user response back to your server</li>
         </ul>
       </article>
 
@@ -489,7 +491,9 @@
     "buttonLabel": "Done",
     "buttonAction": "done",
     "textReplyEnabled": true,
-    "textReplyLabel": "Reply"
+    "textReplyLabel": "Reply",
+    "callbackUrl": "https://your-server.example.com/notifyme/action",
+    "callbackSecret": "your-shared-secret"
   }'</code>
       </article>
     </section>
