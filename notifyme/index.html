@@ -471,6 +471,9 @@
           <li>Header: <code>Authorization: Bearer &lt;YOUR_API_KEY&gt;</code></li>
           <li>Body: <code>title</code>, <code>body</code>, and <code>actionType</code> are the core fields</li>
           <li>Optional: <code>url</code> for <code>open_url</code>, <code>customRoute</code> for <code>open_custom</code></li>
+          <li>Actions: add <code>buttonLabel</code> and <code>buttonAction</code> for a quick action</li>
+          <li>Reply: add <code>textReplyEnabled</code>: <code>true</code> and optionally <code>textReplyLabel</code></li>
+          <li>Callbacks: add <code>callbackUrl</code> and optional <code>callbackSecret</code> to receive the response</li>
         </ul>
       </article>
 
@@ -480,9 +483,13 @@
   -H "Authorization: Bearer &lt;YOUR_API_KEY&gt;" \
   -H "Content-Type: application/json" \
   -d '{
-    "title": "Ping",
-    "body": "Hello from NotifyMe",
-    "actionType": "open_updates"
+    "title": "Task Reminder",
+    "body": "Mark this when finished.",
+    "actionType": "open_home",
+    "buttonLabel": "Done",
+    "buttonAction": "done",
+    "textReplyEnabled": true,
+    "textReplyLabel": "Reply"
   }'</code>
       </article>
     </section>
