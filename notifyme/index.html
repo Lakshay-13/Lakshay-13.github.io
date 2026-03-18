@@ -223,19 +223,38 @@
     }
 
     .logo-wrap {
-      width: 140px;
-      height: 140px;
-      border-radius: 32px;
-      background: linear-gradient(145deg, rgba(242, 248, 242, 0.98), rgba(187, 210, 190, 0.66));
+      position: relative;
+      width: 172px;
+      height: 172px;
+      border-radius: 42px;
+      overflow: hidden;
+      background: linear-gradient(150deg, rgba(246, 251, 246, 0.98), rgba(179, 213, 189, 0.72));
       display: grid;
       place-items: center;
-      box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.66), 0 20px 40px rgba(43, 73, 56, 0.14);
+      box-shadow:
+        inset 0 1px 0 rgba(255, 255, 255, 0.74),
+        inset 0 -12px 28px rgba(109, 149, 120, 0.12),
+        0 24px 44px rgba(43, 73, 56, 0.16);
+    }
+
+    .logo-wrap::before {
+      content: "";
+      position: absolute;
+      inset: 12px;
+      border-radius: 32px;
+      background: linear-gradient(180deg, rgba(255, 255, 255, 0.48), rgba(212, 231, 216, 0.2));
+      border: 1px solid rgba(255, 255, 255, 0.36);
     }
 
     .logo-wrap img {
-      width: 94px;
-      height: 94px;
-      object-fit: contain;
+      position: relative;
+      z-index: 1;
+      width: 138px;
+      height: 138px;
+      object-fit: cover;
+      border-radius: 34px;
+      transform: scale(1.12);
+      box-shadow: 0 18px 34px rgba(56, 82, 64, 0.18);
     }
 
     .hero-card h2 {
@@ -368,6 +387,22 @@
 
       .button {
         width: 100%;
+      }
+
+      .logo-wrap {
+        width: 156px;
+        height: 156px;
+        border-radius: 36px;
+      }
+
+      .logo-wrap::before {
+        inset: 10px;
+        border-radius: 28px;
+      }
+
+      .logo-wrap img {
+        width: 126px;
+        height: 126px;
       }
     }
   </style>
