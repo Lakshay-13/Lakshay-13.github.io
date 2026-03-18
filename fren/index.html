@@ -174,9 +174,42 @@
       gap: 28px;
     }
 
+    .stats-card,
+    .features {
+      background: linear-gradient(170deg, rgba(255, 255, 255, 0.05), rgba(255, 255, 255, 0.02));
+      border: 1px solid var(--border);
+      border-radius: 18px;
+      padding: 24px;
+    }
+
+    .stats-header {
+      display: flex;
+      align-items: flex-end;
+      justify-content: space-between;
+      gap: 16px;
+      flex-wrap: wrap;
+      margin-bottom: 16px;
+    }
+
+    .stats-card h2,
     .features h2 {
       font-size: clamp(1.3rem, 2.2vw, 1.8rem);
       margin-bottom: 8px;
+    }
+
+    .stats-intro,
+    .features-intro {
+      color: var(--text-muted);
+      margin-bottom: 14px;
+    }
+
+    .stats-widget {
+      display: block;
+      width: 100%;
+      border-radius: 18px;
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      background: #0e1730;
+      box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.04);
     }
 
     .quick-links {
@@ -222,18 +255,6 @@
       border-radius: 4px;
       object-fit: cover;
       flex-shrink: 0;
-    }
-
-    .features {
-      background: linear-gradient(170deg, rgba(255, 255, 255, 0.05), rgba(255, 255, 255, 0.02));
-      border: 1px solid var(--border);
-      border-radius: 18px;
-      padding: 24px;
-    }
-
-    .features-intro {
-      color: var(--text-muted);
-      margin-bottom: 14px;
     }
 
     .toggle-grid {
@@ -344,6 +365,14 @@
         padding: 18px;
       }
 
+      .stats-card {
+        padding: 18px;
+      }
+
+      .stats-header {
+        align-items: stretch;
+      }
+
       .btn {
         width: 100%;
         justify-content: center;
@@ -379,6 +408,22 @@
   </section>
 
   <main class="content">
+    <section class="stats-card" aria-labelledby="stats-title">
+      <div class="stats-header">
+        <div>
+          <h2 id="stats-title">Server Reach</h2>
+          <p class="stats-intro">Live total servers, streamed directly from the Fren bot runtime.</p>
+        </div>
+        <a class="chip-link" href="https://www.nextgenaischool.in/api/fren/stats" target="_blank" rel="noopener noreferrer">View JSON</a>
+      </div>
+      <img
+        class="stats-widget"
+        src="https://www.nextgenaischool.in/api/fren/server-widget.svg"
+        alt="Fren live total servers widget"
+        loading="lazy"
+      >
+    </section>
+
     <section class="features" aria-labelledby="features-title">
       <h2 id="features-title">Explore Features</h2>
       <p class="features-intro">Click any feature to expand and see details.</p>
