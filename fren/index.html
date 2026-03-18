@@ -182,13 +182,23 @@
       padding: 24px;
     }
 
+    .stats-card {
+      display: grid;
+      grid-template-columns: minmax(0, 1.1fr) minmax(320px, 0.9fr);
+      align-items: center;
+      gap: 22px;
+    }
+
+    .stats-copy {
+      min-width: 0;
+    }
+
     .stats-header {
       display: flex;
-      align-items: flex-end;
+      align-items: flex-start;
       justify-content: space-between;
       gap: 16px;
       flex-wrap: wrap;
-      margin-bottom: 16px;
     }
 
     .stats-card h2,
@@ -203,13 +213,29 @@
       margin-bottom: 14px;
     }
 
+    .stats-intro {
+      max-width: 38ch;
+      margin-bottom: 0;
+    }
+
+    .stats-widget-shell {
+      width: 100%;
+      max-width: 560px;
+      justify-self: end;
+      padding: 10px;
+      border-radius: 22px;
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      background: linear-gradient(180deg, rgba(255, 255, 255, 0.05), rgba(9, 15, 30, 0.16));
+      box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.05);
+    }
+
     .stats-widget {
       display: block;
       width: 100%;
+      height: auto;
       border-radius: 18px;
-      border: 1px solid rgba(255, 255, 255, 0.08);
+      border: 1px solid rgba(255, 255, 255, 0.06);
       background: #0e1730;
-      box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.04);
     }
 
     .quick-links {
@@ -330,6 +356,15 @@
     }
 
     @media (max-width: 860px) {
+      .stats-card {
+        grid-template-columns: 1fr;
+      }
+
+      .stats-widget-shell {
+        max-width: 100%;
+        justify-self: stretch;
+      }
+
       .toggle-grid {
         grid-template-columns: 1fr;
       }
@@ -373,6 +408,11 @@
         align-items: stretch;
       }
 
+      .stats-widget-shell {
+        padding: 8px;
+        border-radius: 18px;
+      }
+
       .btn {
         width: 100%;
         justify-content: center;
@@ -409,19 +449,23 @@
 
   <main class="content">
     <section class="stats-card" aria-labelledby="stats-title">
-      <div class="stats-header">
-        <div>
-          <h2 id="stats-title">Server Reach</h2>
-          <p class="stats-intro">Live total servers, streamed directly from the Fren bot runtime.</p>
+      <div class="stats-copy">
+        <div class="stats-header">
+          <div>
+            <h2 id="stats-title">Server Reach</h2>
+            <p class="stats-intro">Live total servers, streamed directly from the Fren bot runtime.</p>
+          </div>
+          <a class="chip-link" href="https://www.nextgenaischool.in/api/fren/stats" target="_blank" rel="noopener noreferrer">View JSON</a>
         </div>
-        <a class="chip-link" href="https://www.nextgenaischool.in/api/fren/stats" target="_blank" rel="noopener noreferrer">View JSON</a>
       </div>
-      <img
-        class="stats-widget"
-        src="https://www.nextgenaischool.in/api/fren/server-widget.svg"
-        alt="Fren live total servers widget"
-        loading="lazy"
-      >
+      <div class="stats-widget-shell">
+        <img
+          class="stats-widget"
+          src="https://www.nextgenaischool.in/api/fren/server-widget.svg"
+          alt="Fren live total servers widget"
+          loading="lazy"
+        >
+      </div>
     </section>
 
     <section class="features" aria-labelledby="features-title">
