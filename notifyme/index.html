@@ -1,0 +1,444 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="icon" type="image/png" href="/icon.png">
+  <title>NotifyMe</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;700&family=Manrope:wght@400;500;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg-main: #f4efe7;
+      --bg-surface: rgba(255, 255, 255, 0.78);
+      --bg-surface-strong: rgba(255, 255, 255, 0.92);
+      --text-main: #1f2b2a;
+      --text-muted: #5f6d6a;
+      --accent: #d6613c;
+      --accent-strong: #b94a27;
+      --accent-soft: #f5c8b8;
+      --border: rgba(31, 43, 42, 0.08);
+      --shadow: 0 24px 60px rgba(99, 72, 53, 0.14);
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Manrope', sans-serif;
+      color: var(--text-main);
+      min-height: 100vh;
+      background:
+        radial-gradient(circle at 15% 18%, rgba(214, 97, 60, 0.18), transparent 28%),
+        radial-gradient(circle at 85% 16%, rgba(92, 167, 144, 0.18), transparent 26%),
+        linear-gradient(160deg, #f5f1ea 0%, #efe6da 45%, #efe9e3 100%);
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    .shell {
+      max-width: 1120px;
+      margin: 0 auto;
+      padding: 24px 20px 60px;
+    }
+
+    .topbar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      padding: 14px 18px;
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      background: rgba(255, 255, 255, 0.55);
+      backdrop-filter: blur(14px);
+      box-shadow: 0 10px 30px rgba(99, 72, 53, 0.08);
+    }
+
+    .brand {
+      font-family: 'Space Grotesk', sans-serif;
+      font-weight: 700;
+      letter-spacing: 0.02em;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+      justify-content: flex-end;
+    }
+
+    .chip {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 10px 14px;
+      border-radius: 999px;
+      border: 1px solid var(--border);
+      background: rgba(255, 255, 255, 0.78);
+      color: var(--text-main);
+      font-weight: 700;
+      transition: transform 0.2s ease, border-color 0.2s ease;
+    }
+
+    .chip:hover {
+      transform: translateY(-1px);
+      border-color: rgba(214, 97, 60, 0.4);
+    }
+
+    .hero {
+      display: grid;
+      grid-template-columns: minmax(0, 1.1fr) minmax(320px, 0.9fr);
+      gap: 28px;
+      margin-top: 28px;
+      align-items: stretch;
+    }
+
+    .hero-copy,
+    .hero-card,
+    .section-card {
+      border: 1px solid var(--border);
+      border-radius: 28px;
+      background: var(--bg-surface);
+      backdrop-filter: blur(16px);
+      box-shadow: var(--shadow);
+    }
+
+    .hero-copy {
+      padding: 42px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      gap: 18px;
+    }
+
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      width: fit-content;
+      padding: 9px 14px;
+      border-radius: 999px;
+      background: rgba(214, 97, 60, 0.10);
+      color: var(--accent-strong);
+      font-weight: 800;
+      letter-spacing: 0.03em;
+      text-transform: uppercase;
+      font-size: 0.78rem;
+    }
+
+    h1 {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: clamp(2.6rem, 5vw, 4.8rem);
+      line-height: 0.98;
+      letter-spacing: -0.04em;
+    }
+
+    .lead {
+      font-size: 1.08rem;
+      line-height: 1.8;
+      color: var(--text-muted);
+      max-width: 58ch;
+    }
+
+    .hero-actions {
+      display: flex;
+      gap: 12px;
+      flex-wrap: wrap;
+      margin-top: 6px;
+    }
+
+    .button {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 50px;
+      padding: 0 18px;
+      border-radius: 16px;
+      font-weight: 800;
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+
+    .button.primary {
+      background: var(--accent);
+      color: #fff7f2;
+      box-shadow: 0 16px 28px rgba(214, 97, 60, 0.28);
+    }
+
+    .button.secondary {
+      background: var(--bg-surface-strong);
+      border: 1px solid var(--border);
+      color: var(--text-main);
+    }
+
+    .button:hover {
+      transform: translateY(-1px);
+    }
+
+    .meta {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+      margin-top: 6px;
+    }
+
+    .meta span {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 9px 12px;
+      border-radius: 999px;
+      background: rgba(255, 255, 255, 0.7);
+      color: var(--text-muted);
+      font-weight: 700;
+      font-size: 0.92rem;
+      border: 1px solid rgba(31, 43, 42, 0.06);
+    }
+
+    .hero-card {
+      padding: 28px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      gap: 20px;
+      overflow: hidden;
+      position: relative;
+      background:
+        radial-gradient(circle at top right, rgba(214, 97, 60, 0.14), transparent 28%),
+        radial-gradient(circle at 18% 18%, rgba(92, 167, 144, 0.16), transparent 30%),
+        rgba(255, 255, 255, 0.82);
+    }
+
+    .hero-card::after {
+      content: "";
+      position: absolute;
+      inset: auto -40px -90px auto;
+      width: 220px;
+      height: 220px;
+      border-radius: 50%;
+      background: rgba(214, 97, 60, 0.08);
+      filter: blur(4px);
+    }
+
+    .logo-wrap {
+      width: 140px;
+      height: 140px;
+      border-radius: 32px;
+      background: linear-gradient(145deg, rgba(255, 255, 255, 0.96), rgba(245, 200, 184, 0.55));
+      display: grid;
+      place-items: center;
+      box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.7), 0 20px 40px rgba(99, 72, 53, 0.14);
+    }
+
+    .logo-wrap img {
+      width: 94px;
+      height: 94px;
+      object-fit: contain;
+    }
+
+    .hero-card h2 {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 1.7rem;
+      line-height: 1.1;
+    }
+
+    .hero-card p {
+      color: var(--text-muted);
+      line-height: 1.7;
+    }
+
+    .stack {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 12px;
+      margin-top: 30px;
+    }
+
+    .section-card {
+      padding: 24px;
+    }
+
+    .section-card h3 {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 1.2rem;
+      margin-bottom: 10px;
+    }
+
+    .section-card p,
+    .section-card li {
+      color: var(--text-muted);
+      line-height: 1.75;
+    }
+
+    .section-card ul {
+      padding-left: 18px;
+      display: grid;
+      gap: 6px;
+    }
+
+    .download-banner {
+      margin-top: 30px;
+      padding: 24px 28px;
+      border-radius: 24px;
+      background: linear-gradient(135deg, rgba(214, 97, 60, 0.14), rgba(92, 167, 144, 0.12));
+      border: 1px solid rgba(214, 97, 60, 0.16);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 18px;
+      flex-wrap: wrap;
+    }
+
+    .download-banner p {
+      color: var(--text-muted);
+      max-width: 60ch;
+    }
+
+    .footer {
+      margin-top: 36px;
+      color: var(--text-muted);
+      text-align: center;
+      font-size: 0.92rem;
+    }
+
+    @media (max-width: 900px) {
+      .hero {
+        grid-template-columns: 1fr;
+      }
+
+      .stack {
+        grid-template-columns: 1fr;
+      }
+
+      .hero-copy,
+      .hero-card,
+      .section-card {
+        padding: 24px;
+      }
+    }
+
+    @media (max-width: 640px) {
+      .topbar {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+
+      .nav-links {
+        justify-content: flex-start;
+      }
+
+      h1 {
+        font-size: 2.4rem;
+      }
+
+      .hero-actions {
+        flex-direction: column;
+      }
+
+      .button {
+        width: 100%;
+      }
+
+      .download-banner {
+        padding: 20px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <main class="shell">
+    <div class="topbar">
+      <div class="brand">NotifyMe</div>
+      <div class="nav-links">
+        <a class="chip" href="/">Portfolio</a>
+        <a class="chip" href="https://www.nextgenaischool.in/api/notifyme/apk/1.0.2">Download APK</a>
+      </div>
+    </div>
+
+    <section class="hero">
+      <div class="hero-copy">
+        <div class="eyebrow">Android Push Receiver</div>
+        <h1>NotifyMe</h1>
+        <p class="lead">
+          A clean personal Android app for receiving Firebase push notifications, checking tokens,
+          keeping local notification history, and updating directly from the web.
+        </p>
+        <div class="hero-actions">
+          <a class="button primary" href="https://www.nextgenaischool.in/api/notifyme/apk/1.0.2">Download APK 1.0.2</a>
+          <a class="button secondary" href="https://www.nextgenaischool.in/api/notifyme/update-manifest">View Live Manifest</a>
+        </div>
+        <div class="meta">
+          <span>Android 8.0+</span>
+          <span>Kotlin + Compose</span>
+          <span>FCM + OTA Updates</span>
+        </div>
+      </div>
+
+      <div class="hero-card">
+        <div class="logo-wrap">
+          <img src="/notifyme-logo.png" alt="NotifyMe logo">
+        </div>
+        <div>
+          <h2>Built for direct notification testing and delivery control</h2>
+          <p>
+            NotifyMe surfaces the device token, stores received alerts, supports local test sends,
+            and updates from the same website backend that serves the APK.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <section class="stack">
+      <article class="section-card">
+        <h3>What It Does</h3>
+        <p>
+          Receive Firebase Cloud Messaging alerts, inspect the current token, view notification
+          history inside the app, and manage updates without going through the Play Store.
+        </p>
+      </article>
+
+      <article class="section-card">
+        <h3>Core Stack</h3>
+        <ul>
+          <li>Kotlin</li>
+          <li>Jetpack Compose Material 3</li>
+          <li>Firebase Cloud Messaging</li>
+          <li>Website-hosted APK updates</li>
+        </ul>
+      </article>
+
+      <article class="section-card">
+        <h3>Best For</h3>
+        <p>
+          Personal push testing, webhook-driven alert delivery, and lightweight Android installs
+          that can be shared directly through a link.
+        </p>
+      </article>
+    </section>
+
+    <section class="download-banner">
+      <div>
+        <h3>Share This Download Link</h3>
+        <p>
+          Send this stable link to anyone who needs the latest build. It always resolves to the
+          current NotifyMe APK served by the backend.
+        </p>
+      </div>
+      <a class="button primary" href="https://www.nextgenaischool.in/api/notifyme/apk/1.0.2">
+        https://www.nextgenaischool.in/api/notifyme/apk/1.0.2
+      </a>
+    </section>
+
+    <p class="footer">
+      NotifyMe by Lakshay Chawla. Direct installs may require enabling “Install unknown apps” on Android.
+    </p>
+  </main>
+</body>
+</html>
