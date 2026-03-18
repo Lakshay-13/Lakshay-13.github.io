@@ -301,6 +301,25 @@
       background: rgba(241, 247, 241, 0.94);
     }
 
+    .docs-layout {
+      display: grid;
+      grid-template-columns: minmax(0, 0.95fr) minmax(0, 1.05fr);
+      gap: 18px;
+      margin-top: 28px;
+    }
+
+    .code-block {
+      display: block;
+      padding: 18px;
+      border-radius: 20px;
+      background: rgba(235, 243, 236, 0.96);
+      border: 1px solid rgba(24, 49, 39, 0.08);
+      color: #274334;
+      white-space: pre-wrap;
+      overflow-x: auto;
+      font: 0.9rem/1.6 "SFMono-Regular", SFMono-Regular, ui-monospace, Menlo, monospace;
+    }
+
     .footer {
       margin-top: 36px;
       color: var(--text-muted);
@@ -314,6 +333,10 @@
       }
 
       .stack {
+        grid-template-columns: 1fr;
+      }
+
+      .docs-layout {
         grid-template-columns: 1fr;
       }
 
@@ -384,9 +407,10 @@
         <div>
           <h2>Cleaner delivery flow, no raw FCM token sharing</h2>
           <p>
-            NotifyMe now exposes a device API key instead of asking you to share the raw token.
-            Fren stores the Firebase delivery credential, sends high-priority data messages, and
-            keeps background deliveries visible inside app history.
+            NotifyMe now exposes a managed API Keys screen instead of asking you to share the raw
+            token. Fren stores the Firebase delivery credential, sends high-priority data messages,
+            keeps background deliveries visible inside app history, and broadcasts new app updates
+            to registered devices.
           </p>
         </div>
       </div>
@@ -433,6 +457,34 @@
         src="https://www.nextgenaischool.in/api/notifyme/usage-chart.svg?days=30"
         alt="NotifyMe daily notifications sent chart"
       >
+    </section>
+
+    <section class="docs-layout">
+      <article class="section-card">
+        <h3>How To Use API</h3>
+        <p>
+          Open the <code>API Keys</code> screen inside the app, copy any key, and use it as a Bearer token in
+          an HTTPS request to Fren.
+        </p>
+        <ul>
+          <li>Endpoint: <code>POST https://www.nextgenaischool.in/api/notifyme/send</code></li>
+          <li>Header: <code>Authorization: Bearer &lt;YOUR_API_KEY&gt;</code></li>
+          <li>Body: <code>title</code>, <code>body</code>, and <code>actionType</code> are the core fields</li>
+          <li>Optional: <code>url</code> for <code>open_url</code>, <code>customRoute</code> for <code>open_custom</code></li>
+        </ul>
+      </article>
+
+      <article class="section-card">
+        <h3>HTTPS Request Example</h3>
+        <code class="code-block">curl -X POST https://www.nextgenaischool.in/api/notifyme/send \
+  -H "Authorization: Bearer &lt;YOUR_API_KEY&gt;" \
+  -H "Content-Type: application/json" \
+  -d '{
+    "title": "Ping",
+    "body": "Hello from NotifyMe",
+    "actionType": "open_updates"
+  }'</code>
+      </article>
     </section>
 
     <p class="footer">
