@@ -1,0 +1,536 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="icon" type="image/png" href="/icon.png">
+  <title>NotifyMe Docs</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;700&family=Manrope:wght@400;500;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg-main: #cfded1;
+      --bg-surface: rgba(236, 244, 236, 0.88);
+      --bg-surface-strong: rgba(228, 238, 229, 0.97);
+      --text-main: #183127;
+      --text-muted: #4d6759;
+      --accent: #547761;
+      --accent-strong: #385240;
+      --border: rgba(24, 49, 39, 0.10);
+      --shadow: 0 24px 60px rgba(43, 73, 56, 0.14);
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Manrope', sans-serif;
+      color: var(--text-main);
+      min-height: 100vh;
+      background:
+        radial-gradient(circle at 12% 12%, rgba(84, 119, 97, 0.26), transparent 26%),
+        radial-gradient(circle at 88% 14%, rgba(116, 150, 124, 0.24), transparent 28%),
+        linear-gradient(160deg, #d9e7db 0%, #cfded1 42%, #c5d4c8 100%);
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    code {
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 0.95em;
+    }
+
+    .shell {
+      max-width: 1180px;
+      margin: 0 auto;
+      padding: 24px 20px 60px;
+    }
+
+    .topbar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      padding: 14px 18px;
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      background: rgba(224, 235, 225, 0.72);
+      backdrop-filter: blur(14px);
+      box-shadow: 0 10px 30px rgba(43, 73, 56, 0.10);
+    }
+
+    .brand,
+    h1,
+    h2,
+    h3 {
+      font-family: 'Space Grotesk', sans-serif;
+    }
+
+    .brand {
+      font-weight: 700;
+      letter-spacing: 0.02em;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+      justify-content: flex-end;
+    }
+
+    .chip,
+    .button {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 999px;
+      font-weight: 800;
+      transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
+    }
+
+    .chip {
+      padding: 10px 14px;
+      border: 1px solid var(--border);
+      background: rgba(234, 242, 234, 0.78);
+      color: var(--text-main);
+    }
+
+    .chip:hover,
+    .button:hover {
+      transform: translateY(-1px);
+    }
+
+    .button {
+      min-height: 52px;
+      padding: 0 20px;
+      border-radius: 18px;
+    }
+
+    .button.primary {
+      background: var(--accent);
+      color: #edf6ef;
+      box-shadow: 0 16px 28px rgba(56, 82, 64, 0.26);
+    }
+
+    .hero,
+    .doc-card,
+    .notes-card {
+      border: 1px solid var(--border);
+      border-radius: 28px;
+      background: var(--bg-surface);
+      backdrop-filter: blur(16px);
+      box-shadow: var(--shadow);
+    }
+
+    .hero {
+      padding: 34px;
+      margin-top: 28px;
+      display: grid;
+      gap: 18px;
+    }
+
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      width: fit-content;
+      padding: 9px 14px;
+      border-radius: 999px;
+      background: rgba(84, 119, 97, 0.14);
+      color: var(--accent-strong);
+      font-weight: 800;
+      letter-spacing: 0.03em;
+      text-transform: uppercase;
+      font-size: 0.78rem;
+    }
+
+    h1 {
+      font-size: clamp(2.4rem, 5vw, 4.2rem);
+      line-height: 1;
+      letter-spacing: -0.04em;
+      max-width: 12ch;
+    }
+
+    .lead,
+    .doc-card > p,
+    .notes-card li {
+      color: var(--text-muted);
+      line-height: 1.75;
+    }
+
+    .hero-actions {
+      display: flex;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+
+    .docs-grid {
+      display: grid;
+      gap: 18px;
+      margin-top: 28px;
+    }
+
+    .doc-card,
+    .notes-card {
+      padding: 24px;
+    }
+
+    .doc-card h2,
+    .notes-card h2 {
+      font-size: 1.45rem;
+      margin-bottom: 10px;
+    }
+
+    .field-table {
+      display: grid;
+      gap: 12px;
+      margin-top: 16px;
+    }
+
+    .field-row {
+      display: grid;
+      grid-template-columns: minmax(180px, 210px) minmax(100px, 120px) minmax(140px, 170px) minmax(0, 1fr);
+      gap: 12px;
+      padding: 16px 18px;
+      border-radius: 20px;
+      border: 1px solid rgba(24, 49, 39, 0.08);
+      background: var(--bg-surface-strong);
+      align-items: start;
+    }
+
+    .field-row.header {
+      color: var(--accent-strong);
+      font-weight: 800;
+      background: rgba(228, 238, 229, 0.88);
+    }
+
+    .field-name {
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 0.93rem;
+      word-break: break-word;
+    }
+
+    .field-meta {
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 0.82rem;
+      color: var(--accent-strong);
+      text-transform: uppercase;
+    }
+
+    .notes-card ul {
+      padding-left: 20px;
+      display: grid;
+      gap: 8px;
+    }
+
+    .footer {
+      margin-top: 36px;
+      color: var(--text-muted);
+      text-align: center;
+      font-size: 0.92rem;
+    }
+
+    @media (max-width: 920px) {
+      .field-row {
+        grid-template-columns: 1fr;
+      }
+
+      .field-row.header {
+        display: none;
+      }
+    }
+
+    @media (max-width: 640px) {
+      .topbar {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+
+      .nav-links {
+        justify-content: flex-start;
+      }
+
+      .hero,
+      .doc-card,
+      .notes-card {
+        padding: 22px;
+      }
+
+      h1 {
+        font-size: 2.2rem;
+      }
+
+      .hero-actions {
+        flex-direction: column;
+      }
+
+      .button {
+        width: 100%;
+      }
+    }
+  </style>
+</head>
+<body>
+  <main class="shell">
+    <div class="topbar">
+      <div class="brand">NotifyMe Docs</div>
+      <div class="nav-links">
+        <a class="chip" href="/">Portfolio</a>
+        <a class="chip" href="/notifyme/docs/">Docs</a>
+        <a class="chip" href="https://www.nextgenaischool.in/api/notifyme/apk/latest">Download APK</a>
+      </div>
+    </div>
+
+    <section class="hero">
+      <div class="eyebrow">NotifyMe API Reference</div>
+      <h1>Every payload field in one place.</h1>
+      <p class="lead">
+        Use any device API key from the app’s <code>API Keys</code> screen as a Bearer token. This
+        documentation covers the full request shape, routing variables, multi-button actions, reply
+        options, and callback fields.
+      </p>
+      <div class="hero-actions">
+        <a class="button primary" href="/notifyme/">NotifyMe Home</a>
+      </div>
+    </section>
+
+    <section class="docs-grid">
+      <article class="doc-card">
+        <h2>Access</h2>
+        <p>Every request is sent over HTTPS and scoped to the device that owns the API key.</p>
+        <div class="field-table">
+          <div class="field-row header">
+            <div>Name</div>
+            <div>Type</div>
+            <div>Required</div>
+            <div>Description</div>
+          </div>
+          <div class="field-row">
+            <div class="field-name">Endpoint</div>
+            <div class="field-meta">HTTP</div>
+            <div class="field-meta">Always</div>
+            <div><code>POST https://www.nextgenaischool.in/api/notifyme/send</code></div>
+          </div>
+          <div class="field-row">
+            <div class="field-name">Authorization</div>
+            <div class="field-meta">Header</div>
+            <div class="field-meta">Always</div>
+            <div><code>Bearer &lt;YOUR_DEVICE_API_KEY&gt;</code></div>
+          </div>
+          <div class="field-row">
+            <div class="field-name">Content-Type</div>
+            <div class="field-meta">Header</div>
+            <div class="field-meta">Always</div>
+            <div><code>application/json</code></div>
+          </div>
+        </div>
+      </article>
+
+      <article class="doc-card">
+        <h2>Core Fields</h2>
+        <p>These fields define the notification content and its main tap behavior.</p>
+        <div class="field-table">
+          <div class="field-row header">
+            <div>Name</div>
+            <div>Type</div>
+            <div>Required</div>
+            <div>Description</div>
+          </div>
+          <div class="field-row">
+            <div class="field-name">title</div>
+            <div class="field-meta">string</div>
+            <div class="field-meta">Yes</div>
+            <div>Notification title shown in Android and stored in app history.</div>
+          </div>
+          <div class="field-row">
+            <div class="field-name">body</div>
+            <div class="field-meta">string</div>
+            <div class="field-meta">Yes</div>
+            <div>Main message text shown in the notification and history list.</div>
+          </div>
+          <div class="field-row">
+            <div class="field-name">notificationId</div>
+            <div class="field-meta">string</div>
+            <div class="field-meta">No</div>
+            <div>Optional stable identifier for your own correlation, dedupe, or callback tracking.</div>
+          </div>
+          <div class="field-row">
+            <div class="field-name">actionType</div>
+            <div class="field-meta">enum</div>
+            <div class="field-meta">No</div>
+            <div>Main action when the notification body is tapped. Defaults to <code>open_home</code>.</div>
+          </div>
+        </div>
+      </article>
+
+      <article class="doc-card">
+        <h2>Supported actionType Values</h2>
+        <p>Choose one of these for the primary notification tap.</p>
+        <div class="field-table">
+          <div class="field-row header">
+            <div>Name</div>
+            <div>Type</div>
+            <div>Required</div>
+            <div>Description</div>
+          </div>
+          <div class="field-row">
+            <div class="field-name">open_home</div>
+            <div class="field-meta">actionType</div>
+            <div class="field-meta">Supported</div>
+            <div>Opens the main NotifyMe screen.</div>
+          </div>
+          <div class="field-row">
+            <div class="field-name">open_updates</div>
+            <div class="field-meta">actionType</div>
+            <div class="field-meta">Supported</div>
+            <div>Opens the app and immediately checks for updates.</div>
+          </div>
+          <div class="field-row">
+            <div class="field-name">open_token</div>
+            <div class="field-meta">actionType</div>
+            <div class="field-meta">Supported</div>
+            <div>Opens the API Keys screen.</div>
+          </div>
+          <div class="field-row">
+            <div class="field-name">open_url</div>
+            <div class="field-meta">actionType</div>
+            <div class="field-meta">Supported</div>
+            <div>Opens the URL provided by <code>url</code>. Only valid <code>http</code> and <code>https</code> links are accepted.</div>
+          </div>
+          <div class="field-row">
+            <div class="field-name">open_custom</div>
+            <div class="field-meta">actionType</div>
+            <div class="field-meta">Supported</div>
+            <div>Routes to an internal screen using <code>customRoute</code>.</div>
+          </div>
+        </div>
+      </article>
+
+      <article class="doc-card">
+        <h2>Routing Fields</h2>
+        <p>Use these only when the chosen <code>actionType</code> requires them.</p>
+        <div class="field-table">
+          <div class="field-row header">
+            <div>Name</div>
+            <div>Type</div>
+            <div>Required</div>
+            <div>Description</div>
+          </div>
+          <div class="field-row">
+            <div class="field-name">url</div>
+            <div class="field-meta">string</div>
+            <div class="field-meta">When actionType=open_url</div>
+            <div>Network URL opened in the browser.</div>
+          </div>
+          <div class="field-row">
+            <div class="field-name">customRoute</div>
+            <div class="field-meta">string</div>
+            <div class="field-meta">When actionType=open_custom</div>
+            <div>Supported values include <code>updates</code>, <code>token</code>, <code>api-keys</code>, <code>history</code>, <code>docs</code>, and <code>api-docs</code>.</div>
+          </div>
+        </div>
+      </article>
+
+      <article class="doc-card">
+        <h2>Buttons and Reply Fields</h2>
+        <p>Use these for direct interaction from the notification shade.</p>
+        <div class="field-table">
+          <div class="field-row header">
+            <div>Name</div>
+            <div>Type</div>
+            <div>Required</div>
+            <div>Description</div>
+          </div>
+          <div class="field-row">
+            <div class="field-name">buttons</div>
+            <div class="field-meta">array&lt;object&gt;</div>
+            <div class="field-meta">No</div>
+            <div>Ordered list of quick-action buttons. NotifyMe now supports multiple buttons on the same notification.</div>
+          </div>
+          <div class="field-row">
+            <div class="field-name">buttons[].label</div>
+            <div class="field-meta">string</div>
+            <div class="field-meta">Inside buttons</div>
+            <div>Visible text rendered on each button.</div>
+          </div>
+          <div class="field-row">
+            <div class="field-name">buttons[].action</div>
+            <div class="field-meta">string</div>
+            <div class="field-meta">Inside buttons</div>
+            <div>Machine-readable action id stored in history and returned through callback flows.</div>
+          </div>
+          <div class="field-row">
+            <div class="field-name">buttonLabel</div>
+            <div class="field-meta">string</div>
+            <div class="field-meta">Legacy optional</div>
+            <div>Backward-compatible single-button label. If paired with <code>buttonAction</code>, NotifyMe treats it as one <code>buttons</code> entry.</div>
+          </div>
+          <div class="field-row">
+            <div class="field-name">buttonAction</div>
+            <div class="field-meta">string</div>
+            <div class="field-meta">Legacy optional</div>
+            <div>Backward-compatible single-button action id.</div>
+          </div>
+          <div class="field-row">
+            <div class="field-name">textReplyEnabled</div>
+            <div class="field-meta">boolean</div>
+            <div class="field-meta">No</div>
+            <div>When <code>true</code>, adds an inline reply action to the notification.</div>
+          </div>
+          <div class="field-row">
+            <div class="field-name">textReplyLabel</div>
+            <div class="field-meta">string</div>
+            <div class="field-meta">No</div>
+            <div>Optional label for the reply action. Defaults to <code>Reply</code>.</div>
+          </div>
+        </div>
+      </article>
+
+      <article class="doc-card">
+        <h2>Callback Fields</h2>
+        <p>Use these when your server needs to receive button presses or replies after delivery.</p>
+        <div class="field-table">
+          <div class="field-row header">
+            <div>Name</div>
+            <div>Type</div>
+            <div>Required</div>
+            <div>Description</div>
+          </div>
+          <div class="field-row">
+            <div class="field-name">callbackUrl</div>
+            <div class="field-meta">string</div>
+            <div class="field-meta">No</div>
+            <div>Backend callback destination for user response events.</div>
+          </div>
+          <div class="field-row">
+            <div class="field-name">callbackSecret</div>
+            <div class="field-meta">string</div>
+            <div class="field-meta">No</div>
+            <div>Optional shared secret for validating the callback flow on your server.</div>
+          </div>
+        </div>
+      </article>
+
+      <article class="notes-card">
+        <h2>Notes</h2>
+        <ul>
+          <li>The Android app also ships with the same docs screen so this reference is available in-app.</li>
+          <li>Android typically renders the first few quick-action buttons, so keep the <code>buttons</code> array concise.</li>
+          <li>Legacy single-button payloads still work, but the new multi-button format is preferred going forward.</li>
+        </ul>
+      </article>
+    </section>
+
+    <p class="footer">
+      NotifyMe by Lakshay Chawla. Direct installs may require enabling “Install unknown apps” on Android.
+    </p>
+  </main>
+</body>
+</html>

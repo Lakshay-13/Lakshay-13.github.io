@@ -413,6 +413,7 @@
       <div class="brand">NotifyMe</div>
       <div class="nav-links">
         <a class="chip" href="/">Portfolio</a>
+        <a class="chip" href="/notifyme/docs/">Docs</a>
         <a class="chip" href="https://www.nextgenaischool.in/api/notifyme/apk/latest">Download APK</a>
       </div>
     </div>
@@ -426,6 +427,7 @@
           scripted sends, and website-hosted updates outside the Play Store.
         </p>
         <div class="hero-actions">
+          <a class="button primary" href="/notifyme/docs/">How To Use API</a>
           <a class="button primary" href="https://www.nextgenaischool.in/api/notifyme/apk/latest">Download APK</a>
         </div>
         <div class="meta">
@@ -497,112 +499,38 @@
 
     <section class="docs-layout">
       <article class="section-card">
-        <h3>How To Use API</h3>
+        <h3>API Docs</h3>
         <p>
-          Open the <code>API Keys</code> screen inside the app, copy any key, and use it as a Bearer token in
-          an HTTPS request to Fren.
+          NotifyMe now keeps the full API reference on a separate documentation page. Open the
+          in-app <code>API Keys</code> screen, copy any key, and use the docs page for the complete field-by-field
+          request format.
         </p>
         <ul>
           <li>Endpoint: <code>POST https://www.nextgenaischool.in/api/notifyme/send</code></li>
           <li>Header: <code>Authorization: Bearer &lt;YOUR_API_KEY&gt;</code></li>
-          <li>Body: <code>title</code>, <code>body</code>, and <code>actionType</code> are the core fields</li>
-          <li>Optional: <code>url</code> for <code>open_url</code>, <code>customRoute</code> for <code>open_custom</code></li>
-          <li>Delivery stays normal and visible even when action fields are present</li>
-          <li>Actions: add <code>buttonLabel</code> and <code>buttonAction</code> to show a quick response inside app history</li>
-          <li>Reply: add <code>textReplyEnabled</code>: <code>true</code> and optionally <code>textReplyLabel</code> to allow typed replies from history</li>
-          <li>Callbacks: add <code>callbackUrl</code> and optional <code>callbackSecret</code> so Fren can POST the user response back to your server</li>
+          <li>Core fields: <code>title</code>, <code>body</code>, and <code>actionType</code></li>
+          <li>Routing fields: <code>url</code> and <code>customRoute</code></li>
+          <li>Interactive fields: <code>buttons</code>, <code>textReplyEnabled</code>, and <code>callbackUrl</code></li>
+          <li>Legacy single-button payloads still work, but docs now cover the newer multi-button format</li>
         </ul>
+        <div class="hero-actions">
+          <a class="button primary" href="/notifyme/docs/">Open Docs</a>
+        </div>
       </article>
 
       <article class="section-card">
-        <h3>HTTPS Request Example</h3>
-        <code class="code-block">curl -X POST https://www.nextgenaischool.in/api/notifyme/send \
-  -H "Authorization: Bearer &lt;YOUR_API_KEY&gt;" \
-  -H "Content-Type: application/json" \
-  -d '{
-    "title": "Task Reminder",
-    "body": "Mark this when finished.",
-    "actionType": "open_home",
-    "buttonLabel": "Done",
-    "buttonAction": "done",
-    "textReplyEnabled": true,
-    "textReplyLabel": "Reply",
-    "callbackUrl": "https://your-server.example.com/notifyme/action",
-    "callbackSecret": "your-shared-secret"
-  }'</code>
-      </article>
-    </section>
-
-    <section class="docs-layout">
-      <article class="section-card">
-        <details>
-          <summary><strong>Show Python callback wait example</strong></summary>
-          <code class="code-block">import json
-import secrets
-import time
-import uuid
-from urllib import parse, request
-
-API_KEY = "nm_live_your_device_key_here"
-BASE_URL = "https://www.nextgenaischool.in"
-
-session_id = str(uuid.uuid4())
-session_token = secrets.token_urlsafe(24)
-
-callback_url = (
-    BASE_URL.rstrip("/") +
-    "/api/notifyme/action-await/" +
-    parse.quote(session_id) +
-    "?token=" +
-    parse.quote(session_token)
-)
-
-send_body = {
-    "notificationId": f"job-{uuid.uuid4()}",
-    "title": "Task Reminder",
-    "body": "Mark this as done.",
-    "actionType": "open_home",
-    "buttonLabel": "Done",
-    "buttonAction": "done",
-    "textReplyEnabled": True,
-    "textReplyLabel": "Reply",
-    "callbackUrl": callback_url,
-}
-
-def post_json(url, body, headers=None):
-    req = request.Request(url, method="POST")
-    req.add_header("Content-Type", "application/json")
-    for key, value in (headers or {}).items():
-        req.add_header(key, value)
-    with request.urlopen(req, data=json.dumps(body).encode()) as response:
-        return json.loads(response.read().decode())
-
-def get_json(url):
-    with request.urlopen(url) as response:
-        return json.loads(response.read().decode())
-
-send_result = post_json(
-    f"{BASE_URL}/api/notifyme/send",
-    send_body,
-    headers={"Authorization": f"Bearer {API_KEY}"},
-)
-
-print("sent:", send_result)
-
-while True:
-    wait_result = get_json(callback_url)
-    if wait_result.get("pending") is False and wait_result.get("payload"):
-        callback = wait_result["payload"]
-        print("confirmed:", callback)
-
-        if callback["action"] == "done":
-            print("finalize: task completed")
-        elif callback["action"] == "reply":
-            print("finalize with reply:", callback.get("replyText"))
-        break
-
-    time.sleep(2)</code>
-        </details>
+        <h3>What Changed</h3>
+        <p>
+          The latest NotifyMe update adds support for multiple quick-action buttons on a single
+          notification. The dedicated docs page explains the full <code>buttons</code> array format and every
+          optional variable in one place.
+        </p>
+        <ul>
+          <li>Multiple button actions are now supported in the app</li>
+          <li>The notifyme landing page no longer embeds request examples</li>
+          <li>The full request reference now lives at <code>/notifyme/docs</code></li>
+          <li>The same docs are also available inside the Android app</li>
+        </ul>
       </article>
     </section>
 
