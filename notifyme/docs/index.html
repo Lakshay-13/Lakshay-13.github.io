@@ -387,6 +387,12 @@
             <div>Opens the main NotifyMe screen.</div>
           </div>
           <div class="field-row">
+            <div class="field-name">open_history</div>
+            <div class="field-meta">actionType</div>
+            <div class="field-meta">Supported</div>
+            <div>Opens the app directly on Notification History.</div>
+          </div>
+          <div class="field-row">
             <div class="field-name">open_updates</div>
             <div class="field-meta">actionType</div>
             <div class="field-meta">Supported</div>
@@ -522,6 +528,7 @@
         <h2>Notes</h2>
         <ul>
           <li>The Android app also ships with the same docs screen so this reference is available in-app.</li>
+          <li>Use <code>actionType: "open_history"</code> when a notification should land directly on the history screen.</li>
           <li>Android typically renders the first few quick-action buttons, so keep the <code>buttons</code> array concise.</li>
           <li>Legacy single-button payloads still work, but the new multi-button format is preferred going forward.</li>
         </ul>
