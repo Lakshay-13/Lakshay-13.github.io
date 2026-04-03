@@ -8,7 +8,7 @@ I'm a Data Scientist intrigued by the possibilities of transforming our brains w
 
 ## Projects
 
-- NeuroDiffHub: A platform for PINNs solvers
+- Neurodiffhub: A platform for PINNs solvers
 - Applications of PINNs
 - Spectral Analysis of crops
 - Yield prediction of crops across Santiago
