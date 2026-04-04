@@ -485,7 +485,7 @@
         }
 
         .profile-photo-trigger:hover {
-            transform: translateY(-4px) scale(1.01);
+            transform: scale(1.02);
             box-shadow: 0 18px 34px rgba(10, 250, 158, 0.15);
         }
 
@@ -502,30 +502,37 @@
             border: none;
         }
 
-        .stats-poster-backdrop {
-            position: fixed;
-            inset: 0;
-            z-index: 220;
+        .hero-profile-stack {
             display: flex;
+            flex-direction: column;
             align-items: center;
             justify-content: center;
-            padding: 24px;
-            background: rgba(8, 10, 14, 0.62);
-            backdrop-filter: blur(10px);
-            opacity: 0;
-            visibility: hidden;
-            pointer-events: none;
-            transition: opacity 0.35s ease, visibility 0.35s ease;
-        }
-
-        .stats-poster-backdrop.is-open {
-            opacity: 1;
-            visibility: visible;
-            pointer-events: auto;
         }
 
         .stats-poster {
-            width: min(92vw, 780px);
+            width: min(100%, 780px);
+            margin: 0 auto;
+            overflow: hidden;
+            max-height: 0;
+            opacity: 0;
+            transform: translateY(-10px) scale(0.985);
+            pointer-events: none;
+            transition:
+                max-height 0.48s ease,
+                opacity 0.32s ease,
+                transform 0.32s ease,
+                margin-top 0.32s ease;
+        }
+
+        .stats-poster.is-open {
+            max-height: 1200px;
+            opacity: 1;
+            transform: translateY(0) scale(1);
+            pointer-events: auto;
+            margin-top: 18px;
+        }
+
+        .stats-poster-surface {
             border-radius: 28px;
             border: 1px solid rgba(255, 255, 255, 0.12);
             background:
@@ -533,15 +540,7 @@
                 radial-gradient(circle at bottom right, rgba(255, 251, 0, 0.12), transparent 28%),
                 rgba(18, 18, 24, 0.96);
             box-shadow: 0 24px 80px rgba(0, 0, 0, 0.45);
-            transform: translateY(24px) scale(0.96);
-            opacity: 0;
-            transition: transform 0.35s ease, opacity 0.35s ease;
             overflow: hidden;
-        }
-
-        .stats-poster-backdrop.is-open .stats-poster {
-            transform: translateY(0) scale(1);
-            opacity: 1;
         }
 
         .stats-poster-header {
@@ -552,25 +551,10 @@
             padding: 22px 22px 10px;
         }
 
-        .stats-poster-kicker {
-            color: var(--accent);
-            font-size: 0.8rem;
-            letter-spacing: 0.18em;
-            text-transform: uppercase;
-            margin-bottom: 6px;
-        }
-
         .stats-poster-title {
             font-size: 1.7rem;
             line-height: 1.2;
             color: var(--text-primary);
-        }
-
-        .stats-poster-copy {
-            margin-top: 8px;
-            color: rgba(240, 240, 240, 0.78);
-            max-width: 52ch;
-            font-size: 0.98rem;
         }
 
         .stats-poster-close {
@@ -634,8 +618,9 @@
 
         .stat-name {
             font-size: 0.95rem;
-            color: rgba(240, 240, 240, 0.84);
-            margin-bottom: 6px;
+            color: rgba(240, 240, 240, 0.92);
+            margin-bottom: 10px;
+            font-weight: 600;
         }
 
         .stat-value {
@@ -744,10 +729,6 @@
                 height: 170px;
             }
 
-            .stats-poster-backdrop {
-                padding: 16px;
-            }
-
             .stats-poster-header {
                 padding: 18px 18px 10px;
             }
@@ -763,6 +744,10 @@
 
             .stat-card {
                 min-height: 104px;
+            }
+
+            .stats-poster.is-open {
+                margin-top: 14px;
             }
         }
     </style>
@@ -797,10 +782,66 @@
             <center>
             <h1>Lakshay Chawla</h1>
             </center>
-            <div class="profile-photo-container">
-                <button type="button" class="profile-photo-trigger" id="profilePhotoTrigger" aria-haspopup="dialog" aria-controls="statsPoster">
-                    <img src="lakshay.jpg" alt="Lakshay Chawla" class="profile-photo">
-                </button>
+            <div class="hero-profile-stack">
+                <div class="profile-photo-container">
+                    <button type="button" class="profile-photo-trigger" id="profilePhotoTrigger" aria-controls="statsPoster" aria-expanded="false">
+                        <img src="lakshay.jpg" alt="Lakshay Chawla" class="profile-photo">
+                    </button>
+                </div>
+                <div class="stats-poster" id="statsPoster" aria-hidden="true" inert>
+                    <div class="stats-poster-surface">
+                        <div class="stats-poster-header">
+                            <div>
+                                <div class="stats-poster-title" id="statsPosterTitle">Live ecosystem snapshot</div>
+                            </div>
+                            <button type="button" class="stats-poster-close" id="statsPosterClose" aria-label="Close live ecosystem snapshot">
+                                <i class="fas fa-times"></i>
+                            </button>
+                        </div>
+                        <div class="stats-grid">
+                            <article class="stat-card">
+                                <div class="stat-logo-wrap">
+                                    <img src="assets/logos/logo_fren.png" alt="Fren logo" class="stat-logo">
+                                </div>
+                                <div class="stat-meta">
+                                    <div class="stat-name">Fren</div>
+                                    <div class="stat-value is-loading" data-stat-value="fren">Loading...</div>
+                                    <div class="stat-status" data-stat-status="fren">Active servers</div>
+                                </div>
+                            </article>
+                            <article class="stat-card">
+                                <div class="stat-logo-wrap">
+                                    <img src="assets/logos/logo_notifyme.png" alt="NotifyMe logo" class="stat-logo">
+                                </div>
+                                <div class="stat-meta">
+                                    <div class="stat-name">NotifyMe</div>
+                                    <div class="stat-value is-loading" data-stat-value="notifyme">Loading...</div>
+                                    <div class="stat-status" data-stat-status="notifyme">Total notifications sent</div>
+                                </div>
+                            </article>
+                            <article class="stat-card">
+                                <div class="stat-logo-wrap">
+                                    <img src="assets/logos/logo_url.png" alt="URL Extractor logo" class="stat-logo">
+                                </div>
+                                <div class="stat-meta">
+                                    <div class="stat-name">URL Extractor</div>
+                                    <div class="stat-value is-loading" data-stat-value="url">Loading...</div>
+                                    <div class="stat-status" data-stat-status="url">Total unique media</div>
+                                </div>
+                            </article>
+                            <article class="stat-card">
+                                <div class="stat-logo-wrap">
+                                    <img src="assets/logos/artgridx_dark.png" alt="ArtGridX logo" class="stat-logo">
+                                </div>
+                                <div class="stat-meta">
+                                    <div class="stat-name">ArtGridX</div>
+                                    <div class="stat-value is-loading" data-stat-value="artgridx">Loading...</div>
+                                    <div class="stat-status" data-stat-status="artgridx">Profiles hosted</div>
+                                </div>
+                            </article>
+                        </div>
+                    </div>
+                </div>
             </div>
             
             <p>Data Scientist building AI at the intersection of Physics-Informed Neural Networks (PINNs), 3D vision, and generative modeling.</p>
@@ -1199,115 +1240,39 @@
         </div>
     </footer>
 
-    <div class="stats-poster-backdrop" id="statsPosterBackdrop" aria-hidden="true">
-        <div class="stats-poster" id="statsPoster" role="dialog" aria-modal="true" aria-labelledby="statsPosterTitle">
-            <div class="stats-poster-header">
-                <div>
-                    <div class="stats-poster-kicker">Live ecosystem snapshot</div>
-                    <div class="stats-poster-title" id="statsPosterTitle">NextGen AI School stats poster</div>
-                    <div class="stats-poster-copy">Quick view into live usage across FREN, NotifyMe, URL Extractor, and ArtGridX.</div>
-                </div>
-                <button type="button" class="stats-poster-close" id="statsPosterClose" aria-label="Close stats poster">
-                    <i class="fas fa-times"></i>
-                </button>
-            </div>
-            <div class="stats-grid">
-                <article class="stat-card">
-                    <div class="stat-logo-wrap">
-                        <img src="assets/logos/logo_fren.png" alt="FREN logo" class="stat-logo">
-                    </div>
-                    <div class="stat-meta">
-                        <div class="stat-name">FREN active servers</div>
-                        <div class="stat-value is-loading" data-stat-value="fren">Loading...</div>
-                        <div class="stat-status" data-stat-status="fren">Waiting for live data</div>
-                    </div>
-                </article>
-                <article class="stat-card">
-                    <div class="stat-logo-wrap">
-                        <img src="assets/logos/logo_notifyme.png" alt="NotifyMe logo" class="stat-logo">
-                    </div>
-                    <div class="stat-meta">
-                        <div class="stat-name">NotifyMe total notifications sent</div>
-                        <div class="stat-value is-loading" data-stat-value="notifyme">Loading...</div>
-                        <div class="stat-status" data-stat-status="notifyme">Waiting for live data</div>
-                    </div>
-                </article>
-                <article class="stat-card">
-                    <div class="stat-logo-wrap">
-                        <img src="assets/logos/logo_url.png" alt="URL Extractor logo" class="stat-logo">
-                    </div>
-                    <div class="stat-meta">
-                        <div class="stat-name">URL Extractor total unique media</div>
-                        <div class="stat-value is-loading" data-stat-value="url">Loading...</div>
-                        <div class="stat-status" data-stat-status="url">Waiting for live data</div>
-                    </div>
-                </article>
-                <article class="stat-card">
-                    <div class="stat-logo-wrap">
-                        <img src="assets/logos/artgridx_dark.png" alt="ArtGridX logo" class="stat-logo">
-                    </div>
-                    <div class="stat-meta">
-                        <div class="stat-name">ArtGridX profiles hosted</div>
-                        <div class="stat-value is-loading" data-stat-value="artgridx">Loading...</div>
-                        <div class="stat-status" data-stat-status="artgridx">Waiting for live data</div>
-                    </div>
-                </article>
-            </div>
-        </div>
-    </div>
-
     <script>
         (function () {
-            const backdrop = document.getElementById('statsPosterBackdrop');
             const poster = document.getElementById('statsPoster');
             const openTrigger = document.getElementById('profilePhotoTrigger');
             const closeButton = document.getElementById('statsPosterClose');
-            const seenKey = 'lakshay_stats_poster_seen_v1';
+            if (!poster || !openTrigger || !closeButton) {
+                return;
+            }
             const autoShowDelay = 2400;
             const autoHideDelay = 3000;
-            let autoHideTimer = null;
             let autoShowTimer = null;
-            const storage = {
-                get(key) {
-                    try {
-                        return window.localStorage.getItem(key);
-                    } catch (error) {
-                        return null;
-                    }
-                },
-                set(key, value) {
-                    try {
-                        window.localStorage.setItem(key, value);
-                    } catch (error) {
-                        return null;
-                    }
-                }
-            };
+            let autoHideTimer = null;
 
             const statConfig = [
                 {
                     key: 'fren',
                     endpoint: 'https://www.nextgenaischool.in/api/fren/stats',
-                    fields: ['totalServers'],
-                    fallback: 'No server count yet'
+                    fields: ['totalServers']
                 },
                 {
                     key: 'notifyme',
                     endpoint: 'https://www.nextgenaischool.in/api/notifyme/usage',
-                    fields: ['totalSent'],
-                    fallback: 'No notifications yet'
+                    fields: ['totalSent']
                 },
                 {
                     key: 'url',
                     endpoint: 'https://url.nextgenaischool.in/stats',
-                    fields: ['total_unique_media'],
-                    fallback: 'No media counted yet'
+                    fields: ['total_unique_media']
                 },
                 {
                     key: 'artgridx',
                     endpoint: 'https://artgridx.nextgenaischool.in/api/stats',
-                    fields: ['profilesHosted', 'portfoliosHosted'],
-                    fallback: 'No profiles hosted yet'
+                    fields: ['profilesHosted', 'portfoliosHosted']
                 }
             ];
 
@@ -1329,40 +1294,36 @@
             }
 
             function setPosterOpen(open) {
-                backdrop.classList.toggle('is-open', open);
-                backdrop.setAttribute('aria-hidden', String(!open));
-                document.body.style.overflow = open ? 'hidden' : '';
+                poster.classList.toggle('is-open', open);
+                poster.setAttribute('aria-hidden', String(!open));
+                poster.toggleAttribute('inert', !open);
+                openTrigger.setAttribute('aria-expanded', String(open));
             }
 
-            function openPoster(markSeen = true) {
-                clearTimeout(autoHideTimer);
+            function openPoster() {
                 clearTimeout(autoShowTimer);
-                if (markSeen) {
-                    storage.set(seenKey, '1');
-                }
+                clearTimeout(autoHideTimer);
                 setPosterOpen(true);
             }
 
             function closePoster() {
-                clearTimeout(autoHideTimer);
                 clearTimeout(autoShowTimer);
+                clearTimeout(autoHideTimer);
                 setPosterOpen(false);
             }
 
-            function setStatState(key, { value = 'Loading...', loading = true, status = 'Waiting for live data' } = {}) {
+            function setStatState(key, { value = 'Loading...', loading = true } = {}) {
                 const valueEl = document.querySelector(`[data-stat-value="${key}"]`);
-                const statusEl = document.querySelector(`[data-stat-status="${key}"]`);
-                if (!valueEl || !statusEl) {
+                if (!valueEl) {
                     return;
                 }
                 valueEl.textContent = value;
                 valueEl.classList.toggle('is-loading', loading);
-                statusEl.textContent = status;
             }
 
             async function hydrateStats() {
                 await Promise.all(statConfig.map(async (stat) => {
-                    setStatState(stat.key, { value: 'Loading...', loading: true, status: 'Fetching live data' });
+                    setStatState(stat.key, { value: 'Loading...', loading: true });
                     try {
                         const response = await fetch(stat.endpoint, { cache: 'no-store' });
                         if (!response.ok) {
@@ -1375,48 +1336,39 @@
                         if (formattedValue === null) {
                             setStatState(stat.key, {
                                 value: 'N/A',
-                                loading: false,
-                                status: stat.fallback
+                                loading: false
                             });
                         } else {
                             setStatState(stat.key, {
                                 value: formattedValue,
-                                loading: false,
-                                status: 'Live data loaded'
+                                loading: false
                             });
                         }
                     } catch (error) {
                         setStatState(stat.key, {
                             value: 'N/A',
-                            loading: false,
-                            status: stat.fallback
+                            loading: false
                         });
                     }
                 }));
             }
 
-            openTrigger.addEventListener('click', openPoster);
+            openTrigger.addEventListener('click', () => openPoster());
             closeButton.addEventListener('click', closePoster);
-            backdrop.addEventListener('click', (event) => {
-                if (event.target === backdrop) {
-                    closePoster();
-                }
-            });
-            poster.addEventListener('click', (event) => event.stopPropagation());
             document.addEventListener('keydown', (event) => {
-                if (event.key === 'Escape' && backdrop.classList.contains('is-open')) {
+                if (event.key === 'Escape' && poster.classList.contains('is-open')) {
                     closePoster();
                 }
             });
 
             hydrateStats();
 
-            if (!storage.get(seenKey)) {
-                autoShowTimer = window.setTimeout(() => {
-                    openPoster(true);
-                    autoHideTimer = window.setTimeout(closePoster, autoHideDelay);
-                }, autoShowDelay);
-            }
+            autoShowTimer = window.setTimeout(() => {
+                setPosterOpen(true);
+                autoHideTimer = window.setTimeout(() => {
+                    setPosterOpen(false);
+                }, autoHideDelay);
+            }, autoShowDelay);
         })();
     </script>
 </body>
