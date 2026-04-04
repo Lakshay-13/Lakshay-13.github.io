@@ -471,12 +471,189 @@
             animation-fill-mode: both;
         }
 
+        .profile-photo-trigger {
+            display: block;
+            width: 100%;
+            height: 100%;
+            padding: 0;
+            border: 0;
+            border-radius: 50%;
+            background: transparent;
+            cursor: pointer;
+            overflow: hidden;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .profile-photo-trigger:hover {
+            transform: translateY(-4px) scale(1.01);
+            box-shadow: 0 18px 34px rgba(10, 250, 158, 0.15);
+        }
+
+        .profile-photo-trigger:focus-visible {
+            outline: 2px solid var(--accent);
+            outline-offset: 4px;
+        }
+
         .profile-photo {
             width: 100%;
             height: 100%;
             object-fit: cover;
             border-radius: 50%;
             border: none;
+        }
+
+        .stats-poster-backdrop {
+            position: fixed;
+            inset: 0;
+            z-index: 220;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 24px;
+            background: rgba(8, 10, 14, 0.62);
+            backdrop-filter: blur(10px);
+            opacity: 0;
+            visibility: hidden;
+            pointer-events: none;
+            transition: opacity 0.35s ease, visibility 0.35s ease;
+        }
+
+        .stats-poster-backdrop.is-open {
+            opacity: 1;
+            visibility: visible;
+            pointer-events: auto;
+        }
+
+        .stats-poster {
+            width: min(92vw, 780px);
+            border-radius: 28px;
+            border: 1px solid rgba(255, 255, 255, 0.12);
+            background:
+                radial-gradient(circle at top left, rgba(10, 250, 158, 0.18), transparent 30%),
+                radial-gradient(circle at bottom right, rgba(255, 251, 0, 0.12), transparent 28%),
+                rgba(18, 18, 24, 0.96);
+            box-shadow: 0 24px 80px rgba(0, 0, 0, 0.45);
+            transform: translateY(24px) scale(0.96);
+            opacity: 0;
+            transition: transform 0.35s ease, opacity 0.35s ease;
+            overflow: hidden;
+        }
+
+        .stats-poster-backdrop.is-open .stats-poster {
+            transform: translateY(0) scale(1);
+            opacity: 1;
+        }
+
+        .stats-poster-header {
+            display: flex;
+            align-items: flex-start;
+            justify-content: space-between;
+            gap: 16px;
+            padding: 22px 22px 10px;
+        }
+
+        .stats-poster-kicker {
+            color: var(--accent);
+            font-size: 0.8rem;
+            letter-spacing: 0.18em;
+            text-transform: uppercase;
+            margin-bottom: 6px;
+        }
+
+        .stats-poster-title {
+            font-size: 1.7rem;
+            line-height: 1.2;
+            color: var(--text-primary);
+        }
+
+        .stats-poster-copy {
+            margin-top: 8px;
+            color: rgba(240, 240, 240, 0.78);
+            max-width: 52ch;
+            font-size: 0.98rem;
+        }
+
+        .stats-poster-close {
+            width: 42px;
+            height: 42px;
+            border-radius: 50%;
+            border: 1px solid rgba(255, 255, 255, 0.12);
+            background: rgba(255, 255, 255, 0.05);
+            color: var(--text-primary);
+            cursor: pointer;
+            flex: 0 0 auto;
+            transition: transform 0.2s ease, background 0.2s ease;
+        }
+
+        .stats-poster-close:hover {
+            transform: scale(1.05);
+            background: rgba(255, 255, 255, 0.11);
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+            gap: 14px;
+            padding: 12px 22px 22px;
+        }
+
+        .stat-card {
+            display: flex;
+            gap: 14px;
+            align-items: center;
+            min-height: 116px;
+            padding: 16px;
+            border-radius: 22px;
+            background: rgba(255, 255, 255, 0.04);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.04);
+        }
+
+        .stat-logo-wrap {
+            width: 66px;
+            height: 66px;
+            flex: 0 0 auto;
+            border-radius: 20px;
+            padding: 10px;
+            background: linear-gradient(145deg, rgba(255, 255, 255, 0.08), rgba(255, 255, 255, 0.02));
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            display: grid;
+            place-items: center;
+        }
+
+        .stat-logo {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+            display: block;
+        }
+
+        .stat-meta {
+            min-width: 0;
+        }
+
+        .stat-name {
+            font-size: 0.95rem;
+            color: rgba(240, 240, 240, 0.84);
+            margin-bottom: 6px;
+        }
+
+        .stat-value {
+            font-size: 1.8rem;
+            line-height: 1.05;
+            color: var(--text-primary);
+            font-weight: 700;
+            letter-spacing: -0.03em;
+        }
+
+        .stat-value.is-loading {
+            color: rgba(240, 240, 240, 0.6);
+        }
+
+        .stat-status {
+            margin-top: 6px;
+            font-size: 0.86rem;
+            color: rgba(240, 240, 240, 0.62);
         }
 
         /* Optional animation for the border */
@@ -557,9 +734,35 @@
             .projects-grid {
                 grid-template-columns: 1fr;
             }
-            
+
             .nav-links {
                 display: none;
+            }
+
+            .profile-photo-container {
+                width: 170px;
+                height: 170px;
+            }
+
+            .stats-poster-backdrop {
+                padding: 16px;
+            }
+
+            .stats-poster-header {
+                padding: 18px 18px 10px;
+            }
+
+            .stats-poster-title {
+                font-size: 1.4rem;
+            }
+
+            .stats-grid {
+                grid-template-columns: 1fr;
+                padding: 10px 18px 18px;
+            }
+
+            .stat-card {
+                min-height: 104px;
             }
         }
     </style>
@@ -595,7 +798,9 @@
             <h1>Lakshay Chawla</h1>
             </center>
             <div class="profile-photo-container">
-                <img src="lakshay.jpg" alt="Lakshay Chawla" class="profile-photo">
+                <button type="button" class="profile-photo-trigger" id="profilePhotoTrigger" aria-haspopup="dialog" aria-controls="statsPoster">
+                    <img src="lakshay.jpg" alt="Lakshay Chawla" class="profile-photo">
+                </button>
             </div>
             
             <p>Data Scientist building AI at the intersection of Physics-Informed Neural Networks (PINNs), 3D vision, and generative modeling.</p>
@@ -993,5 +1198,226 @@
             <p>Lakshay Chawla &copy; 2025. All rights reserved.</p>
         </div>
     </footer>
+
+    <div class="stats-poster-backdrop" id="statsPosterBackdrop" aria-hidden="true">
+        <div class="stats-poster" id="statsPoster" role="dialog" aria-modal="true" aria-labelledby="statsPosterTitle">
+            <div class="stats-poster-header">
+                <div>
+                    <div class="stats-poster-kicker">Live ecosystem snapshot</div>
+                    <div class="stats-poster-title" id="statsPosterTitle">NextGen AI School stats poster</div>
+                    <div class="stats-poster-copy">Quick view into live usage across FREN, NotifyMe, URL Extractor, and ArtGridX.</div>
+                </div>
+                <button type="button" class="stats-poster-close" id="statsPosterClose" aria-label="Close stats poster">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <div class="stats-grid">
+                <article class="stat-card">
+                    <div class="stat-logo-wrap">
+                        <img src="assets/logos/logo_fren.png" alt="FREN logo" class="stat-logo">
+                    </div>
+                    <div class="stat-meta">
+                        <div class="stat-name">FREN active servers</div>
+                        <div class="stat-value is-loading" data-stat-value="fren">Loading...</div>
+                        <div class="stat-status" data-stat-status="fren">Waiting for live data</div>
+                    </div>
+                </article>
+                <article class="stat-card">
+                    <div class="stat-logo-wrap">
+                        <img src="assets/logos/logo_notifyme.png" alt="NotifyMe logo" class="stat-logo">
+                    </div>
+                    <div class="stat-meta">
+                        <div class="stat-name">NotifyMe total notifications sent</div>
+                        <div class="stat-value is-loading" data-stat-value="notifyme">Loading...</div>
+                        <div class="stat-status" data-stat-status="notifyme">Waiting for live data</div>
+                    </div>
+                </article>
+                <article class="stat-card">
+                    <div class="stat-logo-wrap">
+                        <img src="assets/logos/logo_url.png" alt="URL Extractor logo" class="stat-logo">
+                    </div>
+                    <div class="stat-meta">
+                        <div class="stat-name">URL Extractor total unique media</div>
+                        <div class="stat-value is-loading" data-stat-value="url">Loading...</div>
+                        <div class="stat-status" data-stat-status="url">Waiting for live data</div>
+                    </div>
+                </article>
+                <article class="stat-card">
+                    <div class="stat-logo-wrap">
+                        <img src="assets/logos/artgridx_dark.png" alt="ArtGridX logo" class="stat-logo">
+                    </div>
+                    <div class="stat-meta">
+                        <div class="stat-name">ArtGridX profiles hosted</div>
+                        <div class="stat-value is-loading" data-stat-value="artgridx">Loading...</div>
+                        <div class="stat-status" data-stat-status="artgridx">Waiting for live data</div>
+                    </div>
+                </article>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        (function () {
+            const backdrop = document.getElementById('statsPosterBackdrop');
+            const poster = document.getElementById('statsPoster');
+            const openTrigger = document.getElementById('profilePhotoTrigger');
+            const closeButton = document.getElementById('statsPosterClose');
+            const seenKey = 'lakshay_stats_poster_seen_v1';
+            const autoShowDelay = 2400;
+            const autoHideDelay = 3000;
+            let autoHideTimer = null;
+            let autoShowTimer = null;
+            const storage = {
+                get(key) {
+                    try {
+                        return window.localStorage.getItem(key);
+                    } catch (error) {
+                        return null;
+                    }
+                },
+                set(key, value) {
+                    try {
+                        window.localStorage.setItem(key, value);
+                    } catch (error) {
+                        return null;
+                    }
+                }
+            };
+
+            const statConfig = [
+                {
+                    key: 'fren',
+                    endpoint: 'https://www.nextgenaischool.in/api/fren/stats',
+                    fields: ['totalServers'],
+                    fallback: 'No server count yet'
+                },
+                {
+                    key: 'notifyme',
+                    endpoint: 'https://www.nextgenaischool.in/api/notifyme/usage',
+                    fields: ['totalSent'],
+                    fallback: 'No notifications yet'
+                },
+                {
+                    key: 'url',
+                    endpoint: 'https://url.nextgenaischool.in/stats',
+                    fields: ['total_unique_media'],
+                    fallback: 'No media counted yet'
+                },
+                {
+                    key: 'artgridx',
+                    endpoint: 'https://artgridx.nextgenaischool.in/api/stats',
+                    fields: ['profilesHosted', 'portfoliosHosted'],
+                    fallback: 'No profiles hosted yet'
+                }
+            ];
+
+            function formatStatValue(value) {
+                if (value === null || value === undefined || value === '') {
+                    return null;
+                }
+
+                if (typeof value === 'number') {
+                    return value.toLocaleString();
+                }
+
+                const numeric = Number(value);
+                if (!Number.isNaN(numeric) && String(value).trim() !== '') {
+                    return numeric.toLocaleString();
+                }
+
+                return String(value);
+            }
+
+            function setPosterOpen(open) {
+                backdrop.classList.toggle('is-open', open);
+                backdrop.setAttribute('aria-hidden', String(!open));
+                document.body.style.overflow = open ? 'hidden' : '';
+            }
+
+            function openPoster(markSeen = true) {
+                clearTimeout(autoHideTimer);
+                clearTimeout(autoShowTimer);
+                if (markSeen) {
+                    storage.set(seenKey, '1');
+                }
+                setPosterOpen(true);
+            }
+
+            function closePoster() {
+                clearTimeout(autoHideTimer);
+                clearTimeout(autoShowTimer);
+                setPosterOpen(false);
+            }
+
+            function setStatState(key, { value = 'Loading...', loading = true, status = 'Waiting for live data' } = {}) {
+                const valueEl = document.querySelector(`[data-stat-value="${key}"]`);
+                const statusEl = document.querySelector(`[data-stat-status="${key}"]`);
+                if (!valueEl || !statusEl) {
+                    return;
+                }
+                valueEl.textContent = value;
+                valueEl.classList.toggle('is-loading', loading);
+                statusEl.textContent = status;
+            }
+
+            async function hydrateStats() {
+                await Promise.all(statConfig.map(async (stat) => {
+                    setStatState(stat.key, { value: 'Loading...', loading: true, status: 'Fetching live data' });
+                    try {
+                        const response = await fetch(stat.endpoint, { cache: 'no-store' });
+                        if (!response.ok) {
+                            throw new Error(`HTTP ${response.status}`);
+                        }
+                        const payload = await response.json();
+                        const source = payload?.data && typeof payload.data === 'object' ? payload.data : payload;
+                        const rawValue = stat.fields.map((field) => source?.[field]).find((value) => value !== undefined && value !== null && value !== '');
+                        const formattedValue = formatStatValue(rawValue);
+                        if (formattedValue === null) {
+                            setStatState(stat.key, {
+                                value: 'N/A',
+                                loading: false,
+                                status: stat.fallback
+                            });
+                        } else {
+                            setStatState(stat.key, {
+                                value: formattedValue,
+                                loading: false,
+                                status: 'Live data loaded'
+                            });
+                        }
+                    } catch (error) {
+                        setStatState(stat.key, {
+                            value: 'N/A',
+                            loading: false,
+                            status: stat.fallback
+                        });
+                    }
+                }));
+            }
+
+            openTrigger.addEventListener('click', openPoster);
+            closeButton.addEventListener('click', closePoster);
+            backdrop.addEventListener('click', (event) => {
+                if (event.target === backdrop) {
+                    closePoster();
+                }
+            });
+            poster.addEventListener('click', (event) => event.stopPropagation());
+            document.addEventListener('keydown', (event) => {
+                if (event.key === 'Escape' && backdrop.classList.contains('is-open')) {
+                    closePoster();
+                }
+            });
+
+            hydrateStats();
+
+            if (!storage.get(seenKey)) {
+                autoShowTimer = window.setTimeout(() => {
+                    openPoster(true);
+                    autoHideTimer = window.setTimeout(closePoster, autoHideDelay);
+                }, autoShowDelay);
+            }
+        })();
+    </script>
 </body>
 </html>
