@@ -466,12 +466,29 @@
             position: relative;
             border-radius: 50%;
             padding: 5px;
-            background: linear-gradient(to right, var(--gradient-start), var(--gradient-end));
+            background: transparent;
             animation: fadeInUp 1s ease-out 0.3s;
             animation-fill-mode: both;
         }
 
+        .profile-photo-container::before {
+            content: "";
+            position: absolute;
+            inset: 0;
+            border-radius: 50%;
+            background: conic-gradient(
+                from 0deg,
+                var(--gradient-start),
+                var(--gradient-end),
+                var(--gradient-start)
+            );
+            transform-origin: center;
+            animation: profile-ring-orbit 5.8s linear infinite;
+        }
+
         .profile-photo-trigger {
+            position: relative;
+            z-index: 1;
             display: block;
             width: 100%;
             height: 100%;
@@ -500,6 +517,18 @@
             object-fit: cover;
             border-radius: 50%;
             border: none;
+        }
+
+        @keyframes profile-ring-orbit {
+            0% {
+                transform: rotate(0deg) scale(1);
+            }
+            50% {
+                transform: rotate(180deg) scale(1.045);
+            }
+            100% {
+                transform: rotate(360deg) scale(1);
+            }
         }
 
         .hero-profile-stack {
@@ -1353,7 +1382,13 @@
                 }));
             }
 
-            openTrigger.addEventListener('click', () => openPoster());
+            openTrigger.addEventListener('click', () => {
+                if (poster.classList.contains('is-open')) {
+                    closePoster();
+                    return;
+                }
+                openPoster();
+            });
             closeButton.addEventListener('click', closePoster);
             document.addEventListener('keydown', (event) => {
                 if (event.key === 'Escape' && poster.classList.contains('is-open')) {
