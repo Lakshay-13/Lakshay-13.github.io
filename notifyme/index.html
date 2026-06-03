@@ -3,503 +3,91 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="icon" type="image/png" href="/icon.png">
-  <title>NotifyMe</title>
+  <meta name="theme-color" content="#cfded1">
+  <meta name="description" content="NotifyMe by Lakshay Chawla - intelligent notification delivery for apps, automations, and agent workflows.">
+  <link rel="icon" type="image/png" href="/lakshaychawla.png">
+  <link rel="apple-touch-icon" href="/lakshaychawla.png">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;700&family=Manrope:wght@400;500;700&display=swap" rel="stylesheet">
-  <style>
-    :root {
-      --bg-main: #cfded1;
-      --bg-surface: rgba(236, 244, 236, 0.86);
-      --bg-surface-strong: rgba(228, 238, 229, 0.96);
-      --text-main: #183127;
-      --text-muted: #4d6759;
-      --accent: #547761;
-      --accent-strong: #385240;
-      --accent-soft: rgba(132, 166, 139, 0.24);
-      --border: rgba(24, 49, 39, 0.10);
-      --shadow: 0 24px 60px rgba(43, 73, 56, 0.14);
-    }
-
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
-
-    body {
-      font-family: 'Manrope', sans-serif;
-      color: var(--text-main);
-      min-height: 100vh;
-      background:
-        radial-gradient(circle at 12% 12%, rgba(84, 119, 97, 0.26), transparent 26%),
-        radial-gradient(circle at 88% 14%, rgba(116, 150, 124, 0.24), transparent 28%),
-        linear-gradient(160deg, #d9e7db 0%, #cfded1 42%, #c5d4c8 100%);
-    }
-
-    a {
-      color: inherit;
-      text-decoration: none;
-    }
-
-    .shell {
-      max-width: 1120px;
-      margin: 0 auto;
-      padding: 24px 20px 60px;
-    }
-
-    .topbar {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 16px;
-      padding: 14px 18px;
-      border: 1px solid var(--border);
-      border-radius: 20px;
-      background: rgba(224, 235, 225, 0.72);
-      backdrop-filter: blur(14px);
-      box-shadow: 0 10px 30px rgba(43, 73, 56, 0.10);
-    }
-
-    .brand {
-      font-family: 'Space Grotesk', sans-serif;
-      font-weight: 700;
-      letter-spacing: 0.02em;
-    }
-
-    .nav-links {
-      display: flex;
-      gap: 10px;
-      flex-wrap: wrap;
-      justify-content: flex-end;
-    }
-
-    .chip,
-    .button {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      border-radius: 999px;
-      font-weight: 800;
-      transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
-    }
-
-    .chip {
-      padding: 10px 14px;
-      border: 1px solid var(--border);
-      background: rgba(234, 242, 234, 0.78);
-      color: var(--text-main);
-    }
-
-    .chip:hover,
-    .button:hover {
-      transform: translateY(-1px);
-    }
-
-    .hero {
-      display: grid;
-      grid-template-columns: minmax(0, 1.1fr) minmax(320px, 0.9fr);
-      gap: 28px;
-      margin-top: 28px;
-      align-items: stretch;
-    }
-
-    .hero-copy,
-    .hero-card,
-    .section-card,
-    .usage-card {
-      border: 1px solid var(--border);
-      border-radius: 28px;
-      background: var(--bg-surface);
-      backdrop-filter: blur(16px);
-      box-shadow: var(--shadow);
-    }
-
-    .hero-copy {
-      padding: 42px;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      gap: 18px;
-    }
-
-    .eyebrow {
-      display: inline-flex;
-      align-items: center;
-      gap: 10px;
-      width: fit-content;
-      padding: 9px 14px;
-      border-radius: 999px;
-      background: rgba(84, 119, 97, 0.14);
-      color: var(--accent-strong);
-      font-weight: 800;
-      letter-spacing: 0.03em;
-      text-transform: uppercase;
-      font-size: 0.74rem;
-    }
-
-    h1,
-    h2,
-    h3 {
-      font-family: 'Space Grotesk', sans-serif;
-    }
-
-    h1 {
-      font-size: clamp(2.7rem, 5vw, 4.8rem);
-      line-height: 0.98;
-      letter-spacing: -0.04em;
-    }
-
-    .lead {
-      font-size: 1.08rem;
-      line-height: 1.8;
-      color: var(--text-muted);
-      max-width: 58ch;
-    }
-
-    .hero-actions {
-      display: flex;
-      gap: 12px;
-      flex-wrap: wrap;
-      margin-top: 6px;
-    }
-
-    .button {
-      min-height: 52px;
-      padding: 0 20px;
-      border-radius: 18px;
-    }
-
-    .button.primary {
-      background: var(--accent);
-      color: #edf6ef;
-      box-shadow: 0 16px 28px rgba(56, 82, 64, 0.26);
-    }
-
-    .meta {
-      display: flex;
-      gap: 10px;
-      flex-wrap: wrap;
-      margin-top: 6px;
-    }
-
-    .meta span {
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      padding: 9px 12px;
-      border-radius: 999px;
-      background: rgba(228, 238, 229, 0.88);
-      color: var(--text-muted);
-      font-weight: 700;
-      font-size: 0.92rem;
-      border: 1px solid rgba(24, 49, 39, 0.06);
-    }
-
-    .hero-card {
-      padding: 28px;
-      display: flex;
-      flex-direction: column;
-      justify-content: space-between;
-      gap: 20px;
-      overflow: hidden;
-      position: relative;
-      background:
-        radial-gradient(circle at top right, rgba(84, 119, 97, 0.18), transparent 30%),
-        radial-gradient(circle at 16% 18%, rgba(125, 157, 130, 0.20), transparent 32%),
-        rgba(232, 241, 233, 0.94);
-    }
-
-    .hero-card::after {
-      content: "";
-      position: absolute;
-      inset: auto -40px -90px auto;
-      width: 220px;
-      height: 220px;
-      border-radius: 50%;
-      background: rgba(84, 119, 97, 0.08);
-      filter: blur(4px);
-    }
-
-    .logo-wrap {
-      position: relative;
-      width: 172px;
-      height: 172px;
-      border-radius: 42px;
-      overflow: hidden;
-      background: linear-gradient(150deg, rgba(246, 251, 246, 0.98), rgba(179, 213, 189, 0.72));
-      display: grid;
-      place-items: center;
-      box-shadow:
-        inset 0 1px 0 rgba(255, 255, 255, 0.74),
-        inset 0 -12px 28px rgba(109, 149, 120, 0.12),
-        0 24px 44px rgba(43, 73, 56, 0.16);
-    }
-
-    .logo-wrap::before {
-      content: "";
-      position: absolute;
-      inset: 12px;
-      border-radius: 32px;
-      background: linear-gradient(180deg, rgba(255, 255, 255, 0.48), rgba(212, 231, 216, 0.2));
-      border: 1px solid rgba(255, 255, 255, 0.36);
-    }
-
-    .logo-wrap img {
-      position: relative;
-      z-index: 1;
-      width: 138px;
-      height: 138px;
-      object-fit: cover;
-      border-radius: 34px;
-      transform: scale(1.12);
-      box-shadow: 0 18px 34px rgba(56, 82, 64, 0.18);
-    }
-
-    .hero-card h2 {
-      font-size: 1.7rem;
-      line-height: 1.1;
-    }
-
-    .hero-card p,
-    .section-card p,
-    .section-card li,
-    .usage-card p {
-      color: var(--text-muted);
-      line-height: 1.75;
-    }
-
-    .stack {
-      display: grid;
-      grid-template-columns: repeat(3, minmax(0, 1fr));
-      gap: 12px;
-      margin-top: 30px;
-    }
-
-    .section-card {
-      padding: 24px;
-    }
-
-    .section-card h3 {
-      font-size: 1.2rem;
-      margin-bottom: 10px;
-    }
-
-    .section-card ul {
-      padding-left: 18px;
-      display: grid;
-      gap: 6px;
-    }
-
-    .usage-card {
-      margin-top: 28px;
-      padding: 26px;
-      background: var(--bg-surface-strong);
-    }
-
-    .usage-header {
-      display: flex;
-      align-items: flex-end;
-      justify-content: space-between;
-      gap: 16px;
-      flex-wrap: wrap;
-      margin-bottom: 18px;
-    }
-
-    .usage-header h3 {
-      font-size: 1.35rem;
-      margin-bottom: 6px;
-    }
-
-    .usage-chart {
-      display: block;
-      width: 100%;
-      border-radius: 24px;
-      border: 1px solid rgba(24, 49, 39, 0.08);
-      background: rgba(241, 247, 241, 0.94);
-    }
-
-    .docs-layout {
-      display: grid;
-      grid-template-columns: minmax(0, 0.95fr) minmax(0, 1.05fr);
-      gap: 18px;
-      margin-top: 28px;
-    }
-
-    .code-block {
-      display: block;
-      padding: 18px;
-      border-radius: 20px;
-      background: rgba(235, 243, 236, 0.96);
-      border: 1px solid rgba(24, 49, 39, 0.08);
-      color: #274334;
-      white-space: pre-wrap;
-      overflow-x: auto;
-      font: 0.9rem/1.6 "SFMono-Regular", SFMono-Regular, ui-monospace, Menlo, monospace;
-    }
-
-    .footer {
-      margin-top: 36px;
-      color: var(--text-muted);
-      text-align: center;
-      font-size: 0.92rem;
-    }
-
-    @media (max-width: 900px) {
-      .hero {
-        grid-template-columns: 1fr;
-      }
-
-      .stack {
-        grid-template-columns: 1fr;
-      }
-
-      .docs-layout {
-        grid-template-columns: 1fr;
-      }
-
-      .hero-copy,
-      .hero-card,
-      .section-card,
-      .usage-card {
-        padding: 24px;
-      }
-    }
-
-    @media (max-width: 640px) {
-      .topbar {
-        flex-direction: column;
-        align-items: flex-start;
-      }
-
-      .nav-links {
-        justify-content: flex-start;
-      }
-
-      h1 {
-        font-size: 2.4rem;
-      }
-
-      .hero-actions {
-        flex-direction: column;
-      }
-
-      .button {
-        width: 100%;
-      }
-
-      .logo-wrap {
-        width: 156px;
-        height: 156px;
-        border-radius: 36px;
-      }
-
-      .logo-wrap::before {
-        inset: 10px;
-        border-radius: 28px;
-      }
-
-      .logo-wrap img {
-        width: 126px;
-        height: 126px;
-      }
-    }
-  </style>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&amp;family=IBM+Plex+Mono:wght@400;500;600&amp;display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/assets/project-page.css?v=20260603-3">
+  <script src="/assets/project-page.js" defer></script>
+  <title>NotifyMe | Lakshay Chawla</title>
 </head>
-<body>
-  <main class="shell">
-    <div class="topbar">
-      <div class="brand">NotifyMe</div>
-      <div class="nav-links">
+<body style="--accent:#84a68b;--accent-2:#d9e7db;--glow:rgba(132,166,139,0.18);">
+  <div class="shell">
+    <header class="topbar">
+      <a class="brand" href="/"><span class="brand-dot">&nbsp;</span>Lakshay Chawla</a>
+      <nav class="nav-actions" aria-label="Project navigation">
         <a class="chip" href="/">Portfolio</a>
         <a class="chip" href="/notifyme/docs/">Docs</a>
-        <a class="chip" href="https://www.nextgenaischool.in/api/notifyme/apk/latest">Download APK</a>
-      </div>
-    </div>
+      </nav>
+    </header>
 
-    <section class="hero">
-      <div class="hero-copy">
-        <div class="eyebrow">Push Notifications + Battery Temperature/Health Widgets</div>
-        <h1>NotifyMe</h1>
-        <p class="lead">
-          A personal Android receiver for Firebase alerts with saved history, a device API key for
-          scripted sends, and website-hosted updates outside the Play Store.
-        </p>
-        <div class="hero-actions">
-          <a class="button primary" href="/notifyme/docs/">How To Use API</a>
-          <a class="button primary" href="https://www.nextgenaischool.in/api/notifyme/apk/latest">Download APK</a>
+    <main>
+      <section class="hero" aria-labelledby="notifyme-title">
+        <div class="hero-copy">
+          <div class="eyebrow">Notification API / Android Delivery</div>
+          <h1 id="notifyme-title">NotifyMe</h1>
+          <p class="lead">An intelligent notification platform for sending mobile alerts from products, scripts, automations, and AI workflows with API keys, history, and callbacks.</p>
+          <div class="actions">
+            <a class="button primary" href="/notifyme/docs/">Read Docs</a>
+            <a class="button" href="/">Back to Portfolio</a>
+          </div>
         </div>
-        <div class="meta">
-          <span>Android 8.0+</span>
-          <span>Kotlin + Compose</span>
-          <span>FCM + Website Updates</span>
-        </div>
-      </div>
 
-      <div class="hero-card">
-        <div class="logo-wrap">
-          <img src="/notifyme-logo.png" alt="NotifyMe logo">
+        <aside class="visual-card" aria-label="NotifyMe product visual">
+          <div class="visual-inner logo-notifyme">
+            <img src="/notifyme-logo.png" alt="NotifyMe logo">
+          </div>
+        </aside>
+      </section>
+
+      <section class="section" aria-labelledby="notifyme-platform-title">
+        <div class="section-head">
+          <h2 id="notifyme-platform-title">Delivery Layer For Builders</h2>
         </div>
+        <div class="feature-grid">
+          <article class="feature-card"><h3>API-first delivery</h3><p>Send notifications from code, scripts, automations, and production systems.</p></article>
+          <article class="feature-card"><h3>Android app surface</h3><p>Mobile-first delivery keeps important automation updates visible.</p></article>
+          <article class="feature-card"><h3>Usage history</h3><p>Track notification activity and keep delivery behavior inspectable.</p></article>
+          <article class="feature-card"><h3>Agent compatible</h3><p>Designed to notify humans when long-running AI or software tasks finish.</p></article>
+        </div>
+      </section>
+
+      <section class="section" aria-labelledby="notifyme-metrics-title">
+        <div class="section-head">
+          <h2 id="notifyme-metrics-title">Operating Model</h2>
+        </div>
+        <div class="metric-grid">
+          <article class="metric-card"><span class="metric-value">API</span><h3>Integration point</h3><p>Simple endpoints make the product usable from many workflows.</p></article>
+          <article class="metric-card"><span class="metric-value">Mobile</span><h3>Human loop</h3><p>Android delivery closes the loop between automation and action.</p></article>
+          <article class="metric-card"><span class="metric-value">Keys</span><h3>Access control</h3><p>API keys keep send access scoped and inspectable.</p></article>
+        </div>
+      </section>
+
+      <section class="profile-strip" aria-label="Project owner">
+        <img src="/lakshaychawla.png" alt="Lakshay Chawla">
         <div>
-          <h2>Reliable visible delivery, no raw FCM token sharing</h2>
-          <p>
-            NotifyMe now exposes a managed API Keys screen instead of asking you to share the raw
-            token. Fren stores the Firebase delivery credential, sends normal high-priority
-            notifications for better lock-screen reliability, syncs interactive actions into app
-            history, and broadcasts new app updates to registered devices.
-          </p>
+          <strong>Lakshay Chawla</strong>
+          <p>Data Scientist, AI researcher, entrepreneur, open source developer, and educator.</p>
         </div>
-      </div>
-    </section>
+        <a class="button" href="/">View Portfolio</a>
+      </section>
+    </main>
+  </div>
 
-    <section class="stack">
-      <article class="section-card">
-        <h3>What It Does</h3>
-        <p>
-          Receive Firebase Cloud Messaging alerts, save them to local history, trigger update
-          installs from the web, route notifications through your own backend, and let users send
-          confirmations or replies from the app after a notification is received.
-        </p>
-      </article>
-
-      <article class="section-card">
-        <h3>Core Stack</h3>
-        <ul>
-          <li>Kotlin</li>
-          <li>Jetpack Compose Material 3</li>
-          <li>Firebase Cloud Messaging</li>
-          <li>Website-hosted APK updates</li>
-        </ul>
-      </article>
-
-      <article class="section-card">
-        <h3>Best For</h3>
-        <p>
-          Personal push testing, webhook-driven alert delivery, and lightweight Android installs
-          that can be shared through a direct backend link.
-        </p>
-      </article>
-    </section>
-
-    <section class="usage-card">
-      <div class="usage-header">
-        <div>
-          <h3>Daily Usage</h3>
-          <p>Successful NotifyMe sends per day, streamed from the fren backend.</p>
-        </div>
-        <a class="chip" href="https://www.nextgenaischool.in/api/notifyme/usage">View JSON</a>
-      </div>
-      <img
-        class="usage-chart"
-        src="https://www.nextgenaischool.in/api/notifyme/usage-chart.svg?days=30"
-        alt="NotifyMe daily notifications sent chart"
-      >
-    </section>
-
-    <p class="footer">
-      NotifyMe by Lakshay Chawla. Direct installs may require enabling “Install unknown apps” on Android.
-    </p>
-  </main>
+  <script>
+    const cards = document.querySelectorAll(".feature-card, .metric-card");
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add("is-visible");
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.18 });
+    cards.forEach((card) => observer.observe(card));
+  </script>
 </body>
 </html>
