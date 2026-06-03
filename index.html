@@ -168,7 +168,9 @@
     }
 
     .portal-system {
-      position: relative;
+      position: absolute;
+      left: 50%;
+      top: 50%;
       z-index: 2;
       width: var(--entry-size);
       aspect-ratio: 1;
@@ -176,6 +178,7 @@
       place-items: center;
       isolation: isolate;
       perspective: 900px;
+      transform: translate3d(-50%, -50%, 0);
     }
 
     .orbit {
@@ -1267,6 +1270,7 @@
       .portal-entry {
         --entry-size: min(126vw, 88dvh);
         --core-size: calc(var(--entry-size) * 0.46);
+        padding: 0;
       }
 
       .container {
