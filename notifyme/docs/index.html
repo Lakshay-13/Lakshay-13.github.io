@@ -16,6 +16,7 @@
       --text-main: #183127;
       --text-muted: #4d6759;
       --accent: #547761;
+      --accent-2: #8f6fb1;
       --accent-strong: #385240;
       --border: rgba(24, 49, 39, 0.10);
       --shadow: 0 24px 60px rgba(43, 73, 56, 0.14);
@@ -35,6 +36,31 @@
         radial-gradient(circle at 12% 12%, rgba(84, 119, 97, 0.26), transparent 26%),
         radial-gradient(circle at 88% 14%, rgba(116, 150, 124, 0.24), transparent 28%),
         linear-gradient(160deg, #d9e7db 0%, #cfded1 42%, #c5d4c8 100%);
+    }
+
+    .page-cursor-field {
+      position: fixed;
+      inset: 0;
+      z-index: 60;
+      pointer-events: none;
+      overflow: hidden;
+      mix-blend-mode: multiply;
+    }
+
+    .page-cursor-star {
+      position: absolute;
+      left: var(--star-x);
+      top: var(--star-y);
+      width: var(--star-size);
+      height: var(--star-size);
+      margin: calc(var(--star-size) / -2) 0 0 calc(var(--star-size) / -2);
+      border-radius: 50%;
+      background: var(--star-color);
+      box-shadow: 0 0 var(--star-glow) var(--star-color);
+      opacity: 0;
+      transform: translate3d(0, 0, 0) scale(0.4);
+      animation: docs-cursor-star-bloom var(--star-life) ease-out forwards;
+      will-change: transform, opacity;
     }
 
     a {
@@ -275,7 +301,28 @@
         width: 100%;
       }
     }
+
+    @keyframes docs-cursor-star-bloom {
+      0% {
+        opacity: 0;
+        transform: translate3d(0, 0, 0) scale(0.35);
+      }
+
+      18% {
+        opacity: var(--star-opacity);
+      }
+
+      62% {
+        opacity: calc(var(--star-opacity) * 0.72);
+      }
+
+      100% {
+        opacity: 0;
+        transform: translate3d(var(--star-dx), var(--star-dy), 0) scale(0.12);
+      }
+    }
   </style>
+  <script src="/assets/project-page.js?v=20260603-stars3" defer></script>
 </head>
 <body>
   <main class="shell">

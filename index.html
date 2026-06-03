@@ -356,53 +356,31 @@
       background: #010203;
     }
 
-    .cursor-halo {
+    .cursor-starfield {
       position: fixed;
-      left: var(--cursor-x);
-      top: var(--cursor-y);
-      z-index: 50;
-      width: min(132vmin, 1100px);
-      aspect-ratio: 1;
-      pointer-events: none;
-      opacity: 0;
-      transform: translate3d(-50%, -50%, 0);
-      mix-blend-mode: screen;
-      will-change: left, top, opacity;
-    }
-
-    body.site-entering .cursor-halo,
-    body.site-entered .cursor-halo {
-      opacity: 0.44;
-    }
-
-    .cursor-halo::before,
-    .cursor-halo::after {
-      content: "";
-      position: absolute;
       inset: 0;
+      z-index: 50;
+      pointer-events: none;
+      mix-blend-mode: screen;
+      overflow: hidden;
+      opacity: 1;
+    }
+
+    .cursor-star {
+      position: absolute;
+      left: var(--star-x);
+      top: var(--star-y);
+      width: var(--star-size);
+      height: var(--star-size);
+      margin: calc(var(--star-size) / -2) 0 0 calc(var(--star-size) / -2);
       border-radius: 50%;
       pointer-events: none;
-    }
-
-    .cursor-halo::before {
-      background:
-        radial-gradient(circle, rgba(10, 250, 158, 0.14) 0%, rgba(10, 250, 158, 0.092) 18%, rgba(10, 250, 158, 0.045) 38%, rgba(10, 250, 158, 0.014) 62%, transparent 82%),
-        radial-gradient(circle, rgba(185, 167, 255, 0.072) 0%, rgba(185, 167, 255, 0.034) 34%, transparent 72%);
-      filter: blur(36px);
-    }
-
-    .cursor-halo::after {
-      inset: 10%;
-      background-image:
-        radial-gradient(circle, rgba(255, 255, 255, 0.95) 0 1px, transparent 1.9px),
-        radial-gradient(circle, rgba(10, 250, 158, 0.9) 0 1px, transparent 2px),
-        radial-gradient(circle, rgba(185, 167, 255, 0.75) 0 0.9px, transparent 1.8px);
-      background-position: 13px 21px, 47px 9px, 81px 63px;
-      background-size: 58px 67px, 93px 84px, 131px 109px;
-      opacity: 0.28;
-      filter: drop-shadow(0 0 5px rgba(10, 250, 158, 0.28));
-      mask-image: radial-gradient(circle, #000 0%, rgba(0, 0, 0, 0.76) 54%, rgba(0, 0, 0, 0.28) 68%, transparent 82%);
-      animation: halo-sparkle 2.2s steps(5, end) infinite;
+      background: var(--star-color);
+      box-shadow: 0 0 var(--star-glow) var(--star-color);
+      opacity: 0;
+      transform: translate3d(0, 0, 0) scale(0.4);
+      animation: cursor-star-bloom var(--star-life) ease-out forwards;
+      will-change: transform, opacity;
     }
 
     .container {
@@ -1102,21 +1080,23 @@
       }
     }
 
-    @keyframes halo-sparkle {
+    @keyframes cursor-star-bloom {
       0% {
-        opacity: 0.18;
-        background-position: 13px 21px, 47px 9px, 81px 63px;
-        transform: rotate(0deg) scale(0.98);
+        opacity: 0;
+        transform: translate3d(0, 0, 0) scale(0.35);
       }
 
-      40% {
-        opacity: 0.34;
+      18% {
+        opacity: var(--star-opacity);
+      }
+
+      62% {
+        opacity: calc(var(--star-opacity) * 0.72);
       }
 
       100% {
-        opacity: 0.2;
-        background-position: 41px 59px, 2px 74px, 119px 17px;
-        transform: rotate(14deg) scale(1.02);
+        opacity: 0;
+        transform: translate3d(var(--star-dx), var(--star-dy), 0) scale(0.12);
       }
     }
 
@@ -1337,7 +1317,7 @@
     <div class="portal-label">Click the center profile to enter</div>
   </div>
 
-  <div class="cursor-halo" id="cursorHalo" aria-hidden="true"></div>
+  <div class="cursor-starfield" id="cursorStarfield" aria-hidden="true"></div>
 
   <div class="site-shell" id="siteShell">
     <div class="portfolio-bg" aria-hidden="true">
@@ -1541,6 +1521,7 @@
       const menuToggle = document.getElementById("menuToggle");
       let autoSnapshotScheduled = false;
       let portalTimer = null;
+      let cursorStarTimer = null;
       const portalOpenDuration = 1320;
       const portalCloseDuration = 1120;
       const orbitSpeed = (Math.PI * 2) / 38000;
@@ -1568,11 +1549,60 @@
         }, "", entered ? window.location.href : window.location.pathname + window.location.search);
       }
 
-      function setCursorHalo(x, y) {
+      function setCursorPoint(x, y) {
         lastPointerX = x;
         lastPointerY = y;
         document.documentElement.style.setProperty("--cursor-x", x + "px");
         document.documentElement.style.setProperty("--cursor-y", y + "px");
+      }
+
+      function spawnCursorStars(x, y, count) {
+        const layer = document.getElementById("cursorStarfield");
+        if (!layer) return;
+        const existing = layer.childElementCount;
+        const limit = 120;
+        const starColors = [
+          "rgba(255, 255, 255, 0.96)",
+          "rgba(209, 255, 238, 0.9)",
+          "rgba(185, 167, 255, 0.78)",
+          "rgba(10, 250, 158, 0.78)"
+        ];
+
+        for (let i = 0; i < count && existing + i < limit; i += 1) {
+          const star = document.createElement("span");
+          const spread = 9 + Math.random() * 30;
+          const angle = Math.random() * Math.PI * 2;
+          const drift = 12 + Math.random() * 34;
+          const size = Math.random() > 0.84 ? 1.8 + Math.random() * 1.2 : 0.8 + Math.random() * 1.1;
+          const color = starColors[Math.floor(Math.random() * starColors.length)];
+
+          star.className = "cursor-star";
+          star.style.setProperty("--star-x", (x + Math.cos(angle) * spread).toFixed(1) + "px");
+          star.style.setProperty("--star-y", (y + Math.sin(angle) * spread).toFixed(1) + "px");
+          star.style.setProperty("--star-dx", (Math.cos(angle) * drift).toFixed(1) + "px");
+          star.style.setProperty("--star-dy", (Math.sin(angle) * drift).toFixed(1) + "px");
+          star.style.setProperty("--star-size", size.toFixed(2) + "px");
+          star.style.setProperty("--star-glow", (5 + Math.random() * 12).toFixed(1) + "px");
+          star.style.setProperty("--star-life", (760 + Math.random() * 560).toFixed(0) + "ms");
+          star.style.setProperty("--star-opacity", (0.56 + Math.random() * 0.44).toFixed(2));
+          star.style.setProperty("--star-color", color);
+          layer.appendChild(star);
+          window.setTimeout(function () {
+            star.remove();
+          }, 1500);
+        }
+      }
+
+      function startCursorStars() {
+        if (cursorStarTimer) return;
+        cursorStarTimer = window.setInterval(function () {
+          spawnCursorStars(lastPointerX, lastPointerY, 2);
+        }, 130);
+      }
+
+      function stopCursorStars() {
+        clearInterval(cursorStarTimer);
+        cursorStarTimer = null;
       }
 
       function readOrbitGeometry() {
@@ -1881,16 +1911,24 @@
         });
       }
 
-      setCursorHalo(lastPointerX, lastPointerY);
+      setCursorPoint(lastPointerX, lastPointerY);
       updateActiveNav();
       window.addEventListener("scroll", function () {
         updateActiveNav();
-        if (body.classList.contains("site-entered")) setCursorHalo(lastPointerX, lastPointerY);
+        setCursorPoint(lastPointerX, lastPointerY);
       }, { passive: true });
       window.addEventListener("resize", updateActiveNav);
       window.addEventListener("pointermove", function (event) {
-        setCursorHalo(event.clientX, event.clientY);
+        setCursorPoint(event.clientX, event.clientY);
+        startCursorStars();
+        spawnCursorStars(event.clientX, event.clientY, event.buttons ? 6 : 3);
       }, { passive: true });
+      window.addEventListener("pointerenter", function (event) {
+        setCursorPoint(event.clientX, event.clientY);
+        startCursorStars();
+        spawnCursorStars(event.clientX, event.clientY, 16);
+      }, { passive: true });
+      window.addEventListener("pointerleave", stopCursorStars, { passive: true });
 
       document.addEventListener("click", function (event) {
         if (!(event.target instanceof Element)) return;
