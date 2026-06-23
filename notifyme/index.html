@@ -4,14 +4,14 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="theme-color" content="#cfded1">
-  <meta name="description" content="NotifyMe by Lakshay Chawla - intelligent notification delivery for apps, automations, and agent workflows.">
+  <meta name="description" content="NotifyMe by Lakshay Chawla - Android notification delivery, profile-labelled alerts, local messaging, and portable messaging data.">
   <link rel="icon" type="image/png" href="/lakshaychawla.png">
   <link rel="apple-touch-icon" href="/lakshaychawla.png">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&amp;family=IBM+Plex+Mono:wght@400;500;600&amp;display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="/assets/project-page.css?v=20260603-stars3">
-  <script src="/assets/project-page.js?v=20260603-stars3" defer></script>
+  <link rel="stylesheet" href="/assets/project-page.css?v=20260623-notifyme2">
+  <script src="/assets/project-page.js?v=20260623-notifyme2" defer></script>
   <title>NotifyMe | Lakshay Chawla</title>
 </head>
 <body style="--accent:#84a68b;--accent-2:#d9e7db;--glow:rgba(132,166,139,0.18);">
@@ -21,18 +21,19 @@
       <nav class="nav-actions" aria-label="Project navigation">
         <a class="chip" href="/">Portfolio</a>
         <a class="chip" href="/notifyme/docs/">Docs</a>
+        <a class="chip" href="https://www.nextgenaischool.in/api/notifyme/apk/latest">Download APK</a>
       </nav>
     </header>
 
     <main>
       <section class="hero" aria-labelledby="notifyme-title">
         <div class="hero-copy">
-          <div class="eyebrow">Notification API / Android Delivery</div>
+          <div class="eyebrow">Android Delivery / Messaging / API Profiles</div>
           <h1 id="notifyme-title">NotifyMe</h1>
-          <p class="lead">An intelligent notification platform for sending mobile alerts from products, scripts, automations, and AI workflows with API keys, history, and callbacks.</p>
+          <p class="lead">NotifyMe is an Android-first notification layer for products, scripts, agents, and automations. It now carries profile-labelled sends, local-first direct messaging, portable chat export/import, callbacks, and update delivery in one compact surface.</p>
           <div class="actions">
             <a class="button primary" href="/notifyme/docs/">Read Docs</a>
-            <a class="button" href="/">Back to Portfolio</a>
+            <a class="button" href="https://www.nextgenaischool.in/api/notifyme/apk/latest">Get APK</a>
           </div>
         </div>
 
@@ -45,24 +46,35 @@
 
       <section class="section" aria-labelledby="notifyme-platform-title">
         <div class="section-head">
-          <h2 id="notifyme-platform-title">Delivery Layer For Builders</h2>
+          <h2 id="notifyme-platform-title">What Ships Now</h2>
         </div>
         <div class="feature-grid">
-          <article class="feature-card"><h3>API-first delivery</h3><p>Send notifications from code, scripts, automations, and production systems.</p></article>
-          <article class="feature-card"><h3>Android app surface</h3><p>Mobile-first delivery keeps important automation updates visible.</p></article>
-          <article class="feature-card"><h3>Usage history</h3><p>Track notification activity and keep delivery behavior inspectable.</p></article>
-          <article class="feature-card"><h3>Agent compatible</h3><p>Designed to notify humans when long-running AI or software tasks finish.</p></article>
+          <article class="feature-card"><h3>API-first alerts</h3><p>Send mobile notifications from backend jobs, CLI tasks, AI agents, webhooks, or production systems with a single device API key.</p></article>
+          <article class="feature-card"><h3>Profile-labelled notifications</h3><p>Every notification can show which API key profile generated it, using safe labels instead of exposing the raw key.</p></article>
+          <article class="feature-card"><h3>Local-first messaging</h3><p>Create a username, start direct text conversations by username, and keep chat UX simple without friend requests or contact sync.</p></article>
+          <article class="feature-card"><h3>Portable chat data</h3><p>Export and import conversation data, with payloads structured so encrypted message bodies and key-management flows can be added later.</p></article>
         </div>
       </section>
 
-      <section class="section" aria-labelledby="notifyme-metrics-title">
+      <section class="section" aria-labelledby="notifyme-ops-title">
         <div class="section-head">
-          <h2 id="notifyme-metrics-title">Operating Model</h2>
+          <h2 id="notifyme-ops-title">Core Surfaces</h2>
+        </div>
+        <div class="story-grid">
+          <article class="story-card"><h3>Notification delivery</h3><p><code>POST /api/notifyme/send</code> pushes Android notifications, stores history, preserves action metadata, and now includes source labels in payloads and sync responses.</p></article>
+          <article class="story-card"><h3>Profile and username settings</h3><p><code>GET/PUT /api/notifyme/profile</code> manages API key profile labels and local messaging usernames behind the same device-key authorization model.</p></article>
+          <article class="story-card"><h3>Messaging sync and portability</h3><p>The messaging surface exposes conversation listing, direct message creation, per-thread sends, and export/import actions without adding new database tables.</p></article>
+        </div>
+      </section>
+
+      <section class="section" aria-labelledby="notifyme-model-title">
+        <div class="section-head">
+          <h2 id="notifyme-model-title">Operating Model</h2>
         </div>
         <div class="metric-grid">
-          <article class="metric-card"><span class="metric-value">API</span><h3>Integration point</h3><p>Simple endpoints make the product usable from many workflows.</p></article>
-          <article class="metric-card"><span class="metric-value">Mobile</span><h3>Human loop</h3><p>Android delivery closes the loop between automation and action.</p></article>
-          <article class="metric-card"><span class="metric-value">Keys</span><h3>Access control</h3><p>API keys keep send access scoped and inspectable.</p></article>
+          <article class="metric-card"><span class="metric-value">Labels</span><h3>Readable source identity</h3><p>History sync and push payloads can carry <code>sourceLabel</code> and <code>generatedBy</code> so the app can render “Generated by” consistently.</p></article>
+          <article class="metric-card"><span class="metric-value">Direct</span><h3>Usernames over contact graphs</h3><p>Conversation creation is username-based, text-only, and intentionally minimal to keep the messaging layer local-first and easy to reason about.</p></article>
+          <article class="metric-card"><span class="metric-value">Ready</span><h3>Encryption-compatible structure</h3><p>Conversation and export payloads already carry room for encrypted bodies, secure metadata, and future key references without changing the app UX now.</p></article>
         </div>
       </section>
 
@@ -78,7 +90,7 @@
   </div>
 
   <script>
-    const cards = document.querySelectorAll(".feature-card, .metric-card");
+    const cards = document.querySelectorAll(".feature-card, .metric-card, .story-card");
     const observer = new IntersectionObserver((entries) => {
       entries.forEach((entry) => {
         if (entry.isIntersecting) {
