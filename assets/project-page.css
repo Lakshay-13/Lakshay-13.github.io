@@ -257,6 +257,20 @@ h1 {
   overflow: hidden;
 }
 
+.fren-visual-card {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 26px;
+  padding: 34px 28px 26px;
+}
+
+.fren-visual-card .visual-inner {
+  width: min(76%, 430px);
+  flex: none;
+}
+
 .visual-card::before {
   content: "";
   position: absolute;
@@ -311,6 +325,58 @@ h1 {
   aspect-ratio: 1;
   height: auto;
   object-fit: cover;
+}
+
+.fren-codex-callout {
+  position: relative;
+  z-index: 1;
+  width: min(100%, 258px);
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  min-height: 58px;
+  padding: 10px 12px;
+  border: 1px solid color-mix(in srgb, var(--accent) 28%, var(--border));
+  border-radius: 24px;
+  background: rgba(7, 10, 18, 0.92);
+  box-shadow:
+    0 22px 52px rgba(0, 0, 0, 0.34),
+    inset 0 0 0 1px rgba(255, 255, 255, 0.03);
+  backdrop-filter: blur(18px);
+  transition: transform 180ms ease, border-color 180ms ease, box-shadow 180ms ease;
+}
+
+.fren-codex-callout:hover,
+.fren-codex-callout:focus-visible {
+  transform: translateY(-3px);
+  border-color: color-mix(in srgb, var(--accent) 52%, transparent);
+  box-shadow:
+    0 28px 58px rgba(0, 0, 0, 0.38),
+    inset 0 0 0 1px rgba(255, 255, 255, 0.05);
+  outline: none;
+}
+
+.fren-codex-callout img {
+  width: 58px;
+  height: 58px;
+  flex: none;
+  object-fit: contain;
+  filter: drop-shadow(0 12px 18px rgba(0, 0, 0, 0.24));
+  animation: frenFloat 4.2s ease-in-out infinite;
+}
+
+.fren-codex-callout__text {
+  display: block;
+}
+
+.fren-codex-callout strong {
+  display: block;
+  max-width: 16ch;
+  color: #fff;
+  font-size: 0.94rem;
+  font-weight: 700;
+  line-height: 1.35;
+  letter-spacing: -0.01em;
 }
 
 .logo-notifyme {
@@ -824,6 +890,17 @@ h2 {
   }
 }
 
+@keyframes frenFloat {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+
+  50% {
+    transform: translateY(-10px);
+  }
+}
+
 @keyframes flow-dash {
   to {
     stroke-dashoffset: -34;
@@ -883,6 +960,14 @@ h2 {
     font-size: 3.6rem;
   }
 
+  .fren-visual-card {
+    padding: 30px 22px 24px;
+  }
+
+  .fren-codex-callout {
+    width: min(100%, 258px);
+  }
+
   .rl-architecture-card {
     min-height: auto;
   }
@@ -931,6 +1016,30 @@ h2 {
 
   .visual-card {
     min-height: 430px;
+  }
+
+  .fren-visual-card {
+    gap: 18px;
+    padding: 24px 16px 18px;
+  }
+
+  .fren-visual-card .visual-inner {
+    width: min(88%, 360px);
+  }
+
+  .fren-codex-callout {
+    width: min(100%, 238px);
+    gap: 10px;
+    padding: 10px 12px;
+  }
+
+  .fren-codex-callout img {
+    width: 56px;
+    height: 56px;
+  }
+
+  .fren-codex-callout strong {
+    font-size: 0.94rem;
   }
 
   .floating-node {
