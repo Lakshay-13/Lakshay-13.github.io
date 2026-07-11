@@ -220,6 +220,14 @@ h3 {
   overflow: hidden;
 }
 
+.fren-page .hero {
+  min-height: 560px;
+}
+
+.fren-page .hero-copy {
+  padding: 34px;
+}
+
 .eyebrow {
   width: fit-content;
   display: inline-flex;
@@ -266,8 +274,8 @@ h1 {
   padding: 34px 28px 26px;
 }
 
-.fren-visual-card .visual-inner {
-  width: min(76%, 430px);
+.fren-page .fren-visual-card .visual-inner {
+  width: min(68%, 360px);
   flex: none;
 }
 
@@ -1006,7 +1014,7 @@ h2 {
     flex-direction: column;
   }
 
-  .hero-copy {
+  .fren-page .hero-copy {
     padding: 22px;
   }
 
