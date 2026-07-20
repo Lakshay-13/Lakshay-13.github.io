@@ -1777,8 +1777,8 @@
       const poster = document.getElementById("statsPoster");
       const openTrigger = document.getElementById("profilePhotoTrigger");
       const closeButton = document.getElementById("statsPosterClose");
-      const autoShowDelay = 850;
-      const autoHideDelay = 3200;
+      const autoShowDelay = 0;
+      const autoHideDelay = 1000;
       let autoShowTimer = null;
       let autoHideTimer = null;
 
@@ -1830,7 +1830,7 @@
         autoShowTimer = window.setTimeout(function () {
           setPosterOpen(true);
           autoHideTimer = window.setTimeout(function () {
-            closePoster();
+            closePoster(false);
           }, autoHideDelay);
         }, autoShowDelay);
       }
@@ -1929,9 +1929,10 @@
         toggle.setAttribute("aria-expanded", String(!collapsed));
         toggle.setAttribute("aria-label", collapsed ? "See more " + label : "Show less " + label);
         if (collapsed && scrollToToggle) {
-          window.requestAnimationFrame(function () {
-            toggle.scrollIntoView({ behavior: "smooth", block: "center" });
-          });
+          const previousScrollBehavior = document.documentElement.style.scrollBehavior;
+          document.documentElement.style.scrollBehavior = "auto";
+          toggle.scrollIntoView({ behavior: "auto", block: "center" });
+          document.documentElement.style.scrollBehavior = previousScrollBehavior;
         }
       }
 
