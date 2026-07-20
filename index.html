@@ -903,6 +903,20 @@
       gap: 20px;
     }
 
+    .collapsible-item.is-collapsed {
+      display: none;
+    }
+
+    .collection-toggle {
+      display: flex;
+      justify-content: center;
+      margin-top: 28px;
+    }
+
+    .collection-toggle-button {
+      cursor: pointer;
+    }
+
     .experience-card,
     .project-card,
     .contact-details,
@@ -1437,16 +1451,20 @@
       <section id="experience">
         <div class="container">
           <div class="section-header"><h2>Experience</h2></div>
-          <div class="experience-list">
-            <div class="experience-card"><h3 class="experience-title">CEO</h3><div class="experience-company">NextGenAISchool</div><div class="experience-period">05/2026 - Present</div><p>Building AI education products, developer tools, and applied AI systems across the NextGenAISchool ecosystem.</p></div>
-            <div class="experience-card"><h3 class="experience-title">Researcher</h3><div class="experience-company">CLARITY Lab, IIT Jodhpur</div><div class="experience-period">06/2026 - Present</div><p>Working on Physics-Informed Neural Networks, 3D vision, and physically grounded AI systems.</p></div>
-            <div class="experience-card"><h3 class="experience-title">Project Associate</h3><div class="experience-company">IIT Jodhpur</div><div class="experience-period">12/2025 - 05/2026</div><p>Worked primarily on 3D research, including 3D vision, generation, and physically grounded AI experiments.</p></div>
-            <div class="experience-card"><h3 class="experience-title">Freelancer</h3><div class="experience-company">Independent</div><div class="experience-period">05/2025 - 11/2025</div><p>Built AI/ML, automation, and custom software projects for clients, including Discord bots and AI-driven applications.</p></div>
-            <div class="experience-card"><h3 class="experience-title">R&amp;D Consultant</h3><div class="experience-company">System 3</div><div class="experience-period">01/2024 - 05/2025</div><p>Developing ML and AI course content, and leveraging data insights for strategic decision-making.</p></div>
-            <div class="experience-card"><h3 class="experience-title">Research Fellow (Computer Science)</h3><div class="experience-company">Harvard SEAS</div><div class="experience-period">05/2024 - 07/2024</div><p>Started my research journey by developing new localization methods for Physics-Informed Neural Networks.</p></div>
-            <div class="experience-card"><h3 class="experience-title">Researcher</h3><div class="experience-company">StellarDNN</div><div class="experience-period">01/2023 - 08/2024</div><p>Focused on developing advanced architectures for Physics-Informed Neural Networks.</p></div>
-            <div class="experience-card"><h3 class="experience-title">Learning Experience Supervisor + Analytics Consultant</h3><div class="experience-company">Univ.AI</div><div class="experience-period">05/2022 - 12/2023</div><p>Developed ML and AI course content, and used analytics for learning and business decisions.</p></div>
+          <div class="experience-list" id="experienceList" data-collapsible-list data-collapsed-limit="2">
+            <div class="experience-card collapsible-item" data-collapsible-item><h3 class="experience-title">CEO</h3><div class="experience-company">NextGenAISchool</div><div class="experience-period">05/2026 - Present</div><p>Building AI education products, developer tools, and applied AI systems across the NextGenAISchool ecosystem.</p></div>
+            <div class="experience-card collapsible-item" data-collapsible-item><h3 class="experience-title">Researcher</h3><div class="experience-company">CLARITY Lab, IIT Jodhpur</div><div class="experience-period">06/2026 - Present</div><p>Working on Physics-Informed Neural Networks, 3D vision, and physically grounded AI systems.</p></div>
+            <div class="experience-card collapsible-item" data-collapsible-item><h3 class="experience-title">Project Associate</h3><div class="experience-company">IIT Jodhpur</div><div class="experience-period">12/2025 - 05/2026</div><p>Worked primarily on 3D research, including 3D vision, generation, and physically grounded AI experiments.</p></div>
+            <div class="experience-card collapsible-item" data-collapsible-item><h3 class="experience-title">Freelancer</h3><div class="experience-company">Independent</div><div class="experience-period">05/2025 - 11/2025</div><p>Built AI/ML, automation, and custom software projects for clients, including Discord bots and AI-driven applications.</p></div>
+            <div class="experience-card collapsible-item" data-collapsible-item><h3 class="experience-title">R&amp;D Consultant</h3><div class="experience-company">System 3</div><div class="experience-period">01/2024 - 05/2025</div><p>Developing ML and AI course content, and leveraging data insights for strategic decision-making.</p></div>
+            <div class="experience-card collapsible-item" data-collapsible-item><h3 class="experience-title">Research Fellow (Computer Science)</h3><div class="experience-company">Harvard SEAS</div><div class="experience-period">05/2024 - 07/2024</div><p>Started my research journey by developing new localization methods for Physics-Informed Neural Networks.</p></div>
+            <div class="experience-card collapsible-item" data-collapsible-item><h3 class="experience-title">Researcher</h3><div class="experience-company">StellarDNN</div><div class="experience-period">01/2023 - 08/2024</div><p>Focused on developing advanced architectures for Physics-Informed Neural Networks.</p></div>
+            <div class="experience-card collapsible-item" data-collapsible-item><h3 class="experience-title">Learning Experience Supervisor + Analytics Consultant</h3><div class="experience-company">Univ.AI</div><div class="experience-period">05/2022 - 12/2023</div><p>Developed ML and AI course content, and used analytics for learning and business decisions.</p></div>
+            <div class="experience-card collapsible-item" data-collapsible-item><h3 class="experience-title">Big Data Analytics &amp; Data Science Intern</h3><div class="experience-company">Appinventiv</div><div class="experience-period">02/2022 - 06/2022</div><p>Worked remotely on big data analytics and data science workflows during an internship at Appinventiv.</p></div>
+            <div class="experience-card collapsible-item" data-collapsible-item><h3 class="experience-title">Big Data Analytics &amp; Data Science Intern</h3><div class="experience-company">Jio</div><div class="experience-period">08/2021 - 02/2022</div><p>Worked remotely on data analytics and data science projects during an internship at Jio.</p></div>
+            <div class="experience-card collapsible-item" data-collapsible-item><h3 class="experience-title">Big Data Analytics &amp; Data Science Intern</h3><div class="experience-company">Havells India Ltd</div><div class="experience-period">01/2021 - 07/2021</div><p>Worked remotely on big data analytics and data science workflows during an internship at Havells India Ltd.</p></div>
           </div>
+          <div class="collection-toggle"><button class="button collection-toggle-button" type="button" data-toggle-for="experienceList" aria-controls="experienceList" aria-expanded="false">See more experience</button></div>
         </div>
       </section>
 
@@ -1454,9 +1472,11 @@
         <div class="container">
           <div class="section-header"><h2>Skills</h2></div>
           <div class="experience-list">
-            <div class="experience-card"><h3 class="experience-title">AI & Machine Learning</h3><p>PINNs, 3D Vision, 3D Generative Modeling, LLMs, Agentic LLM Systems, RAG, Multi-Agent Workflows, Computer Vision</p></div>
-            <div class="experience-card"><h3 class="experience-title">Programming</h3><p>Python, TensorFlow, PyTorch, SQL, LangChain, LangGraph, OpenAI API</p></div>
-            <div class="experience-card"><h3 class="experience-title">Big Data</h3><p>Hive, Hadoop, Spark, Data Visualization, Exploratory Data Analysis</p></div>
+            <div class="experience-card"><h3 class="experience-title">AI &amp; Machine Learning</h3><p>PINNs, Neural Differential Equations, 3D Vision, 3D Generative Modeling, Computer Vision, Generative AI, LLMs, RAG, Agentic LLM Systems, Multi-Agent Workflows, Reinforcement Learning</p></div>
+            <div class="experience-card"><h3 class="experience-title">Languages &amp; Frameworks</h3><p>Python, TypeScript, Kotlin, SQL, PyTorch, TensorFlow, CUDA, Next.js, React, Jetpack Compose</p></div>
+            <div class="experience-card"><h3 class="experience-title">LLM &amp; Data Stack</h3><p>LangChain, LangGraph, OpenAI API, Google GenAI/Gemini API, Ollama, vLLM, Hugging Face, NumPy, Pandas, Hive, Hadoop, Spark, EDA, Data Visualization</p></div>
+            <div class="experience-card"><h3 class="experience-title">Product &amp; Backend</h3><p>FastAPI, Express.js, PostgreSQL, Redis, Docker, Linux, S3-Compatible Storage, Firebase/FCM</p></div>
+            <div class="experience-card"><h3 class="experience-title">Developer Tools</h3><p>Git, GitHub, GitHub Actions, API Design, Production Deployments, Observability</p></div>
           </div>
         </div>
       </section>
@@ -1467,18 +1487,19 @@
             <h2>Projects</h2>
             <p>Product surfaces first, repositories second. The sequence starts with current deployed systems and active platforms.</p>
           </div>
-          <div class="projects-grid">
+          <div class="projects-grid" id="projectsGrid" data-collapsible-list data-collapsed-rows="2">
             <article class="project-card"><div class="project-content"><div><h3 class="project-title">FREN Bot</h3><p class="project-description">AI-powered community platform with games, moderation, social loops, AI utilities, and premium workflows.</p><div class="project-tags"><span class="project-tag">Discord</span><span class="project-tag">AI</span><span class="project-tag">Community</span></div></div><a href="/fren/" class="project-link">View Project</a></div></article>
+            <article class="project-card"><div class="project-content"><div><h3 class="project-title">PINN Hub</h3><p class="project-description">Deployed research hub for physics-informed neural networks and neural differential-equation experiments, model tooling, and scientific workflows.</p><div class="project-tags"><span class="project-tag">PINNs</span><span class="project-tag">NDE</span><span class="project-tag">Deployed</span></div></div><a href="https://pinnhub.nextgenaischool.in/" class="project-link" target="_blank" rel="noopener noreferrer">View Project</a></div></article>
             <article class="project-card"><div class="project-content"><div><h3 class="project-title">ArtGridX</h3><p class="project-description">Portfolio publishing for artists, studios, and creative independents with templates, analytics, and custom domains.</p><div class="project-tags"><span class="project-tag">Web</span><span class="project-tag">Creator Tools</span><span class="project-tag">Design</span></div></div><a href="https://artgridx.nextgenaischool.in/" class="project-link" target="_blank" rel="noopener noreferrer">View Project</a></div></article>
             <article class="project-card"><div class="project-content"><div><h3 class="project-title">NotifyMe</h3><p class="project-description">Android notification platform with profile-labelled alerts, local messaging, history sync, callbacks, and portable conversation data.</p><div class="project-tags"><span class="project-tag">Android</span><span class="project-tag">Kotlin</span><span class="project-tag">FCM</span></div></div><a href="/notifyme/" class="project-link">View Project</a></div></article>
-            <article class="project-card"><div class="project-content"><div><h3 class="project-title">URL Extractor</h3><p class="project-description">Lightweight extraction tool designed to surface links quickly from captured and generated content.</p><div class="project-tags"><span class="project-tag">Web</span><span class="project-tag">Automation</span><span class="project-tag">Tools</span></div></div><a href="https://url.nextgenaischool.in/" class="project-link" target="_blank" rel="noopener noreferrer">View Project</a></div></article>
             <article class="project-card"><div class="project-content"><div><h3 class="project-title">Host</h3><p class="project-description">Developer-first hosting platform for deploying projects with simple workflows and production-ready defaults.</p><div class="project-tags"><span class="project-tag">Hosting</span><span class="project-tag">Developer Platform</span><span class="project-tag">Deployed</span></div></div><a href="/host/" class="project-link">View Project</a></div></article>
-            <article class="project-card"><div class="project-content"><div><h3 class="project-title">Zinging</h3><p class="project-description">Self-evolving AI bot and agent ecosystem designed for adaptive communities, automation, and agentic utilities.</p><div class="project-tags"><span class="project-tag">Agentic AI</span><span class="project-tag">Self-Evolving</span><span class="project-tag">Bots</span></div></div><a href="/zinging/" class="project-link">View Project</a></div></article>
-            <article class="project-card"><div class="project-content"><div><h3 class="project-title">SlideNext</h3><p class="project-description">Next-generation presentation platform for AI-assisted decks, education workflows, and structured storytelling.</p><div class="project-tags"><span class="project-tag">Presentations</span><span class="project-tag">AI</span><span class="project-tag">Education</span></div></div><span class="project-link coming-soon">Preview Soon</span></div></article>
-            <article class="project-card"><div class="project-content"><div><h3 class="project-title">Tree</h3><p class="project-description">Modern identity and profile platform direction expressed through interactive tree systems and profile surfaces.</p><div class="project-tags"><span class="project-tag">Identity</span><span class="project-tag">Profiles</span><span class="project-tag">Interactive</span></div></div><a href="https://tree.nextgenaischool.in/" class="project-link" target="_blank" rel="noopener noreferrer">View Project</a></div></article>
-            <article class="project-card"><div class="project-content"><div><h3 class="project-title">Fren Shop</h3><p class="project-description">Official shop and support hub for FREN with premium drops, updates, and community goodies.</p><div class="project-tags"><span class="project-tag">Web</span><span class="project-tag">Discord</span><span class="project-tag">Premium</span></div></div><a href="https://www.nextgenaischool.in/fren" class="project-link" target="_blank" rel="noopener noreferrer">View Project</a></div></article>
-            <article class="project-card"><div class="project-content"><div><h3 class="project-title">Neurodiffhub</h3><p class="project-description">Private project hub for neural differential equation experiments, model tooling, and PINN-focused workflows.</p><div class="project-tags"><span class="project-tag">PINNs</span><span class="project-tag">Research</span><span class="project-tag">NDE</span></div></div><span class="project-link coming-soon">Coming Soon</span></div></article>
             <article class="project-card"><div class="project-content"><div><h3 class="project-title">RL-PINNs</h3><p class="project-description">Reinforcement-learning framework direction for adaptive Physics-Informed Neural Network training control loops.</p><div class="project-tags"><span class="project-tag">RL</span><span class="project-tag">PINNs</span><span class="project-tag">Framework</span></div></div><a href="/rl-pinn/" class="project-link">View Project</a></div></article>
+            <article class="project-card"><div class="project-content"><div><h3 class="project-title">SlideNext</h3><p class="project-description">Next-generation presentation platform for AI-assisted decks, education workflows, and structured storytelling.</p><div class="project-tags"><span class="project-tag">Presentations</span><span class="project-tag">AI</span><span class="project-tag">Education</span></div></div><span class="project-link coming-soon">Preview Soon</span></div></article>
+            <article class="project-card"><div class="project-content"><div><h3 class="project-title">Watermark Studio</h3><p class="project-description">Protected publishing workspace for image watermarking, branded exports, document protection, and controlled content distribution with per-user history and admin visibility.</p><div class="project-tags"><span class="project-tag">Watermarking</span><span class="project-tag">PDF/DOCX</span><span class="project-tag">Publishing</span></div></div><a href="https://watermark.nextgenaischool.in/" class="project-link" target="_blank" rel="noopener noreferrer">View Project</a></div></article>
+            <article class="project-card"><div class="project-content"><div><h3 class="project-title">Fren Shop</h3><p class="project-description">Official shop and support hub for FREN with premium drops, updates, and community goodies.</p><div class="project-tags"><span class="project-tag">Web</span><span class="project-tag">Discord</span><span class="project-tag">Premium</span></div></div><a href="https://www.nextgenaischool.in/fren" class="project-link" target="_blank" rel="noopener noreferrer">View Project</a></div></article>
+            <article class="project-card"><div class="project-content"><div><h3 class="project-title">Tree</h3><p class="project-description">Modern identity and profile platform direction expressed through interactive tree systems and profile surfaces.</p><div class="project-tags"><span class="project-tag">Identity</span><span class="project-tag">Profiles</span><span class="project-tag">Interactive</span></div></div><a href="https://tree.nextgenaischool.in/" class="project-link" target="_blank" rel="noopener noreferrer">View Project</a></div></article>
+            <article class="project-card"><div class="project-content"><div><h3 class="project-title">Zinging</h3><p class="project-description">Self-evolving AI bot and agent ecosystem designed for adaptive communities, automation, and agentic utilities.</p><div class="project-tags"><span class="project-tag">Agentic AI</span><span class="project-tag">Self-Evolving</span><span class="project-tag">Bots</span></div></div><a href="/zinging/" class="project-link">View Project</a></div></article>
+            <article class="project-card"><div class="project-content"><div><h3 class="project-title">URL Extractor</h3><p class="project-description">Lightweight extraction tool designed to surface links quickly from captured and generated content.</p><div class="project-tags"><span class="project-tag">Web</span><span class="project-tag">Automation</span><span class="project-tag">Tools</span></div></div><a href="https://url.nextgenaischool.in/" class="project-link" target="_blank" rel="noopener noreferrer">View Project</a></div></article>
             <article class="project-card"><div class="project-content"><div><h3 class="project-title">RAGS-Demo</h3><p class="project-description">Retrieval-Augmented Generation demo for enhanced information retrieval and response generation.</p><div class="project-tags"><span class="project-tag">NLP</span><span class="project-tag">AI</span></div></div><a href="https://github.com/Lakshay-13/RAGS-Demo" class="project-link" target="_blank" rel="noopener noreferrer">View Project</a></div></article>
             <article class="project-card"><div class="project-content"><div><h3 class="project-title">Classifying Periodic Variable Stars</h3><p class="project-description">Time-series ML project classifying four classes of periodic variable stars.</p><div class="project-tags"><span class="project-tag">ML</span><span class="project-tag">Astronomy</span></div></div><a href="https://github.com/Lakshay-13/Classifying-Periodic-Variable-Stars" class="project-link" target="_blank" rel="noopener noreferrer">View Project</a></div></article>
             <article class="project-card"><div class="project-content"><div><h3 class="project-title">Automated Notes Maker</h3><p class="project-description">Tooling for automated note creation from audio recordings.</p><div class="project-tags"><span class="project-tag">Speech</span><span class="project-tag">Python</span></div></div><a href="https://github.com/Lakshay-13/Automated-Notes-Maker-from-Audio-Recordings" class="project-link" target="_blank" rel="noopener noreferrer">View Project</a></div></article>
@@ -1489,6 +1510,7 @@
             <article class="project-card"><div class="project-content"><div><h3 class="project-title">Transcribe App</h3><p class="project-description">Application for automatic speech-to-text transcription workflows.</p><div class="project-tags"><span class="project-tag">Speech</span><span class="project-tag">App</span></div></div><a href="https://github.com/Lakshay-13/transcribe-app" class="project-link" target="_blank" rel="noopener noreferrer">View Project</a></div></article>
             <article class="project-card"><div class="project-content"><div><h3 class="project-title">Grid</h3><p class="project-description">Framework direction for distributed computing and resource management.</p><div class="project-tags"><span class="project-tag">Distributed Systems</span><span class="project-tag">Cloud</span></div></div><a href="https://github.com/Lakshay-13/grid" class="project-link" target="_blank" rel="noopener noreferrer">View Project</a></div></article>
           </div>
+          <div class="collection-toggle"><button class="button collection-toggle-button" type="button" data-toggle-for="projectsGrid" aria-controls="projectsGrid" aria-expanded="false">See more projects</button></div>
         </div>
       </section>
 
@@ -1721,7 +1743,7 @@
         event?.preventDefault();
         if (!portal || portal.classList.contains("is-returning")) return;
         clearTimeout(portalTimer);
-        closePoster();
+        closePoster(false);
         body.classList.remove("site-entering");
         portal.classList.remove("is-opening");
         readOrbitGeometry();
@@ -1775,12 +1797,17 @@
         return String(value);
       }
 
-      function setPosterOpen(open) {
+      function setPosterOpen(open, scrollToTrigger) {
         if (!poster || !openTrigger) return;
         poster.classList.toggle("is-open", open);
         poster.setAttribute("aria-hidden", String(!open));
         poster.toggleAttribute("inert", !open);
         openTrigger.setAttribute("aria-expanded", String(open));
+        if (!open && scrollToTrigger) {
+          window.requestAnimationFrame(function () {
+            openTrigger.scrollIntoView({ behavior: "smooth", block: "center" });
+          });
+        }
       }
 
       function openPoster() {
@@ -1789,10 +1816,10 @@
         setPosterOpen(true);
       }
 
-      function closePoster() {
+      function closePoster(scrollToTrigger) {
         clearTimeout(autoShowTimer);
         clearTimeout(autoHideTimer);
-        setPosterOpen(false);
+        setPosterOpen(false, scrollToTrigger !== false);
       }
 
       function scheduleAutoSnapshot() {
@@ -1803,7 +1830,7 @@
         autoShowTimer = window.setTimeout(function () {
           setPosterOpen(true);
           autoHideTimer = window.setTimeout(function () {
-            setPosterOpen(false);
+            closePoster();
           }, autoHideDelay);
         }, autoShowDelay);
       }
@@ -1867,6 +1894,63 @@
         });
         hydrateStats();
       }
+
+      const collapsibleCollections = Array.from(document.querySelectorAll("[data-collapsible-list]"));
+
+      function getCollectionItems(collection) {
+        return Array.from(collection.children).filter(function (child) {
+          return child.classList.contains("experience-card") || child.classList.contains("project-card");
+        });
+      }
+
+      function getCollapsedLimit(collection) {
+        const rows = Number(collection.dataset.collapsedRows);
+        if (rows) {
+          const columns = window.getComputedStyle(collection).gridTemplateColumns.split(/\s+/).filter(Boolean).length;
+          return Math.max(1, columns) * rows;
+        }
+        return Number(collection.dataset.collapsedLimit) || 2;
+      }
+
+      function updateCollapsibleCollection(collection, collapsed, scrollToToggle) {
+        const items = getCollectionItems(collection);
+        const limit = getCollapsedLimit(collection);
+        items.forEach(function (item, index) {
+          item.classList.add("collapsible-item");
+          item.classList.toggle("is-collapsed", collapsed && index >= limit);
+        });
+
+        const toggle = document.querySelector('[data-toggle-for="' + collection.id + '"]');
+        if (!toggle) return;
+        const label = collection.id === "experienceList" ? "experience" : "projects";
+        const hasHiddenItems = items.length > limit;
+        toggle.hidden = !hasHiddenItems;
+        toggle.textContent = collapsed ? "See more " + label : "Show less";
+        toggle.setAttribute("aria-expanded", String(!collapsed));
+        toggle.setAttribute("aria-label", collapsed ? "See more " + label : "Show less " + label);
+        if (collapsed && scrollToToggle) {
+          window.requestAnimationFrame(function () {
+            toggle.scrollIntoView({ behavior: "smooth", block: "center" });
+          });
+        }
+      }
+
+      collapsibleCollections.forEach(function (collection) {
+        const toggle = document.querySelector('[data-toggle-for="' + collection.id + '"]');
+        toggle?.addEventListener("click", function () {
+          const isExpanded = toggle.getAttribute("aria-expanded") === "true";
+          updateCollapsibleCollection(collection, isExpanded, isExpanded);
+        });
+        updateCollapsibleCollection(collection, true);
+      });
+
+      window.addEventListener("resize", function () {
+        collapsibleCollections.forEach(function (collection) {
+          const toggle = document.querySelector('[data-toggle-for="' + collection.id + '"]');
+          const isExpanded = toggle?.getAttribute("aria-expanded") === "true";
+          updateCollapsibleCollection(collection, !isExpanded);
+        });
+      }, { passive: true });
 
       const animatedCards = document.querySelectorAll(".experience-card, .project-card, .about-text, .contact-details");
       const revealObserver = new IntersectionObserver(function (entries) {
