@@ -1,0 +1,35 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="360" height="240" viewBox="0 0 360 240" role="img" aria-labelledby="title"><title id="title">SlideNext</title><defs>
+<linearGradient id="surface" x2="1" y2="1"><stop stop-color="#07110f" /><stop offset=".55" stop-color="#080d16" /><stop offset="1" stop-color="#141126" /></linearGradient>
+<linearGradient id="edge"><stop stop-color="#2effbf" stop-opacity=".65" /><stop offset=".55" stop-color="#b9a7ff" stop-opacity=".15" /><stop offset="1" stop-color="#b9a7ff" stop-opacity=".65" /></linearGradient>
+<radialGradient id="mint-glow"><stop stop-color="#2effbf" stop-opacity=".18" /><stop offset="1" stop-color="#2effbf" stop-opacity="0" /></radialGradient>
+<radialGradient id="purple-glow"><stop stop-color="#b9a7ff" stop-opacity=".18" /><stop offset="1" stop-color="#b9a7ff" stop-opacity="0" /></radialGradient>
+<filter id="glow" x="-50%" y="-50%" width="200%" height="200%"><feGaussianBlur stdDeviation="3" /></filter>
+
+</defs>
+<style>
+text{font-family:Arial,Helvetica,sans-serif;fill:#f4f7fb}
+.mono{font-family:'Courier New',monospace}
+.muted{fill:#aab3c0}.soft{fill:#7d8d9b}
+.flow{stroke-dasharray:12 160;animation:flow 8s linear infinite}
+.dash{stroke-dasharray:3 9;animation:dash 8s linear infinite}
+.float{animation:float 8s ease-in-out infinite}
+.breath{animation:breath 4s ease-in-out infinite}
+.glint{animation:glint 4s ease-in-out infinite}
+.spin{transform-box:fill-box;transform-origin:center;animation:spin 24s linear infinite}
+.signal{animation:signal 4s ease-in-out infinite}
+.orbit{transform-box:fill-box;transform-origin:center;animation:spin 8s linear infinite}
+.drift{animation:drift 8s ease-in-out infinite}
+.meter{transform-box:fill-box;transform-origin:bottom;animation:meter 4s ease-in-out infinite}
+@keyframes flow{to{stroke-dashoffset:-688}}
+@keyframes dash{to{stroke-dashoffset:-96}}
+@keyframes float{0%,100%{transform:translateY(0)}50%{transform:translateY(-6px)}}
+@keyframes breath{0%,100%{opacity:.3}50%{opacity:.8}}
+@keyframes glint{0%,100%{opacity:.18}50%{opacity:.9}}
+@keyframes spin{to{transform:rotate(360deg)}}
+@keyframes signal{0%,100%{opacity:.35}50%{opacity:1}}
+@keyframes drift{0%,100%{transform:translate(0,0)}50%{transform:translate(4px,-12px)}}
+@keyframes meter{0%,100%{transform:scaleY(.3);opacity:.35}50%{transform:scaleY(1);opacity:.75}}
+@media(prefers-reduced-motion:reduce){*{animation:none!important}}
+
+.slide-back{transform-box:fill-box;transform-origin:center;animation:slideBack 8s ease-in-out infinite}.slide-front{animation:slideFront 8s ease-in-out infinite}@keyframes slideBack{0%,100%{transform:rotate(5deg)}50%{transform:rotate(-2deg)}}@keyframes slideFront{0%,100%{transform:translate(0,0)}50%{transform:translate(-10px,9px)}}
+@media(prefers-reduced-motion:reduce){*{animation:none!important}}</style><g transform="translate(20 0)"><g data-project-scene="true"><g class="slide-back"><rect x="64" y="31" width="214" height="151" rx="10" fill="#25243b" stroke="#b9a7ff" /><text x="83" y="64" font-size="15" style="fill:#b9a7ff">02 / STORY</text></g><g class="slide-front"><rect x="36" y="57" width="214" height="151" rx="10" fill="#102b29" stroke="#2effbf" /><text x="58" y="92" font-size="15" style="fill:#2effbf">01 / OUTLINE</text><rect x="58" y="112" width="147" height="8" rx="3" fill="#446b66" stroke="none" /><rect x="58" y="133" width="112" height="8" rx="3" fill="#385553" stroke="none" /><path d="M60 175H169" fill="none" stroke="#2effbf" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" /></g></g></g></svg>

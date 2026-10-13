@@ -1,0 +1,35 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="360" height="240" viewBox="0 0 360 240" role="img" aria-labelledby="title"><title id="title">NotifyMe</title><defs>
+<linearGradient id="surface" x2="1" y2="1"><stop stop-color="#07110f" /><stop offset=".55" stop-color="#080d16" /><stop offset="1" stop-color="#141126" /></linearGradient>
+<linearGradient id="edge"><stop stop-color="#2effbf" stop-opacity=".65" /><stop offset=".55" stop-color="#b9a7ff" stop-opacity=".15" /><stop offset="1" stop-color="#b9a7ff" stop-opacity=".65" /></linearGradient>
+<radialGradient id="mint-glow"><stop stop-color="#2effbf" stop-opacity=".18" /><stop offset="1" stop-color="#2effbf" stop-opacity="0" /></radialGradient>
+<radialGradient id="purple-glow"><stop stop-color="#b9a7ff" stop-opacity=".18" /><stop offset="1" stop-color="#b9a7ff" stop-opacity="0" /></radialGradient>
+<filter id="glow" x="-50%" y="-50%" width="200%" height="200%"><feGaussianBlur stdDeviation="3" /></filter>
+
+</defs>
+<style>
+text{font-family:Arial,Helvetica,sans-serif;fill:#f4f7fb}
+.mono{font-family:'Courier New',monospace}
+.muted{fill:#aab3c0}.soft{fill:#7d8d9b}
+.flow{stroke-dasharray:12 160;animation:flow 8s linear infinite}
+.dash{stroke-dasharray:3 9;animation:dash 8s linear infinite}
+.float{animation:float 8s ease-in-out infinite}
+.breath{animation:breath 4s ease-in-out infinite}
+.glint{animation:glint 4s ease-in-out infinite}
+.spin{transform-box:fill-box;transform-origin:center;animation:spin 24s linear infinite}
+.signal{animation:signal 4s ease-in-out infinite}
+.orbit{transform-box:fill-box;transform-origin:center;animation:spin 8s linear infinite}
+.drift{animation:drift 8s ease-in-out infinite}
+.meter{transform-box:fill-box;transform-origin:bottom;animation:meter 4s ease-in-out infinite}
+@keyframes flow{to{stroke-dashoffset:-688}}
+@keyframes dash{to{stroke-dashoffset:-96}}
+@keyframes float{0%,100%{transform:translateY(0)}50%{transform:translateY(-6px)}}
+@keyframes breath{0%,100%{opacity:.3}50%{opacity:.8}}
+@keyframes glint{0%,100%{opacity:.18}50%{opacity:.9}}
+@keyframes spin{to{transform:rotate(360deg)}}
+@keyframes signal{0%,100%{opacity:.35}50%{opacity:1}}
+@keyframes drift{0%,100%{transform:translate(0,0)}50%{transform:translate(4px,-12px)}}
+@keyframes meter{0%,100%{transform:scaleY(.3);opacity:.35}50%{transform:scaleY(1);opacity:.75}}
+@media(prefers-reduced-motion:reduce){*{animation:none!important}}
+
+.notify-toast{animation:notifyToast 8s infinite}.notify-send{animation:notifySend 8s infinite}@keyframes notifyToast{0%,12%,100%{opacity:0;transform:translateY(-13px)}25%,88%{opacity:1;transform:translateY(0)}}@keyframes notifySend{0%,100%{opacity:.3;transform:translateX(0)}45%{opacity:1;transform:translateX(9px)}}
+@media(prefers-reduced-motion:reduce){*{animation:none!important}}</style><g transform="translate(20 0)"><g data-project-scene="true"><rect x="99" y="12" width="119" height="209" rx="20" fill="#121c2b" stroke="#3c5064" /><rect x="136" y="20" width="45" height="6" rx="3" fill="#354255" stroke="none" /><text x="126" y="51" font-size="14" style="fill:#d5e1ed">NotifyMe</text><g class="notify-toast" style="animation-delay:-0s"><rect x="109" y="70" width="99" height="32" rx="8" fill="#19372f" stroke="#36584e" /><circle cx="119" cy="86" r="3" fill="#2effbf" /><text x="130" y="90" font-size="10" style="fill:#d5e1ed">Job complete</text></g><g class="notify-toast" style="animation-delay:-2s"><rect x="109" y="112" width="99" height="32" rx="8" fill="#19372f" stroke="#36584e" /><circle cx="119" cy="128" r="3" fill="#2effbf" /><text x="130" y="132" font-size="10" style="fill:#d5e1ed">Callback ready</text></g><g class="notify-toast" style="animation-delay:-4s"><rect x="109" y="154" width="99" height="32" rx="8" fill="#19372f" stroke="#36584e" /><circle cx="119" cy="170" r="3" fill="#2effbf" /><text x="130" y="174" font-size="10" style="fill:#d5e1ed">History synced</text></g><text x="13" y="112" font-size="15" style="fill:#b9a7ff">API</text><path d="M46 107H84M78 101 84 107 78 113" fill="none" stroke="#b9a7ff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="notify-send" /><circle cx="159" cy="203" r="3" fill="#d5e1ed" /></g></g></svg>

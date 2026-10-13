@@ -1,0 +1,35 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="360" height="240" viewBox="0 0 360 240" role="img" aria-labelledby="title"><title id="title">Classifying Periodic Variable Stars</title><defs>
+<linearGradient id="surface" x2="1" y2="1"><stop stop-color="#07110f" /><stop offset=".55" stop-color="#080d16" /><stop offset="1" stop-color="#141126" /></linearGradient>
+<linearGradient id="edge"><stop stop-color="#2effbf" stop-opacity=".65" /><stop offset=".55" stop-color="#b9a7ff" stop-opacity=".15" /><stop offset="1" stop-color="#b9a7ff" stop-opacity=".65" /></linearGradient>
+<radialGradient id="mint-glow"><stop stop-color="#2effbf" stop-opacity=".18" /><stop offset="1" stop-color="#2effbf" stop-opacity="0" /></radialGradient>
+<radialGradient id="purple-glow"><stop stop-color="#b9a7ff" stop-opacity=".18" /><stop offset="1" stop-color="#b9a7ff" stop-opacity="0" /></radialGradient>
+<filter id="glow" x="-50%" y="-50%" width="200%" height="200%"><feGaussianBlur stdDeviation="3" /></filter>
+
+</defs>
+<style>
+text{font-family:Arial,Helvetica,sans-serif;fill:#f4f7fb}
+.mono{font-family:'Courier New',monospace}
+.muted{fill:#aab3c0}.soft{fill:#7d8d9b}
+.flow{stroke-dasharray:12 160;animation:flow 8s linear infinite}
+.dash{stroke-dasharray:3 9;animation:dash 8s linear infinite}
+.float{animation:float 8s ease-in-out infinite}
+.breath{animation:breath 4s ease-in-out infinite}
+.glint{animation:glint 4s ease-in-out infinite}
+.spin{transform-box:fill-box;transform-origin:center;animation:spin 24s linear infinite}
+.signal{animation:signal 4s ease-in-out infinite}
+.orbit{transform-box:fill-box;transform-origin:center;animation:spin 8s linear infinite}
+.drift{animation:drift 8s ease-in-out infinite}
+.meter{transform-box:fill-box;transform-origin:bottom;animation:meter 4s ease-in-out infinite}
+@keyframes flow{to{stroke-dashoffset:-688}}
+@keyframes dash{to{stroke-dashoffset:-96}}
+@keyframes float{0%,100%{transform:translateY(0)}50%{transform:translateY(-6px)}}
+@keyframes breath{0%,100%{opacity:.3}50%{opacity:.8}}
+@keyframes glint{0%,100%{opacity:.18}50%{opacity:.9}}
+@keyframes spin{to{transform:rotate(360deg)}}
+@keyframes signal{0%,100%{opacity:.35}50%{opacity:1}}
+@keyframes drift{0%,100%{transform:translate(0,0)}50%{transform:translate(4px,-12px)}}
+@keyframes meter{0%,100%{transform:scaleY(.3);opacity:.35}50%{transform:scaleY(1);opacity:.75}}
+@media(prefers-reduced-motion:reduce){*{animation:none!important}}
+
+.star-flux{animation:starFlux 2s ease-in-out infinite}.star-observation{animation:starObservation 8s linear infinite}@keyframes starFlux{0%,100%{opacity:.12}20%,55%{opacity:1}75%{opacity:.25}}@keyframes starObservation{0%{transform:translateX(0);opacity:.2}10%,90%{opacity:1}100%{transform:translateX(269px);opacity:.2}}
+@media(prefers-reduced-motion:reduce){*{animation:none!important}}</style><g transform="translate(20 0)"><g data-project-scene="true"><text x="22" y="23" font-size="11" style="fill:#b9a7ff">GAIA DR3 / PERIODIC VARIABLES</text><g class="star-flux" style="animation-delay:-0.0s"><circle cx="61" cy="66" r="10" fill="#b9a7ff" opacity=".1" /><circle cx="61" cy="66" r="5" fill="#d5e1ed" /><path d="M52 66H70M61 57V75" fill="none" stroke="#b9a7ff" stroke-width="0.8" stroke-linecap="round" stroke-linejoin="round" /></g><g class="star-flux" style="animation-delay:-0.45s"><circle cx="119" cy="48" r="8" fill="#b9a7ff" opacity=".1" /><circle cx="119" cy="48" r="3" fill="#d5e1ed" /><path d="M110 48H128M119 39V57" fill="none" stroke="#b9a7ff" stroke-width="0.8" stroke-linecap="round" stroke-linejoin="round" /></g><g class="star-flux" style="animation-delay:-0.9s"><circle cx="209" cy="78" r="11" fill="#b9a7ff" opacity=".1" /><circle cx="209" cy="78" r="6" fill="#d5e1ed" /><path d="M200 78H218M209 69V87" fill="none" stroke="#b9a7ff" stroke-width="0.8" stroke-linecap="round" stroke-linejoin="round" /></g><g class="star-flux" style="animation-delay:-1.35s"><circle cx="271" cy="43" r="9" fill="#b9a7ff" opacity=".1" /><circle cx="271" cy="43" r="4" fill="#d5e1ed" /><path d="M262 43H280M271 34V52" fill="none" stroke="#b9a7ff" stroke-width="0.8" stroke-linecap="round" stroke-linejoin="round" /></g><path d="M23 194H296M23 194V109" fill="none" stroke="#3c5064" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" /><polyline points="24,154.0 28,147.5 32,141.4 36,136.2 40,132.0 44,129.2 48,128.0 52,128.5 56,130.5 60,134.1 64,138.9 68,144.6 72,150.9 76,157.5 80,163.8 84,169.5 88,174.2 92,177.7 96,179.6 100,179.9 104,178.6 108,175.8 112,171.5 116,166.2 120,160.1 124,153.6 128,147.1 132,141.1 136,135.8 140,131.8 144,129.1 148,128.0 152,128.6 156,130.7 160,134.4 164,139.2 168,145.0 172,151.4 176,157.9 180,164.2 184,169.8 188,174.5 192,177.8 196,179.7 200,179.9 204,178.5 208,175.5 212,171.2 216,165.8 220,159.6 224,153.1 228,146.7 232,140.7 236,135.5 240,131.6 244,129.0 248,128.0 252,128.7 256,130.9 260,134.6 264,139.6 268,145.4 272,151.8 276,158.3 280,164.6 284,170.2 288,174.7 292,178.0 296,179.7" fill="none" stroke="#b9a7ff" stroke-width="2.5" /><path d="M26 110V194" fill="none" stroke="#2effbf" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="star-observation" /><text x="184" y="221" font-size="13" style="fill:#b9a7ff">LIGHT CURVE</text></g></g></svg>

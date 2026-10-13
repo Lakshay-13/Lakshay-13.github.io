@@ -1,0 +1,65 @@
+.projects-grid {
+  grid-template-columns: repeat(auto-fill, minmax(min(100%, 310px), 1fr));
+}
+
+.project-card {
+  display: flex;
+  flex-direction: column;
+}
+
+.project-art {
+  display: block;
+  width: calc(100% - 28px);
+  height: auto;
+  aspect-ratio: 3 / 2;
+  margin: 14px 14px 0;
+  object-fit: contain;
+  pointer-events: none;
+  user-select: none;
+}
+
+.project-content {
+  flex: 1;
+  min-height: 0;
+  padding-top: 18px;
+}
+
+.skill-card {
+  display: grid;
+  grid-template-columns: 160px minmax(0, 1fr);
+  align-items: center;
+  gap: 28px;
+}
+
+.skill-art {
+  display: block;
+  width: 160px;
+  height: 120px;
+  object-fit: contain;
+  pointer-events: none;
+  user-select: none;
+}
+
+@media (max-width: 620px) {
+  .skill-card {
+    grid-template-columns: 72px minmax(0, 1fr);
+    gap: 18px;
+  }
+
+  .skill-art {
+    width: 72px;
+    height: 64px;
+  }
+
+  .skill-copy {
+    display: contents;
+  }
+
+  .skill-copy .experience-title {
+    margin: 0;
+  }
+
+  .skill-copy p {
+    grid-column: 1 / -1;
+  }
+}

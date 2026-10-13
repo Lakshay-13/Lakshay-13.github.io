@@ -1,0 +1,35 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="360" height="240" viewBox="0 0 360 240" role="img" aria-labelledby="title"><title id="title">Code Image Generator</title><defs>
+<linearGradient id="surface" x2="1" y2="1"><stop stop-color="#07110f" /><stop offset=".55" stop-color="#080d16" /><stop offset="1" stop-color="#141126" /></linearGradient>
+<linearGradient id="edge"><stop stop-color="#2effbf" stop-opacity=".65" /><stop offset=".55" stop-color="#b9a7ff" stop-opacity=".15" /><stop offset="1" stop-color="#b9a7ff" stop-opacity=".65" /></linearGradient>
+<radialGradient id="mint-glow"><stop stop-color="#2effbf" stop-opacity=".18" /><stop offset="1" stop-color="#2effbf" stop-opacity="0" /></radialGradient>
+<radialGradient id="purple-glow"><stop stop-color="#b9a7ff" stop-opacity=".18" /><stop offset="1" stop-color="#b9a7ff" stop-opacity="0" /></radialGradient>
+<filter id="glow" x="-50%" y="-50%" width="200%" height="200%"><feGaussianBlur stdDeviation="3" /></filter>
+
+</defs>
+<style>
+text{font-family:Arial,Helvetica,sans-serif;fill:#f4f7fb}
+.mono{font-family:'Courier New',monospace}
+.muted{fill:#aab3c0}.soft{fill:#7d8d9b}
+.flow{stroke-dasharray:12 160;animation:flow 8s linear infinite}
+.dash{stroke-dasharray:3 9;animation:dash 8s linear infinite}
+.float{animation:float 8s ease-in-out infinite}
+.breath{animation:breath 4s ease-in-out infinite}
+.glint{animation:glint 4s ease-in-out infinite}
+.spin{transform-box:fill-box;transform-origin:center;animation:spin 24s linear infinite}
+.signal{animation:signal 4s ease-in-out infinite}
+.orbit{transform-box:fill-box;transform-origin:center;animation:spin 8s linear infinite}
+.drift{animation:drift 8s ease-in-out infinite}
+.meter{transform-box:fill-box;transform-origin:bottom;animation:meter 4s ease-in-out infinite}
+@keyframes flow{to{stroke-dashoffset:-688}}
+@keyframes dash{to{stroke-dashoffset:-96}}
+@keyframes float{0%,100%{transform:translateY(0)}50%{transform:translateY(-6px)}}
+@keyframes breath{0%,100%{opacity:.3}50%{opacity:.8}}
+@keyframes glint{0%,100%{opacity:.18}50%{opacity:.9}}
+@keyframes spin{to{transform:rotate(360deg)}}
+@keyframes signal{0%,100%{opacity:.35}50%{opacity:1}}
+@keyframes drift{0%,100%{transform:translate(0,0)}50%{transform:translate(4px,-12px)}}
+@keyframes meter{0%,100%{transform:scaleY(.3);opacity:.35}50%{transform:scaleY(1);opacity:.75}}
+@media(prefers-reduced-motion:reduce){*{animation:none!important}}
+
+.code-capture{animation:codeCapture 8s infinite}.code-export{animation:codeExport 8s infinite}@keyframes codeCapture{0%,100%{opacity:0;transform:translateX(-189px)}10%{opacity:.5}65%{transform:translateX(0);opacity:.5}85%{transform:translateX(0);opacity:0}}@keyframes codeExport{0%,50%,100%{opacity:.1}65%,85%{opacity:1}}
+@media(prefers-reduced-motion:reduce){*{animation:none!important}}</style><g transform="translate(20 0)"><g data-project-scene="true"><rect x="19" y="24" width="194" height="134" rx="10" fill="#112439" stroke="#3c5064" /><text x="35" y="49" font-size="12" style="fill:#2effbf">CODE</text><text x="35" y="78" font-size="12" style="fill:#b9a7ff">def render(code):</text><text x="35" y="103" font-size="12" style="fill:#2effbf">  image = draw(code)</text><text x="35" y="128" font-size="12" style="fill:#d5e1ed">  return image</text><path d="M179 123H238V146" fill="none" stroke="#3c5064" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" /><rect x="161" y="149" width="136" height="69" rx="8" fill="#26334d" stroke="#b9a7ff" /><rect x="178" y="164" width="87" height="4" rx="1" fill="#acb4d2" stroke="none" /><rect x="178" y="178" width="103" height="4" rx="1" fill="#acb4d2" stroke="none" /><rect x="178" y="192" width="67" height="4" rx="1" fill="#acb4d2" stroke="none" /><rect x="208" y="23" width="3" height="135" rx="0" fill="#2effbf" stroke="none" class="code-capture" /><rect x="159" y="147" width="140" height="73" rx="10" fill="none" stroke="#2effbf" class="code-export" /></g></g></svg>

@@ -1,0 +1,35 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="360" height="240" viewBox="0 0 360 240" role="img" aria-labelledby="title"><title id="title">URL Extractor</title><defs>
+<linearGradient id="surface" x2="1" y2="1"><stop stop-color="#07110f" /><stop offset=".55" stop-color="#080d16" /><stop offset="1" stop-color="#141126" /></linearGradient>
+<linearGradient id="edge"><stop stop-color="#2effbf" stop-opacity=".65" /><stop offset=".55" stop-color="#b9a7ff" stop-opacity=".15" /><stop offset="1" stop-color="#b9a7ff" stop-opacity=".65" /></linearGradient>
+<radialGradient id="mint-glow"><stop stop-color="#2effbf" stop-opacity=".18" /><stop offset="1" stop-color="#2effbf" stop-opacity="0" /></radialGradient>
+<radialGradient id="purple-glow"><stop stop-color="#b9a7ff" stop-opacity=".18" /><stop offset="1" stop-color="#b9a7ff" stop-opacity="0" /></radialGradient>
+<filter id="glow" x="-50%" y="-50%" width="200%" height="200%"><feGaussianBlur stdDeviation="3" /></filter>
+
+</defs>
+<style>
+text{font-family:Arial,Helvetica,sans-serif;fill:#f4f7fb}
+.mono{font-family:'Courier New',monospace}
+.muted{fill:#aab3c0}.soft{fill:#7d8d9b}
+.flow{stroke-dasharray:12 160;animation:flow 8s linear infinite}
+.dash{stroke-dasharray:3 9;animation:dash 8s linear infinite}
+.float{animation:float 8s ease-in-out infinite}
+.breath{animation:breath 4s ease-in-out infinite}
+.glint{animation:glint 4s ease-in-out infinite}
+.spin{transform-box:fill-box;transform-origin:center;animation:spin 24s linear infinite}
+.signal{animation:signal 4s ease-in-out infinite}
+.orbit{transform-box:fill-box;transform-origin:center;animation:spin 8s linear infinite}
+.drift{animation:drift 8s ease-in-out infinite}
+.meter{transform-box:fill-box;transform-origin:bottom;animation:meter 4s ease-in-out infinite}
+@keyframes flow{to{stroke-dashoffset:-688}}
+@keyframes dash{to{stroke-dashoffset:-96}}
+@keyframes float{0%,100%{transform:translateY(0)}50%{transform:translateY(-6px)}}
+@keyframes breath{0%,100%{opacity:.3}50%{opacity:.8}}
+@keyframes glint{0%,100%{opacity:.18}50%{opacity:.9}}
+@keyframes spin{to{transform:rotate(360deg)}}
+@keyframes signal{0%,100%{opacity:.35}50%{opacity:1}}
+@keyframes drift{0%,100%{transform:translate(0,0)}50%{transform:translate(4px,-12px)}}
+@keyframes meter{0%,100%{transform:scaleY(.3);opacity:.35}50%{transform:scaleY(1);opacity:.75}}
+@media(prefers-reduced-motion:reduce){*{animation:none!important}}
+
+.url-transfer{animation:urlTransfer 4s linear infinite}.url-media-scan{animation:urlMediaScan 4s ease-in-out infinite}@keyframes urlTransfer{0%{transform:translateX(0);opacity:.5}75%{transform:translateX(46px);opacity:1}100%{transform:translateX(46px);opacity:0}}@keyframes urlMediaScan{0%,100%{transform:translateY(0);opacity:.2}50%{transform:translateY(-35px);opacity:.7}}
+@media(prefers-reduced-motion:reduce){*{animation:none!important}}</style><g transform="translate(20 0)"><g data-project-scene="true"><text x="160" y="25" font-size="12" style="fill:#b5c2ce" text-anchor="middle">Tenor · Pinterest · Giphy · KLIPY</text><rect x="19" y="52" width="113" height="114" rx="9" fill="#142032" stroke="#42516b" /><circle cx="32" cy="65" r="1.7" fill="#8495a9" /><circle cx="41" cy="65" r="1.7" fill="#8495a9" /><circle cx="50" cy="65" r="1.7" fill="#8495a9" /><path d="M30 78H120" fill="none" stroke="#35455c" stroke-width="1" stroke-linecap="round" stroke-linejoin="round" /><g transform="translate(56 89) scale(1.5)" fill="none" stroke="#b9a7ff" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7 .2l3-3a5 5 0 0 0-7-7l-1.7 1.7M14 11a5 5 0 0 0-7-.2l-3 3a5 5 0 0 0 7 7l1.7-1.7" /></g><path d="M40 143H111" fill="none" stroke="#b9a7ff" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" /><path d="M141 109H193M185 102 193 109 185 116" fill="none" stroke="#75899d" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" /><circle cx="145" cy="109" r="2.5" fill="#2effbf" class="url-transfer" /><path d="M209 52H278L296 70V166H209Z" fill="#122c2a" stroke="#2effbf" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" /><path d="M278 52V70H296" fill="none" stroke="#69a997" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round" /><rect x="221" y="85" width="63" height="43" rx="5" fill="#193c36" stroke="#42695e" /><circle cx="235" cy="97" r="4" fill="#86bfb0" /><path d="M225 122 241 108 255 122 269 111 280 121" fill="none" stroke="#2effbf" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" /><path d="M221 145H281" fill="none" stroke="#719f91" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round" /><path d="M223 125H282" fill="none" stroke="#2effbf" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round" class="url-media-scan" /><text x="76" y="194" font-size="13" style="fill:#d5e1ed" text-anchor="middle">Page URL</text><text x="252" y="194" font-size="12" style="fill:#2effbf" text-anchor="middle">Direct media URL</text></g></g></svg>

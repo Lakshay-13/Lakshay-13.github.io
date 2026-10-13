@@ -1,0 +1,56 @@
+{
+  "profile_commit": "7011367f74ecdaf07239e01cd0a8e8ca634469b8",
+  "project_logos": {
+    "fren": {
+      "source": "https://lakshay-13.github.io/fren/assets/fren-server.png",
+      "sha256": "4ac157d3b182a68ae047fc9763f11af6e47d88290de3e40931044105c49091e0",
+      "file": "logos/fren.png",
+      "kind": "official artwork",
+      "original_sha256": "f69b96e34ecb275a77794299cff787da768d93a2fcfe04c2da52ac1b70f824fa"
+    },
+    "frenshop": {
+      "source": "https://www.nextgenaischool.in/fren/logo_fren_shop_transparent.png",
+      "file": "logos/frenshop.png",
+      "sha256": "9755dfebd0fdfe193220d59d72fd4271fdb43d568e11dc73f0b9f1e9c574ccb4",
+      "kind": "official Fren Shop logo",
+      "original_sha256": "4309990bf8627043e786cd3f46801bdd4e853bcfc1ecb56c0be8b7e0144bdd07"
+    },
+    "watermark": {
+      "source": "Watermark Studio application: static/img/logo_watermark_studio.png",
+      "website": "https://watermark.nextgenaischool.in/",
+      "file": "logos/watermark.png",
+      "sha256": "0dee61b446fa8610a9bdba1c32d18c51fb6efb02996f890862ff1ed5f851570e",
+      "kind": "official application logo"
+    }
+  },
+  "skill_marks": {
+    "python": {
+      "source": "https://s3.dualstack.us-east-2.amazonaws.com/pythondotorg-assets/media/files/python-logo-only.svg",
+      "file": "brands/python.svg",
+      "sha256": "baec8662a1461c2cacc326b54d2727cb2f1ce07ba02d00f5b826d035104f649f",
+      "original_sha256": "baec8662a1461c2cacc326b54d2727cb2f1ce07ba02d00f5b826d035104f649f",
+      "kind": "official provider branding"
+    },
+    "codex-terminal": {
+      "source": "https://learn.chatgpt.com/images/codex/icons/terminal.svg",
+      "file": "brands/codex-terminal.svg",
+      "kind": "official Codex documentation terminal icon",
+      "sha256": "71f11b4c7b87e85e9e16a831403a2a1bc8f2eed9bf248ee34018248de06c0bcd",
+      "original_sha256": "8c1354ef00c92260f3d698c43236d2a33f16fe09312d55a925184fd06d378e1a"
+    },
+    "gcp-mark": {
+      "source": "https://www.gstatic.com/cgc/supercloud_favicon.ico",
+      "file": "brands/gcp-mark.png",
+      "sha256": "507a54fef14caa7f23817522b42a5f51bdedba41e7cd1c35c39be31ac6538583",
+      "original_sha256": "89e4ff99a1447b9ef9a3e4c45a081e24acfd8cdad54ec7d4a1f9458f164f0659",
+      "kind": "official Google Cloud product icon"
+    },
+    "aws": {
+      "source": "https://a0.awsstatic.com/libra-css/images/logos/aws_logo_smile_179x109.png",
+      "file": "brands/aws.png",
+      "sha256": "b0bf8c677c01b0bb5a3305fa6ea09f65a5446c9e175c99fa02bdc666ddb31bc5",
+      "original_sha256": "94de254f3fadea01265e65c7430097f386db15d5d34372de344b2bd8670048b9",
+      "kind": "official AWS smile logo"
+    }
+  }
+}
