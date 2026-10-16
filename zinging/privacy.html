@@ -45,12 +45,12 @@
 
       <h2>How information is used and shared</h2>
       <ul>
-        <li>Ask, code, and cat-banter prompts, including relevant recent message context, are sent to <a href="https://featherless.ai/docs/privacy-and-logging">Featherless AI</a> to generate a response.</li>
-        <li>Text submitted for manual, reaction-based, or administrator-enabled translation is sent to <a href="https://translate.google.com/">Google Translate</a> through the bot's translation library. Google's <a href="https://policies.google.com/privacy">privacy policy</a> applies to Google's processing.</li>
-        <li>Owner-initiated self-update requests are sent to the configured AI provider. The default provider is <a href="https://ai.google.dev/gemini-api/terms">Google Gemini</a>; Featherless AI and <a href="https://www.nvidia.com/en-us/about-nvidia/privacy-policy/">NVIDIA NIM</a> are also supported.</li>
-        <li>Zinging does not use Discord message content to train AI models. AI features use text for inference, and translation features use text to produce translations.</li>
+        <li>Ask, code, and cat-banter prompts, including relevant recent message context, are sent to a third-party AI platform selected by the operator to generate a response.</li>
+        <li>Text submitted for manual, reaction-based, or administrator-enabled translation is sent to a third-party translation service selected by the operator to produce a translation.</li>
+        <li>Owner-initiated self-update requests are sent to a third-party AI platform selected by the operator for inference. The selected AI and translation providers may change over time.</li>
+        <li>The operator does not use Discord message content to train AI models. AI features use text to generate requested outputs, and translation features use text to produce translations. Third-party providers handle submitted text under their own current terms and privacy practices.</li>
       </ul>
-      <p>These providers process information to provide the requested feature. Their own terms and privacy practices also apply to their processing. Zinging is hosted on <a href="https://railway.com/legal/privacy">Railway</a>, and its persistent database is PostgreSQL. Railway states that its databases are encrypted at rest and that data in transit uses secure communication protocols.</p>
+      <p>These providers process information to provide the requested feature. Zinging is hosted on <a href="https://railway.com/legal/privacy">Railway</a>, and its persistent database is PostgreSQL. Railway states that its databases are encrypted at rest and that data in transit uses secure communication protocols.</p>
 
       <h2>Storage and retention</h2>
       <ul>
