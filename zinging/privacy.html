@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#020305">
+  <meta name="description" content="Privacy policy for the Zinging Discord bot.">
+  <link rel="icon" type="image/png" href="/lakshaychawla.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&amp;family=IBM+Plex+Mono:wght@400;500;600&amp;display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/assets/project-page.css?v=20260603-stars3">
+  <title>Zinging Privacy Policy | Lakshay Chawla</title>
+  <style>
+    .policy { max-width: 860px; margin: 3rem auto 5rem; padding: 0 1.25rem; color: #e7e8eb; line-height: 1.7; }
+    .policy h1, .policy h2 { color: #fff; line-height: 1.2; }
+    .policy h1 { font-size: clamp(2rem, 5vw, 3.25rem); margin-bottom: .5rem; }
+    .policy h2 { font-size: 1.25rem; margin: 2rem 0 .65rem; }
+    .policy p, .policy li { color: #c5c8cf; }
+    .policy a { color: #9cff1f; }
+    .policy .effective { color: #9da3ad; font-size: .95rem; }
+    .policy ul { padding-left: 1.25rem; }
+  </style>
+</head>
+<body style="--accent:#9cff1f;--accent-2:#0afa9e;--glow:rgba(156,255,31,0.14);">
+  <div class="shell">
+    <header class="topbar">
+      <a class="brand" href="/zinging/"><span class="brand-dot">&nbsp;</span>Zinging</a>
+      <nav class="nav-actions" aria-label="Page navigation">
+        <a class="chip" href="/zinging/">About Zinging</a>
+        <a class="chip" href="/">Portfolio</a>
+      </nav>
+    </header>
+
+    <main class="policy">
+      <p class="eyebrow">Privacy</p>
+      <h1>Zinging Privacy Policy</h1>
+      <p class="effective">Effective October 16, 2026</p>
+      <p>This policy explains how Zinging, a Discord bot operated by Lakshay Chawla, handles information when people use it.</p>
+
+      <h2>Information Zinging processes</h2>
+      <p>When Zinging is online in a server and can access a channel, Discord may deliver message text and related Discord identifiers to the bot. Zinging reads message text to recognize its <code>z</code> prefix commands and to provide features enabled by a user or server administrator, including translation, reaction-based translation, and short cat-banter replies. The bot requests the Message Content privileged intent; it does not request the Guild Members or Guild Presence privileged intents.</p>
+      <p>Zinging also processes Discord user, server, channel, and message identifiers needed to handle commands, apply settings, and associate saved preferences. If a user provides a prompt or text for a bot feature, that input is processed for the requested feature.</p>
+
+      <h2>How information is used and shared</h2>
+      <ul>
+        <li>Ask, code, and cat-banter prompts, including relevant recent message context, are sent to <a href="https://featherless.ai/docs/privacy-and-logging">Featherless AI</a> to generate a response.</li>
+        <li>Text submitted for manual, reaction-based, or administrator-enabled translation is sent to <a href="https://translate.google.com/">Google Translate</a> through the bot's translation library. Google's <a href="https://policies.google.com/privacy">privacy policy</a> applies to Google's processing.</li>
+        <li>Owner-initiated self-update requests are sent to the configured AI provider. The default provider is <a href="https://ai.google.dev/gemini-api/terms">Google Gemini</a>; Featherless AI and <a href="https://www.nvidia.com/en-us/about-nvidia/privacy-policy/">NVIDIA NIM</a> are also supported.</li>
+        <li>Zinging does not use Discord message content to train AI models. AI features use text for inference, and translation features use text to produce translations.</li>
+      </ul>
+      <p>These providers process information to provide the requested feature. Their own terms and privacy practices also apply to their processing. Zinging is hosted on <a href="https://railway.com/legal/privacy">Railway</a>, and its persistent database is PostgreSQL. Railway states that its databases are encrypted at rest and that data in transit uses secure communication protocols.</p>
+
+      <h2>Storage and retention</h2>
+      <ul>
+        <li>Ask and code conversation sessions are held in application memory and expire 24 hours after the last message in a session.</li>
+        <li>When a user asks Zinging to remember information, memory bullets may be saved with that user's Discord ID in the database. A user may have up to 50 bullets; older bullets are pruned as new ones are added.</li>
+        <li>Translation preferences and server/channel settings are stored so they continue to work after a restart, until changed or removed.</li>
+        <li>Owner-initiated update requests and related operational run records are stored in the database. There is no fixed automatic expiry configured for all such records.</li>
+      </ul>
+      <p>Zinging's database does not keep a general archive of ordinary server messages. The bot processes message text for the features described above and reads recent Discord messages as context when a server has enabled cat banter. Discord separately retains messages under its own policies.</p>
+
+      <h2>Choices and controls</h2>
+      <p>Individual users cannot turn off automatic channel features for themselves; server administrators can disable automatic translation or cat banter in their server. Users can choose whether to invoke text commands or request a manual translation. Removing Zinging from a server stops its access there, but may not remove records already stored by the bot; use the contact below to request deletion.</p>
+
+      <h2>Access, correction, and deletion requests</h2>
+      <p>To ask what information Zinging has associated with you, or to request correction or deletion, email <a href="mailto:lakshaychawla13@gmail.com">lakshaychawla13@gmail.com</a>. Include your Discord user ID and enough detail to locate the relevant information, such as the server or feature. Do not send your password, authentication code, or bot token. We will verify the request and act promptly, subject to applicable legal requirements.</p>
+
+      <h2>Security and changes</h2>
+      <p>Zinging uses service-provider security controls for its hosted application and database. No online service can guarantee absolute security. This policy may be updated when the bot's data practices change; the current version will be published at this URL with its effective date.</p>
+
+      <p>Questions about this policy can be sent to <a href="mailto:lakshaychawla13@gmail.com">lakshaychawla13@gmail.com</a>.</p>
+    </main>
+  </div>
+</body>
+</html>
