@@ -12,5 +12,5 @@
   @keyframes flow{to{stroke-dashoffset:-36}}
   @media(prefers-reduced-motion:reduce){.pulse{animation:none}}
 </style>
-<path d="M24 18h39l13 13v52H24zm39 0v13h13M34 47h29M34 60h24M34 73h16" fill="none" stroke="url(#ink)" stroke-width="4" stroke-linecap="round" stroke-linejoin="round" />
+<path d="M24 18h39l13 13v52H24zm39 0v13h13M34 54h4l4-8 5 17 6-23 5 18 4-4h4M34 73h16" fill="none" stroke="url(#ink)" stroke-width="4" stroke-linecap="round" stroke-linejoin="round" />
 </svg>

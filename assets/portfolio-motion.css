@@ -127,12 +127,13 @@ body.portal-active .site-header {
 }
 
 .portal-entry {
+  --opening-duration: 1320ms;
   --bubble-size: clamp(41px, min(13vw, 13dvh), 72px);
   --entry-size: min(calc(100vw - var(--bubble-size) * 1.65 - 14px), calc(100dvh - var(--bubble-size) * 1.65 - 22px), 710px);
   --core-size: calc(var(--entry-size) * 0.45);
   position: fixed;
   inset: 0;
-  z-index: 10;
+  z-index: 25;
   display: none;
   place-items: center;
   isolation: isolate;
@@ -157,6 +158,34 @@ body.portal-active .portal-entry {
 
 body.portal-active .site-shell {
   visibility: hidden;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .portal-ready .portal-entry.is-opening {
+    visibility: visible;
+    transition: none;
+    animation: portal-fade-out var(--opening-duration) cubic-bezier(.36, 0, .24, 1) both;
+  }
+
+  .portal-entry.is-opening .portal-core {
+    animation: portal-open var(--opening-duration) cubic-bezier(.24, .74, .24, 1) both;
+  }
+
+  .portal-entry.is-opening .portal-core-text,
+  .portal-entry.is-opening .orbit::before,
+  .portal-entry.is-opening .orbit-pill {
+    animation: portal-fade-out 320ms ease both;
+  }
+}
+
+@keyframes portal-fade-out {
+  from { opacity: 1; }
+  to { opacity: 0; }
+}
+
+@keyframes portal-open {
+  from { opacity: 1; transform: rotate(0deg) scale(1); filter: blur(0); }
+  to { opacity: 0; transform: rotate(320deg) scale(7.4); filter: blur(14px); }
 }
 
 .star-field {
@@ -372,7 +401,7 @@ body.portal-active .site-shell {
 }
 
 body.portal-active .site-shell .portal-star,
-body:not(.portal-active) .portal-entry .portal-star {
+body:not(.portal-active) .portal-entry:not(.is-opening) .portal-star {
   animation-play-state: paused;
 }
 
@@ -596,7 +625,13 @@ section + section {
   background: linear-gradient(to bottom, #58318c18, #a268e251 20%, #b489ef90 62%, #8de9c4a6 89%, #baffdc);
   clip-path: polygon(46% 0, 56% 0, 64% 24%, 53% 46%, 74% 66%, 68% 82%, 93% 100%, 13% 100%, 26% 78%, 36% 66%, 31% 45%, 44% 23%);
   transform: translateX(-50%);
+  animation: comet-trail-glow 3.7s ease-in-out infinite alternate;
   content: "";
+}
+
+@keyframes comet-trail-glow {
+  from { opacity: .72; }
+  to { opacity: 1; }
 }
 
 .experience-comet img {

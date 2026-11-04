@@ -106,12 +106,14 @@
     }
   }
 
-  function showRoute({ fromCarousel = false, focus = false } = {}) {
+  function showRoute({ fromCarousel = false, focus = false, fromPortal = false } = {}) {
     const hash = window.location.hash;
     const destination = document.getElementById(hash.slice(1));
     const project = destination?.classList.contains("project-panel") ? destination : null;
     const showPortal = !hash;
 
+    const opening = fromPortal && !showPortal && document.body.classList.contains("portal-active") && !reducedMotion.matches;
+    portal.classList.toggle("is-opening", opening);
     document.body.classList.toggle("portal-active", showPortal);
     portal.inert = !showPortal;
     site.inert = showPortal;
@@ -135,6 +137,15 @@
     updateNav();
   }
 
+  function finishPortalAnimation(event) {
+    if (event.target === portal && event.animationName === "portal-fade-out") {
+      portal.classList.remove("is-opening");
+    }
+  }
+
+  portal.addEventListener("animationend", finishPortalAnimation);
+  portal.addEventListener("animationcancel", finishPortalAnimation);
+
   document.addEventListener("click", (event) => {
     const link = event.target.closest("a");
     if (!link || event.defaultPrevented || event.button !== 0 || event.metaKey || event.ctrlKey || event.shiftKey || event.altKey) return;
@@ -146,7 +157,7 @@
     if (hash !== window.location.hash) {
       history.pushState(null, "", window.location.pathname + window.location.search + hash);
     }
-    showRoute({ fromCarousel: Boolean(link.closest(".project-carousel")), focus: true });
+    showRoute({ fromCarousel: Boolean(link.closest(".project-carousel")), focus: true, fromPortal: portal.contains(link) });
   });
 
   const orbitItems = [...portal.querySelectorAll(".orbit-pill")].map((pill) => ({
