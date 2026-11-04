@@ -83,7 +83,7 @@ summary:focus-visible {
 
 .logo {
   gap: 10px;
-  color: #4af3a9;
+  color: #88ffbd;
   font-size: 0.85rem;
   font-weight: 700;
   white-space: nowrap;
@@ -93,6 +93,27 @@ summary:focus-visible {
   display: block;
   border: 1px solid var(--line);
   border-radius: 50%;
+}
+
+.logo span {
+  text-shadow: 0 0 8px #4af3a980;
+}
+
+.logo:is(:hover, :focus-visible) span {
+  color: #d1ffe5;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .logo span {
+    animation: orbit-link-glow 1.8s ease-in-out infinite alternate;
+  }
+}
+
+@keyframes orbit-link-glow {
+  from { text-shadow: 0 0 6px #4af3a960, 0 0 12px #4af3a91a; }
+  to { text-shadow: 0 0 7px #4af3a9eb, 0 0 18px #4af3a9a6; }
 }
 
 .nav-links {
@@ -841,9 +862,18 @@ section + section {
   filter: invert(1);
 }
 
+.skill-star .skill-claude {
+  width: 80%;
+  max-width: 36px;
+}
+
 .skill-symbol {
   color: #e2efff;
   font-size: clamp(1.1rem, 3vw, 2.5rem);
+}
+
+.skill-terminal {
+  font-size: clamp(0.9rem, 2.25vw, 1.85rem);
 }
 
 .skill-docker,
