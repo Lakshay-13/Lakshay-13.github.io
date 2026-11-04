@@ -167,6 +167,37 @@ body.portal-active .site-shell {
   pointer-events: none;
 }
 
+.cursor-stars {
+  position: fixed;
+  inset: 0;
+  z-index: 30;
+  overflow: clip;
+  pointer-events: none;
+}
+
+.cursor-star {
+  position: absolute;
+  left: var(--x);
+  top: var(--y);
+  width: var(--size);
+  aspect-ratio: 1;
+  border-radius: 50%;
+  background: var(--color);
+  box-shadow: 0 0 7px var(--color);
+  animation: cursor-stardust var(--life) ease-out both;
+}
+
+.cursor-star.is-spark {
+  border-radius: 0;
+  clip-path: polygon(50% 0, 61% 39%, 100% 50%, 61% 61%, 50% 100%, 39% 61%, 0 50%, 39% 39%);
+}
+
+@keyframes cursor-stardust {
+  0% { opacity: 0.95; transform: translate(-50%, -50%) scale(0.9); }
+  26% { opacity: 0.87; }
+  100% { opacity: 0; transform: translate(calc(-50% + var(--dx)), calc(-50% + var(--dy))) scale(0.18); }
+}
+
 .portal-star {
   position: absolute;
   inset: var(--star-y) auto auto var(--star-x);
@@ -264,11 +295,6 @@ body.portal-active .site-shell {
   letter-spacing: -0.05em;
 }
 
-.orbit-icon {
-  color: var(--color);
-  font-size: calc(var(--bubble-size) * 0.28);
-}
-
 .portal-core {
   position: relative;
   z-index: 1;
@@ -276,7 +302,9 @@ body.portal-active .site-shell {
   width: var(--core-size);
   aspect-ratio: 1;
   place-items: center;
+  border: 1px solid rgba(111, 246, 190, 0.62);
   border-radius: 50%;
+  background: radial-gradient(circle, rgba(9, 20, 24, 0.82), rgba(3, 8, 10, 0.48));
   pointer-events: auto;
   transition: transform 200ms ease;
 }
@@ -365,7 +393,7 @@ section + section {
 .hero-portrait {
   position: absolute;
   top: 50%;
-  right: -3%;
+  right: -7%;
   width: min(51vw, 570px);
   height: auto;
   transform: translateY(-50%);
@@ -409,7 +437,7 @@ section + section {
 }
 
 .hero-role {
-  max-width: 31ch;
+  max-width: 37ch;
   margin: 0;
   color: var(--muted);
   font-size: clamp(1.1rem, 2.2vw, 1.45rem);
@@ -527,12 +555,78 @@ section + section {
   list-style: none;
 }
 
+#experience {
+  --meteor-tail: clamp(34px, 6vw, 62px);
+}
+
+#experience:has(.earlier-roles[open]) {
+  --meteor-tail: clamp(50px, 9vw, 104px);
+}
+
+.timeline {
+  background: linear-gradient(180deg, transparent, rgba(123, 166, 219, 0.36) 10%, rgba(169, 146, 247, 0.24) 90%, transparent) 12px 0 / 1px 100% no-repeat;
+}
+
 .timeline-entry {
+  --meteor-color: #94e7ff;
+  position: relative;
   display: grid;
   grid-template-columns: minmax(140px, 0.34fr) 1fr;
   gap: clamp(16px, 5vw, 64px);
   padding-block: 20px;
+  padding-left: clamp(36px, 7vw, 90px);
   border-top: 1px solid var(--line);
+}
+
+.timeline-entry:nth-child(3n + 1) { --meteor-color: #96fbc5; }
+.timeline-entry:nth-child(3n + 2) { --meteor-color: #c7b0ff; }
+
+.timeline-entry::before,
+.timeline-entry::after {
+  position: absolute;
+  top: 34px;
+  content: "";
+}
+
+.timeline-entry::before {
+  left: 12px;
+  width: var(--meteor-tail);
+  height: 2px;
+  border-radius: 99px;
+  background: linear-gradient(90deg, var(--meteor-color), transparent);
+  transform: rotate(-55deg);
+  transform-origin: left center;
+  transition: width 360ms ease;
+}
+
+.timeline-entry::after {
+  left: 8px;
+  width: 9px;
+  height: 9px;
+  border-radius: 50%;
+  background: #f3fbff;
+  box-shadow: 0 0 9px 1px var(--meteor-color), 0 0 22px var(--meteor-color);
+  transform: translateY(-3px);
+}
+
+.timeline-entry.is-visible::before {
+  animation: meteor-tail-in 660ms cubic-bezier(.16, 1, .3, 1) both;
+}
+
+.timeline-entry.is-visible::after {
+  animation: meteor-head-in 660ms cubic-bezier(.16, 1, .3, 1) both;
+}
+
+@keyframes meteor-tail-in {
+  0% { opacity: 0; transform: translate(33px, -44px) rotate(-55deg) scaleX(0.18); }
+  40% { opacity: 1; }
+  100% { opacity: 0.95; transform: translate(0, 0) rotate(-55deg) scaleX(1); }
+}
+
+@keyframes meteor-head-in {
+  0% { opacity: 0; transform: translate(33px, -47px) scale(0.45); }
+  48% { opacity: 1; }
+  100% { opacity: 1; transform: translateY(-3px) scale(1); }
 }
 
 .timeline-entry .timeline-period {
@@ -562,8 +656,7 @@ section + section {
   letter-spacing: -0.05em;
 }
 
-.earlier-roles summary,
-.directory-group summary {
+.earlier-roles summary {
   padding-block: 15px;
   border-top: 1px solid var(--line);
   color: var(--text);
@@ -571,46 +664,50 @@ section + section {
   cursor: pointer;
 }
 
-.earlier-roles summary::marker,
-.directory-group summary::marker {
+.earlier-roles summary::marker {
   color: var(--accent);
 }
 
-.portal-ready [data-reveal]:not(.is-visible) {
-  opacity: 0;
-  transform: translateY(20px);
+.earlier-label-open,
+.earlier-roles[open] .earlier-label-closed {
+  display: none;
 }
 
-[data-reveal] {
-  transition: opacity 470ms ease, transform 470ms cubic-bezier(0.16, 1, 0.3, 1);
+.earlier-roles[open] .earlier-label-open {
+  display: inline;
 }
 
-.skill-constellation {
-  --skill-line: rgba(128, 243, 190, 0.22);
+.earlier-roles.has-end-control[open] > summary {
+  display: none;
 }
 
-.skill-labels {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  gap: 8px;
-}
-
-.skill-labels button {
+.earlier-collapse {
   min-height: 44px;
-  padding: 6px 16px;
+  padding: 6px 12px;
   border: 1px solid var(--line);
-  border-radius: 999px;
-  background: rgba(10, 16, 23, 0.82);
-  color: var(--muted);
-  font-size: 0.87rem;
+  border-radius: 6px;
+  background: #0a1016;
+  color: var(--accent);
+  font-size: 0.9rem;
   cursor: pointer;
 }
 
-.skill-labels button.is-highlighted {
-  border-color: var(--skill-line);
-  background: rgba(128, 243, 190, 0.09);
-  color: var(--accent);
+.earlier-collapse:hover {
+  border-color: var(--accent);
+}
+
+.has-reveals [data-reveal]:not(.is-visible) > * {
+  opacity: 0;
+  transform: translate(-24px, 14px);
+}
+
+.has-reveals [data-reveal]:not(.is-visible)::before,
+.has-reveals [data-reveal]:not(.is-visible)::after {
+  opacity: 0;
+}
+
+[data-reveal] > * {
+  transition: opacity 520ms ease, transform 620ms cubic-bezier(.16, 1, .3, 1);
 }
 
 .skill-stars {
@@ -623,16 +720,13 @@ section + section {
   min-height: 175px;
   margin: 18px 0;
   padding: 26px 8px;
-  background: radial-gradient(ellipse closest-side, rgba(76, 98, 169, 0.15), transparent);
-}
-
-.skill-stars::before {
-  position: absolute;
-  inset: 24% 3%;
-  border: 1px dashed var(--skill-line);
-  border-radius: 50%;
-  transform: rotate(-4deg);
-  content: "";
+  background:
+    radial-gradient(circle at 10% 38%, #c4d9ff 0 1px, transparent 2px),
+    radial-gradient(circle at 29% 82%, #927ce3 0 1px, transparent 2px),
+    radial-gradient(circle at 66% 18%, #d5e5ff 0 1px, transparent 2px),
+    radial-gradient(circle at 88% 69%, #a2dacb 0 1px, transparent 2px),
+    radial-gradient(ellipse at 31% 68%, rgba(62, 89, 160, 0.15), transparent 42%),
+    radial-gradient(ellipse at 69% 36%, rgba(100, 70, 151, 0.13), transparent 47%);
 }
 
 .skill-star {
@@ -675,9 +769,38 @@ section + section {
 }
 
 .skill-descriptions {
-  min-height: 164px;
-  padding: 24px 0 0;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(150px, 100%), 1fr));
+  gap: clamp(12px, 2vw, 22px);
+}
+
+.skill-descriptions article {
+  min-width: 0;
+  padding: 14px 6px 6px;
   border-top: 1px solid var(--line);
+  transition: border-color 200ms ease;
+}
+
+.skill-descriptions article.is-highlighted {
+  border-color: var(--accent);
+}
+
+.skill-descriptions h3 button {
+  padding: 0;
+  border: 0;
+  background: transparent;
+  color: inherit;
+  font: inherit;
+  text-align: left;
+  cursor: pointer;
+}
+
+.skill-descriptions .is-highlighted h3 {
+  color: var(--accent);
+}
+
+.skill-descriptions article > p {
+  font-size: 0.9rem;
 }
 
 .skill-descriptions .skill-tools {
@@ -973,7 +1096,7 @@ footer {
 
   .hero-portrait {
     top: -18px;
-    right: -9%;
+    right: -12%;
     width: min(92vw, 382px);
     transform: none;
     mask-image: radial-gradient(ellipse 47% 48% at 56% 42%, #000 50%, transparent 100%);
@@ -1046,16 +1169,29 @@ footer {
   .orbit-pill,
   .skill-star,
   .project-disc,
-  [data-reveal] {
+  .timeline-entry::before,
+  [data-reveal] > * {
     transition: none !important;
   }
 
-  .portal-star {
+  .portal-star,
+  .cursor-star,
+  .timeline-entry.is-visible::before,
+  .timeline-entry.is-visible::after {
     animation: none;
   }
 
-  .portal-ready [data-reveal]:not(.is-visible) {
+  .cursor-stars {
+    display: none;
+  }
+
+  .has-reveals [data-reveal]:not(.is-visible)::before,
+  .has-reveals [data-reveal]:not(.is-visible)::after,
+  .has-reveals [data-reveal]:not(.is-visible) > * {
     opacity: 1;
+  }
+
+  .has-reveals [data-reveal]:not(.is-visible) > * {
     transform: none;
   }
 }

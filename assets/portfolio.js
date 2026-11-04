@@ -228,13 +228,40 @@
     field.appendChild(stars);
   }
 
+  function setupCursorTrail() {
+    const layer = document.querySelector(".cursor-stars");
+    const colors = ["#eff8ff", "#aefadb", "#cab6ff"];
+    let lastBurst = -Infinity;
+
+    window.addEventListener("pointermove", (event) => {
+      if (reducedMotion.matches || event.pointerType === "touch" || event.timeStamp - lastBurst < 22) return;
+      lastBurst = event.timeStamp;
+
+      for (let index = 0; index < 3 && layer.childElementCount < 84; index += 1) {
+        const star = document.createElement("span");
+        const spark = index === 0 && Math.random() > 0.4;
+        star.className = spark ? "cursor-star is-spark" : "cursor-star";
+        star.style.setProperty("--x", (event.clientX + (Math.random() - 0.5) * 16) + "px");
+        star.style.setProperty("--y", (event.clientY + (Math.random() - 0.5) * 16) + "px");
+        star.style.setProperty("--dx", (Math.random() - 0.5) * 30 + "px");
+        star.style.setProperty("--dy", (Math.random() - 0.5) * 30 + "px");
+        star.style.setProperty("--color", colors[index]);
+        star.style.setProperty("--size", spark ? "6px" : (1.6 + Math.random() * 1.8) + "px");
+        star.style.setProperty("--life", (470 + Math.random() * 270) + "ms");
+        star.addEventListener("animationend", () => star.remove(), { once: true });
+        layer.append(star);
+      }
+    }, { passive: true });
+
+    reducedMotion.addEventListener("change", () => layer.replaceChildren());
+  }
+
   function setupSkills() {
     const constellation = document.querySelector(".skill-constellation");
     const stars = constellation.querySelector(".skill-stars");
     const marks = [...stars.children];
-    const labels = [...constellation.querySelectorAll(".skill-labels button")];
     const descriptions = [...constellation.querySelectorAll(".skill-descriptions article")];
-    const keys = labels.map((label) => label.dataset.skill);
+    const keys = descriptions.map((description) => description.dataset.skill);
 
     for (let i = keys.length - 1; i > 0; i -= 1) {
       const other = Math.floor(Math.random() * (i + 1));
@@ -246,22 +273,24 @@
     const secondRow = [...groups.slice(2), ...groups.slice(0, 2)];
     stars.append(...groups.map(([first]) => first), ...secondRow.map(([, second]) => second));
 
-    let selected = labels[0].dataset.skill;
+    const targets = [...descriptions, ...marks];
+    let selected = descriptions[0].dataset.skill;
     function highlight(key) {
-      for (const control of [...labels, ...marks]) {
-        control.classList.toggle("is-highlighted", control.dataset.skill === key);
-        control.setAttribute("aria-pressed", String(control.dataset.skill === selected));
+      for (const target of targets) {
+        target.classList.toggle("is-highlighted", target.dataset.skill === key);
+        const button = target.matches("button") ? target : target.querySelector("button");
+        button.setAttribute("aria-pressed", String(target.dataset.skill === selected));
       }
-      for (const description of descriptions) description.hidden = description.id !== "skill-" + key;
     }
 
-    for (const control of [...labels, ...marks]) {
-      control.addEventListener("pointerenter", (event) => {
-        if (event.pointerType !== "touch") highlight(control.dataset.skill);
+    for (const target of targets) {
+      const key = target.dataset.skill;
+      target.addEventListener("pointerenter", (event) => {
+        if (event.pointerType !== "touch") highlight(key);
       });
-      control.addEventListener("focus", () => highlight(control.dataset.skill));
-      control.addEventListener("click", () => {
-        selected = control.dataset.skill;
+      target.addEventListener("focusin", () => highlight(key));
+      target.addEventListener("click", () => {
+        selected = key;
         highlight(selected);
       });
     }
@@ -273,14 +302,30 @@
   }
 
   function setupExperienceReveals() {
+    if (!("IntersectionObserver" in window)) return;
+    document.getElementById("experience").classList.add("has-reveals");
+
     const observer = new IntersectionObserver((entries) => {
-      for (const { isIntersecting, target } of entries) {
-        if (!isIntersecting) continue;
-        target.classList.add("is-visible");
-        observer.unobserve(target);
+      for (const { intersectionRatio, target } of entries) {
+        target.classList.toggle("is-visible", intersectionRatio >= 0.16);
       }
-    }, { threshold: 0.14 });
+    }, { threshold: 0.16 });
     document.querySelectorAll("[data-reveal]").forEach((row) => observer.observe(row));
+  }
+
+  function setupEarlierExperience() {
+    const details = document.querySelector(".earlier-roles");
+    const summary = details.querySelector("summary");
+    const collapse = details.querySelector(".earlier-collapse");
+    details.classList.add("has-end-control");
+    collapse.hidden = false;
+    details.addEventListener("toggle", () => {
+      if (details.open) details.querySelector(".timeline-entry").focus({ preventScroll: true });
+    });
+    collapse.addEventListener("click", () => {
+      details.open = false;
+      summary.focus();
+    });
   }
 
   const stats = {
@@ -339,8 +384,10 @@
   document.body.classList.add("portal-ready");
   seedStars(portal.querySelector(".star-field"), 112);
   seedStars(site.querySelector(".star-field"), 72);
+  setupCursorTrail();
   setupSkills();
   setupExperienceReveals();
+  setupEarlierExperience();
   syncCarouselLinks();
   readOrbit();
   showRoute();
