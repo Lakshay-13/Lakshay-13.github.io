@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 420" role="img" aria-labelledby="title">
+<title id="title">Periodic variable star light curves</title>
+<defs>
+  <linearGradient id="ink" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#bf9bff"/><stop offset="1" stop-color="#7ae4fc"/></linearGradient>
+  <linearGradient id="panel" x1="0" y1="0" x2="0" y2="1"><stop stop-color="#292048"/><stop offset="1" stop-color="#0c101c"/></linearGradient>
+  <radialGradient id="light"><stop stop-color="#bf9bff" stop-opacity=".26"/><stop offset="1" stop-color="#bf9bff" stop-opacity="0"/></radialGradient>
+</defs>
+<style>
+  .label{font:600 18px system-ui,sans-serif;fill:#eff3ff}
+  .fine{font:500 14px system-ui,sans-serif;fill:#bfc7dd}
+  .pulse{stroke-dasharray:4 14;animation:flow 2.7s linear infinite}
+  @keyframes flow{to{stroke-dashoffset:-36}}
+  @media(prefers-reduced-motion:reduce){.pulse{animation:none}}
+</style>
+<ellipse cx="287" cy="191" rx="257" ry="181" fill="url(#light)" /><ellipse cx="205" cy="185" rx="89" ry="87" fill="url(#light)" /><ellipse cx="205" cy="185" rx="65" ry="63" fill="none" stroke="#ac91ea" opacity=".33"/><path d="M205 128l12.540000000000001 44.46 44.46 12.540000000000001-44.46 12.540000000000001-12.540000000000001 44.46-12.540000000000001-44.46-44.46-12.540000000000001 44.46-12.540000000000001z" fill="#caaaff"/><path d="M205 147l8.36 29.64 29.64 8.36-29.64 8.36-8.36 29.64-8.36-29.64-29.64-8.36 29.64-8.36z" fill="#f5dcff"/><circle cx="205" cy="185" r="8" fill="#fff6ff" opacity="1"/><path d="M129 110l1.98 7.0200000000000005 7.0200000000000005 1.98-7.0200000000000005 1.98-1.98 7.0200000000000005-1.98-7.0200000000000005-7.0200000000000005-1.98 7.0200000000000005-1.98z" fill="#94fae5"/><path d="M264 94l2.86 10.14 10.14 2.86-10.14 2.86-2.86 10.14-2.86-10.14-10.14-2.86 10.14-2.86z" fill="#c6f9ff"/><path d="M273 247l1.76 6.24 6.24 1.76-6.24 1.76-1.76 6.24-1.76-6.24-6.24-1.76 6.24-1.76z" fill="#f8b4ee"/><rect x="305" y="129" width="242" height="151" rx="15" fill="url(#panel)" stroke="url(#ink)" stroke-opacity=".66" opacity="1"/><path d="M323 244h196m-196-1v-82" fill="none" stroke="#9c9ed0" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" opacity=".65"/><path d="M326 225C349 221 352 166 371 176s15 56 39 51 20-54 40-53 16 48 34 51 19-28 36-43" fill="none" stroke="url(#ink)" stroke-width="3.6" stroke-linecap="round" stroke-linejoin="round" /><text x="426" y="322" text-anchor="middle" class="fine">Periodic light curve</text><circle cx="97" cy="251" r="2" fill="#dfe3ff" opacity="0.7"/><circle cx="131" cy="300" r="2" fill="#dfe3ff" opacity="0.6"/><circle cx="291" cy="280" r="1.8" fill="#dfe3ff" opacity="0.5"/><circle cx="477" cy="99" r="2" fill="#dfe3ff" opacity="0.65"/><circle cx="535" cy="320" r="2" fill="#dfe3ff" opacity="0.65"/>
+</svg>

@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" role="img" aria-labelledby="title">
+<title id="title">Morph graphs</title>
+<defs>
+  <linearGradient id="ink" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#bf9bff"/><stop offset="1" stop-color="#7ae4fc"/></linearGradient>
+  <linearGradient id="panel" x1="0" y1="0" x2="0" y2="1"><stop stop-color="#292048"/><stop offset="1" stop-color="#0c101c"/></linearGradient>
+  <radialGradient id="light"><stop stop-color="#bf9bff" stop-opacity=".26"/><stop offset="1" stop-color="#bf9bff" stop-opacity="0"/></radialGradient>
+</defs>
+<style>
+  .label{font:600 18px system-ui,sans-serif;fill:#eff3ff}
+  .fine{font:500 14px system-ui,sans-serif;fill:#bfc7dd}
+  .pulse{stroke-dasharray:4 14;animation:flow 2.7s linear infinite}
+  @keyframes flow{to{stroke-dashoffset:-36}}
+  @media(prefers-reduced-motion:reduce){.pulse{animation:none}}
+</style>
+<path d="M14 74c12-39 25 17 39-19s22-18 33-30M14 49c11-28 30 14 42-7s19-3 30-16" fill="none" stroke="url(#ink)" stroke-width="4" stroke-linecap="round" stroke-linejoin="round" />
+</svg>

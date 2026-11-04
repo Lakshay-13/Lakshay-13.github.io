@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 420" role="img" aria-labelledby="title">
+<title id="title">SlideNext upcoming presentation workspace</title>
+<defs>
+  <linearGradient id="ink" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#bf9bff"/><stop offset="1" stop-color="#7ae4fc"/></linearGradient>
+  <linearGradient id="panel" x1="0" y1="0" x2="0" y2="1"><stop stop-color="#292048"/><stop offset="1" stop-color="#0c101c"/></linearGradient>
+  <radialGradient id="light"><stop stop-color="#bf9bff" stop-opacity=".26"/><stop offset="1" stop-color="#bf9bff" stop-opacity="0"/></radialGradient>
+</defs>
+<style>
+  .label{font:600 18px system-ui,sans-serif;fill:#eff3ff}
+  .fine{font:500 14px system-ui,sans-serif;fill:#bfc7dd}
+  .pulse{stroke-dasharray:4 14;animation:flow 2.7s linear infinite}
+  @keyframes flow{to{stroke-dashoffset:-36}}
+  @media(prefers-reduced-motion:reduce){.pulse{animation:none}}
+</style>
+<ellipse cx="318" cy="207" rx="234" ry="159" fill="url(#light)" /><g transform="rotate(-13 267 196)"><rect x="125" y="103" width="270" height="186" rx="17" fill="url(#panel)" stroke="url(#ink)" stroke-opacity=".66" opacity="0.5"/></g><g transform="rotate(11 390 203)"><rect x="256" y="111" width="274" height="181" rx="17" fill="url(#panel)" stroke="url(#ink)" stroke-opacity=".66" opacity="0.72"/></g><rect x="191" y="116" width="262" height="181" rx="16" fill="url(#panel)" stroke="url(#ink)" stroke-opacity=".66" opacity="1"/><text x="321" y="158" text-anchor="middle" class="label">SlideNext</text><path d="M225 187h166" fill="none" stroke="#acb9dc" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" opacity=".56"/><path d="M225 204h134" fill="none" stroke="#acb9dc" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" opacity=".56"/><path d="M225 221h192" fill="none" stroke="#acb9dc" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" opacity=".56"/><rect x="225" y="254" width="115" height="24" rx="8" fill="url(#panel)" stroke="url(#ink)" stroke-opacity=".66" opacity="1"/><text x="283" y="271" text-anchor="middle" class="fine">Preview soon</text><path d="M516 82l2.64 9.36 9.36 2.64-9.36 2.64-2.64 9.36-2.64-9.36-9.36-2.64 9.36-2.64z" fill="#e4bdff"/><path d="M145 280l1.98 7.0200000000000005 7.0200000000000005 1.98-7.0200000000000005 1.98-1.98 7.0200000000000005-1.98-7.0200000000000005-7.0200000000000005-1.98 7.0200000000000005-1.98z" fill="#b8ecff"/>
+</svg>

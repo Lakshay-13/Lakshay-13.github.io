@@ -36,21 +36,22 @@
 
   async function stepCarousel(direction) {
     if (carouselAnimation) return;
-    const first = track.firstElementChild;
-    const step = first.nextElementSibling.offsetLeft - first.offsetLeft;
-    if (direction < 0) track.prepend(track.lastElementChild);
+    const items = [...track.children];
+    const count = carouselSlots() > 4 ? 3 : 2;
+    const step = items[count].offsetLeft - items[0].offsetLeft;
+    if (direction < 0) track.prepend(...items.slice(-count));
 
     if (!reducedMotion.matches) {
       const offsets = direction < 0 ? [-step, 0] : [0, -step];
       carouselAnimation = track.animate(
         offsets.map((x) => ({ transform: "translateX(" + x + "px)" })),
-        { duration: 270, easing: "cubic-bezier(.22,.7,.25,1)" }
+        { duration: 320, easing: "cubic-bezier(.22,.7,.25,1)" }
       );
       await carouselAnimation.finished;
       carouselAnimation = null;
     }
 
-    if (direction > 0) track.append(first);
+    if (direction > 0) track.append(...items.slice(0, count));
     syncCarouselLinks();
   }
 
@@ -126,6 +127,9 @@
         const target = project ? document.getElementById("projects") : (destination || document.getElementById("top"));
         target.scrollIntoView({ block: "start", behavior: "instant" });
         if (focus) target.focus({ preventScroll: true });
+      } else if (project && focus) {
+        project.scrollIntoView({ block: "nearest", behavior: reducedMotion.matches ? "instant" : "smooth" });
+        project.focus({ preventScroll: true });
       }
     }
     updateNav();
@@ -280,10 +284,14 @@
       [keys[i], keys[other]] = [keys[other], keys[i]];
     }
 
-    // Stagger the second set so related marks are spaced apart on both layouts.
+    // Interleave the shuffled groups so marks that light together are separated.
     const groups = keys.map((key) => marks.filter((mark) => mark.dataset.skill === key));
-    const secondRow = [...groups.slice(2), ...groups.slice(0, 2)];
-    stars.append(...groups.map(([first]) => first), ...secondRow.map(([, second]) => second));
+    const maxMarks = Math.max(...groups.map((group) => group.length));
+    for (let index = 0; index < maxMarks; index += 1) {
+      const offset = (index * 2) % groups.length;
+      const row = [...groups.slice(offset), ...groups.slice(0, offset)];
+      stars.append(...row.map((group) => group[index]).filter(Boolean));
+    }
 
     const targets = [...descriptions, ...marks];
     let selected = descriptions[0].dataset.skill;
@@ -328,36 +336,59 @@
   function setupExperienceComet() {
     const track = document.querySelector(".experience-track");
     const comet = track.querySelector(".experience-comet");
+    const periods = [...track.querySelectorAll(".timeline-period")];
     let frame = null;
     let position = null;
+    let target = null;
+    let activePeriod = null;
 
     function draw() {
       frame = null;
-      const { top, bottom, height } = track.getBoundingClientRect();
+      if (target === null) return;
+      const gap = target - (position ?? target);
+      position = Math.abs(gap) < 0.5 ? target : position + gap * 0.22;
+      comet.style.setProperty("--comet-y", position.toFixed(2) + "px");
+      comet.hidden = false;
+      if (position !== target) frame = requestAnimationFrame(draw);
+    }
+
+    function syncComet() {
+      const { top, bottom } = track.getBoundingClientRect();
       if (reducedMotion.matches || bottom <= 0 || top >= window.innerHeight || document.body.classList.contains("portal-active")) {
-        position = null;
+        position = target = null;
         comet.hidden = true;
+        activePeriod?.classList.remove("is-current-period");
+        activePeriod = null;
         return;
       }
 
-      const target = Math.max(8, Math.min(window.innerHeight * 0.55 - top, height - 18));
-      const gap = target - (position ?? target);
-      position = Math.abs(gap) < 0.5 ? target : position + gap * 0.24;
-      comet.style.setProperty("--comet-y", position.toFixed(2) + "px");
-      comet.hidden = false;
-      if (position !== target) queueDraw();
-    }
+      const marker = window.innerHeight * 0.55;
+      let nearest = Infinity;
+      let nextPeriod = null;
+      for (const period of periods) {
+        if (period.closest("details:not([open])")) continue;
+        const center = top + period.offsetTop + period.offsetHeight / 2;
+        const distance = Math.abs(center - marker);
+        if (distance >= nearest) continue;
+        nearest = distance;
+        target = center - top;
+        nextPeriod = period;
+      }
 
-    function queueDraw() {
+      if (activePeriod !== nextPeriod) {
+        activePeriod?.classList.remove("is-current-period");
+        activePeriod = nextPeriod;
+        activePeriod?.classList.add("is-current-period");
+      }
       if (frame === null) frame = requestAnimationFrame(draw);
     }
 
-    window.addEventListener("scroll", queueDraw, { passive: true });
-    window.addEventListener("resize", queueDraw, { passive: true });
-    window.addEventListener("hashchange", queueDraw);
-    reducedMotion.addEventListener("change", queueDraw);
-    new ResizeObserver(queueDraw).observe(track);
-    queueDraw();
+    window.addEventListener("scroll", syncComet, { passive: true });
+    window.addEventListener("resize", syncComet, { passive: true });
+    window.addEventListener("hashchange", syncComet);
+    reducedMotion.addEventListener("change", syncComet);
+    if ("ResizeObserver" in window) new ResizeObserver(syncComet).observe(track);
+    requestAnimationFrame(syncComet);
   }
 
   function setupEarlierExperience() {

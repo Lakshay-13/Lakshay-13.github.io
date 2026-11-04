@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" role="img" aria-labelledby="title">
+<title id="title">Code image generator</title>
+<defs>
+  <linearGradient id="ink" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#67f8ca"/><stop offset="1" stop-color="#a590ff"/></linearGradient>
+  <linearGradient id="panel" x1="0" y1="0" x2="0" y2="1"><stop stop-color="#173434"/><stop offset="1" stop-color="#0c101c"/></linearGradient>
+  <radialGradient id="light"><stop stop-color="#67f8ca" stop-opacity=".26"/><stop offset="1" stop-color="#67f8ca" stop-opacity="0"/></radialGradient>
+</defs>
+<style>
+  .label{font:600 18px system-ui,sans-serif;fill:#eff3ff}
+  .fine{font:500 14px system-ui,sans-serif;fill:#bfc7dd}
+  .pulse{stroke-dasharray:4 14;animation:flow 2.7s linear infinite}
+  @keyframes flow{to{stroke-dashoffset:-36}}
+  @media(prefers-reduced-motion:reduce){.pulse{animation:none}}
+</style>
+<path d="m33 26-14 15 14 15m34-30 14 15-14 15m-8-34-17 42m-9 11h33" fill="none" stroke="url(#ink)" stroke-width="5" stroke-linecap="round" stroke-linejoin="round" />
+</svg>

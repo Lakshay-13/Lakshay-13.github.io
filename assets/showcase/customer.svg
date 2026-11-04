@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 420" role="img" aria-labelledby="title">
+<title id="title">Customer propensity and churn predictions</title>
+<defs>
+  <linearGradient id="ink" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#67f8ca"/><stop offset="1" stop-color="#a590ff"/></linearGradient>
+  <linearGradient id="panel" x1="0" y1="0" x2="0" y2="1"><stop stop-color="#173434"/><stop offset="1" stop-color="#0c101c"/></linearGradient>
+  <radialGradient id="light"><stop stop-color="#67f8ca" stop-opacity=".26"/><stop offset="1" stop-color="#67f8ca" stop-opacity="0"/></radialGradient>
+</defs>
+<style>
+  .label{font:600 18px system-ui,sans-serif;fill:#eff3ff}
+  .fine{font:500 14px system-ui,sans-serif;fill:#bfc7dd}
+  .pulse{stroke-dasharray:4 14;animation:flow 2.7s linear infinite}
+  @keyframes flow{to{stroke-dashoffset:-36}}
+  @media(prefers-reduced-motion:reduce){.pulse{animation:none}}
+</style>
+<ellipse cx="321" cy="210" rx="251" ry="170" fill="url(#light)" /><rect x="110" y="89" width="420" height="241" rx="20" fill="url(#panel)" stroke="url(#ink)" stroke-opacity=".66" opacity="1"/><path d="M137 277h366" fill="none" stroke="#b2bde0" stroke-width="1" stroke-linecap="round" stroke-linejoin="round" opacity=".4"/><rect x="164" y="182" width="64" height="95" rx="8" fill="url(#ink)" opacity="0.88"/><text x="196" y="304" text-anchor="middle" class="fine">Churn</text><rect x="289" y="133" width="64" height="144" rx="8" fill="url(#ink)" opacity="0.63"/><text x="321" y="304" text-anchor="middle" class="fine">Appetency</text><rect x="414" y="161" width="64" height="116" rx="8" fill="url(#ink)" opacity="0.75"/><text x="446" y="304" text-anchor="middle" class="fine">Upsell</text><path d="M154 205l164-75 160 20" fill="none" stroke="#e8fff6" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" stroke-dasharray="4 9"/>
+</svg>

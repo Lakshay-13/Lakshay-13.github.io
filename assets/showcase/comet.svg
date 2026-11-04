@@ -1,0 +1,27 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 340">
+  <defs>
+    <linearGradient id="plume" x1="0" x2=".15" y1="0" y2="1" gradientUnits="objectBoundingBox">
+      <stop stop-color="#9456f6" stop-opacity="0"/><stop offset=".44" stop-color="#9550ee" stop-opacity=".36"/>
+      <stop offset=".76" stop-color="#c188ff" stop-opacity=".85"/><stop offset="1" stop-color="#72ffd4"/>
+    </linearGradient>
+    <linearGradient id="flame" x1=".55" x2=".4" y1="0" y2="1" gradientUnits="objectBoundingBox">
+      <stop stop-color="#9a70ed" stop-opacity="0"/><stop offset=".42" stop-color="#b57cf7" stop-opacity=".52"/>
+      <stop offset=".77" stop-color="#3ce2b3"/><stop offset="1" stop-color="#e5fff0"/>
+    </linearGradient>
+    <linearGradient id="ribbon" x1=".5" x2=".6" y1="0" y2="1" gradientUnits="objectBoundingBox">
+      <stop stop-color="#e7c1ff" stop-opacity="0"/><stop offset=".52" stop-color="#dc9aff" stop-opacity=".68"/>
+      <stop offset="1" stop-color="#a3ffcf"/>
+    </linearGradient>
+    <radialGradient id="fireball"><stop offset=".23" stop-color="#fffce9"/><stop offset=".55" stop-color="#baffd2"/><stop offset="1" stop-color="#63ffd2" stop-opacity="0"/></radialGradient>
+    <filter id="haze" x="-80%" y="-30%" width="260%" height="170%"><feGaussianBlur stdDeviation="8"/></filter>
+  </defs>
+  <path fill="url(#plume)" filter="url(#haze)" d="M53 13c21 63 0 133 35 201 12 23 22 53 14 82-8 30-39 41-59 14-21-29 4-74 5-110C50 146 71 80 53 13Z"/>
+  <path fill="url(#plume)" d="M59 0c21 84-8 126 22 202 8 20 12 34 7 50 15 16 18 39 4 55-12 15-36 15-49 2-18-19-12-42-6-62 6-18 11-37 8-55-4-27 2-67 13-100 8-27 7-53 1-92Z"/>
+  <path fill="url(#ribbon)" d="M45 62c-12 59 14 82 3 143-9 53-25 67-8 94-6-24 16-53 19-88 4-53-19-86-14-149Z"/>
+  <path fill="url(#ribbon)" d="M77 80c18 55-3 85 12 125 11 26 22 46 8 77 7-26-15-52-20-72-11-38 10-84 0-130Z"/>
+  <path fill="url(#flame)" d="M68 42c21 89-25 149 2 206 7 16 23 25 20 47-2 15-13 27-25 28-15 1-28-12-28-27 0-19 14-33 13-50-4-59 26-101 18-204Z"/>
+  <path fill="url(#ribbon)" d="M60 135c-3 65 0 99 13 129 6 14 11 24 1 43 3-17-10-36-14-52-9-34-8-76 0-120Z"/>
+  <g fill="#c7ffe1"><path d="m26 234 4 15-6-7zM106 254l-3 15 6-9zM34 195l-2 10 4-5zM92 169l2 11 2-5z" opacity=".65"/><circle cx="28" cy="283" r="2"/><circle cx="103" cy="288" r="1.8"/></g>
+  <ellipse cx="64" cy="299" rx="35" ry="38" fill="url(#fireball)"/>
+  <path fill="#fffde9" d="M64 276c8 9 17 20 15 31-1 10-8 16-16 15-9-1-15-7-15-15 0-10 8-21 16-31Z"/>
+</svg>
