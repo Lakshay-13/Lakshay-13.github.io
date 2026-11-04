@@ -122,12 +122,13 @@ summary:focus-visible {
   display: none;
 }
 
-body.portal-active .site-header {
+body.portal-active:not(.portal-returning) .site-header {
   display: none;
 }
 
 .portal-entry {
   --opening-duration: 1320ms;
+  --return-duration: 1120ms;
   --bubble-size: clamp(41px, min(13vw, 13dvh), 72px);
   --entry-size: min(calc(100vw - var(--bubble-size) * 1.65 - 14px), calc(100dvh - var(--bubble-size) * 1.65 - 22px), 710px);
   --core-size: calc(var(--entry-size) * 0.45);
@@ -156,7 +157,7 @@ body.portal-active .portal-entry {
   pointer-events: auto;
 }
 
-body.portal-active .site-shell {
+body.portal-active:not(.portal-returning) .site-shell {
   visibility: hidden;
 }
 
@@ -176,6 +177,21 @@ body.portal-active .site-shell {
   .portal-entry.is-opening .orbit-pill {
     animation: portal-fade-out 320ms ease both;
   }
+
+  .portal-ready.portal-returning .portal-entry {
+    transition: none;
+    animation: portal-fade-in var(--return-duration) cubic-bezier(.22, .82, .24, 1) both;
+  }
+
+  .portal-returning .portal-core {
+    animation: portal-close var(--return-duration) cubic-bezier(.22, .82, .24, 1) both;
+  }
+
+  .portal-returning .portal-core-text,
+  .portal-returning .orbit::before,
+  .portal-returning .orbit-pill {
+    animation: portal-fade-in calc(var(--return-duration) - 260ms) ease 260ms both;
+  }
 }
 
 @keyframes portal-fade-out {
@@ -186,6 +202,16 @@ body.portal-active .site-shell {
 @keyframes portal-open {
   from { opacity: 1; transform: rotate(0deg) scale(1); filter: blur(0); }
   to { opacity: 0; transform: rotate(320deg) scale(7.4); filter: blur(14px); }
+}
+
+@keyframes portal-fade-in {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes portal-close {
+  from { opacity: 0; transform: rotate(320deg) scale(7.4); filter: blur(14px); }
+  to { opacity: 1; transform: rotate(0deg) scale(1); filter: blur(0); }
 }
 
 .star-field {
@@ -400,7 +426,7 @@ body.portal-active .site-shell {
   opacity: 0.74;
 }
 
-body.portal-active .site-shell .portal-star,
+body.portal-active:not(.portal-returning) .site-shell .portal-star,
 body:not(.portal-active) .portal-entry:not(.is-opening) .portal-star {
   animation-play-state: paused;
 }
@@ -625,13 +651,7 @@ section + section {
   background: linear-gradient(to bottom, #58318c18, #a268e251 20%, #b489ef90 62%, #8de9c4a6 89%, #baffdc);
   clip-path: polygon(46% 0, 56% 0, 64% 24%, 53% 46%, 74% 66%, 68% 82%, 93% 100%, 13% 100%, 26% 78%, 36% 66%, 31% 45%, 44% 23%);
   transform: translateX(-50%);
-  animation: comet-trail-glow 3.7s ease-in-out infinite alternate;
   content: "";
-}
-
-@keyframes comet-trail-glow {
-  from { opacity: .72; }
-  to { opacity: 1; }
 }
 
 .experience-comet img {

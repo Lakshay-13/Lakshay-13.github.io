@@ -16,20 +16,14 @@
     <filter id="haze" x="-80%" y="-30%" width="260%" height="170%"><feGaussianBlur stdDeviation="8"/></filter>
   </defs>
   <style>
-    .aura,.spark{transform-box:fill-box;transform-origin:center}
-    .aura{opacity:.45;animation:comet-glow 3.7s ease-in-out infinite}
-    .spark{opacity:.65;animation:comet-twinkle var(--life,3.4s) ease-out var(--delay,0s) infinite}
-    @keyframes comet-glow{
-      0%,100%{opacity:.2;transform:scale(.88)}
-      48%{opacity:.9;transform:scale(1.14)}
-    }
+    .spark{transform-box:fill-box;transform-origin:center;opacity:.65;animation:comet-twinkle var(--life,3.4s) ease-out var(--delay,0s) infinite}
     @keyframes comet-twinkle{
       0%{opacity:0;transform:translateY(5px) scale(.3)}
       28%{opacity:1;transform:translateY(0) scale(1.15)}
       58%{opacity:.34}
       100%{opacity:0;transform:translateY(-11px) scale(.35)}
     }
-    @media(prefers-reduced-motion:reduce){.aura,.spark{animation:none}}
+    @media(prefers-reduced-motion:reduce){.spark{animation:none}}
   </style>
   <path fill="url(#plume)" filter="url(#haze)" d="M53 13c21 63 0 133 35 201 12 23 22 53 14 82-8 30-39 41-59 14-21-29 4-74 5-110C50 146 71 80 53 13Z"/>
   <path fill="url(#plume)" d="M59 0c21 84-8 126 22 202 8 20 12 34 7 50 15 16 18 39 4 55-12 15-36 15-49 2-18-19-12-42-6-62 6-18 11-37 8-55-4-27 2-67 13-100 8-27 7-53 1-92Z"/>
@@ -38,7 +32,7 @@
   <path fill="url(#flame)" d="M68 42c21 89-25 149 2 206 7 16 23 25 20 47-2 15-13 27-25 28-15 1-28-12-28-27 0-19 14-33 13-50-4-59 26-101 18-204Z"/>
   <path fill="url(#ribbon)" d="M60 135c-3 65 0 99 13 129 6 14 11 24 1 43 3-17-10-36-14-52-9-34-8-76 0-120Z"/>
   <g fill="#c7ffe1"><path d="m26 234 4 15-6-7zM106 254l-3 15 6-9zM34 195l-2 10 4-5zM92 169l2 11 2-5z" opacity=".65"/><circle cx="28" cy="283" r="2"/><circle cx="103" cy="288" r="1.8"/></g>
-  <ellipse class="aura" cx="64" cy="299" rx="49" ry="39" fill="url(#fireball)"/>
+  <ellipse cx="64" cy="299" rx="49" ry="39" fill="url(#fireball)" opacity=".65"/>
   <ellipse cx="64" cy="299" rx="35" ry="38" fill="url(#fireball)"/>
   <path fill="#fffde9" d="M64 276c8 9 17 20 15 31-1 10-8 16-16 15-9-1-15-7-15-15 0-10 8-21 16-31Z"/>
   <g fill="#edfff7">

@@ -1,7 +1,9 @@
 (() => {
   const portal = document.getElementById("portalEntry");
+  const portalCore = portal.querySelector(".portal-core");
   const site = document.getElementById("siteShell");
-  const homeLink = document.querySelector(".logo");
+  const siteHeader = document.querySelector(".site-header");
+  const homeLink = siteHeader.querySelector(".logo");
   const navLinks = [...document.querySelectorAll('.nav-links a[href^="#"]')];
   const menuToggle = document.querySelector(".menu-toggle");
   const sections = navLinks.map((link) => document.getElementById(link.hash.slice(1)));
@@ -106,22 +108,29 @@
     }
   }
 
+  function resetOrbitView(focus) {
+    window.scrollTo({ top: 0, behavior: "instant" });
+    if (focus) portalCore.focus({ preventScroll: true });
+  }
+
   function showRoute({ fromCarousel = false, focus = false, fromPortal = false } = {}) {
     const hash = window.location.hash;
     const destination = document.getElementById(hash.slice(1));
     const project = destination?.classList.contains("project-panel") ? destination : null;
     const showPortal = !hash;
 
-    const opening = fromPortal && !showPortal && document.body.classList.contains("portal-active") && !reducedMotion.matches;
+    const wasPortal = document.body.classList.contains("portal-active");
+    const opening = fromPortal && !showPortal && wasPortal && !reducedMotion.matches;
+    const returning = focus && showPortal && !wasPortal && !reducedMotion.matches;
     portal.classList.toggle("is-opening", opening);
+    document.body.classList.toggle("portal-returning", returning);
     document.body.classList.toggle("portal-active", showPortal);
-    portal.inert = !showPortal;
-    site.inert = showPortal;
+    portal.inert = !showPortal || returning;
+    site.inert = siteHeader.inert = showPortal;
     syncOrbitMotion();
 
     if (showPortal) {
-      window.scrollTo({ top: 0, behavior: "instant" });
-      if (focus) portal.querySelector(".portal-core").focus({ preventScroll: true });
+      if (!returning) resetOrbitView(focus);
     } else {
       selectProject(project || featuredProject, focus);
       if (!fromCarousel) {
@@ -138,8 +147,13 @@
   }
 
   function finishPortalAnimation(event) {
-    if (event.target === portal && event.animationName === "portal-fade-out") {
+    if (event.target !== portal) return;
+    if (event.animationName === "portal-fade-out") {
       portal.classList.remove("is-opening");
+    } else if (event.animationName === "portal-fade-in" && document.body.classList.contains("portal-returning")) {
+      document.body.classList.remove("portal-returning");
+      portal.inert = false;
+      resetOrbitView(true);
     }
   }
 
