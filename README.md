@@ -1,5 +1,3 @@
-# Lakshay Chawla | Portfolio
+# Lakshay Chawla — Personal Portfolio
 
-Professional portfolio featuring selected software projects, work experience, and applied AI. Visit [lakshay-13.github.io](https://lakshay-13.github.io/).
-
-The site is served by GitHub Pages. To preview it locally, run `python3 -m http.server` from the repository root.
+A small home for my AI research, products, experiments, and other things I’m building: [lakshay-13.github.io](https://lakshay-13.github.io/)
