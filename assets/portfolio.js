@@ -2,17 +2,75 @@
   const portal = document.getElementById("portalEntry");
   const site = document.getElementById("siteShell");
   const homeLink = document.querySelector(".logo");
-  const navLinks = [...document.querySelectorAll(".nav-links a")];
+  const navLinks = [...document.querySelectorAll('.nav-links a[href^="#"]')];
+  const menuToggle = document.querySelector(".menu-toggle");
   const sections = navLinks.map((link) => document.getElementById(link.hash.slice(1)));
   const panels = [...document.querySelectorAll(".project-panel")];
-  const projectLinks = [...document.querySelectorAll(".project-constellation a, .project-directory a")];
+  const carousel = document.querySelector(".project-carousel");
+  const track = carousel.querySelector(".project-track");
+  const carouselItems = [...track.children];
+  const projectLinks = carouselItems.map((item) => item.querySelector("a"));
   const featuredProject = panels[0];
-  const selectedStar = document.querySelector(".project-current");
-  const selectedStarLink = selectedStar.querySelector("a");
-  const selectedStarName = selectedStar.querySelector(".project-index-name");
-  const mobile = window.matchMedia("(max-width: 720px)");
   const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
-  let selectedProject = featuredProject;
+  let carouselAnimation;
+
+  function carouselSlots() {
+    return Number(getComputedStyle(carousel).getPropertyValue("--slots"));
+  }
+
+  function syncCarouselLinks() {
+    const slots = carouselSlots();
+    [...track.children].forEach((item, index) => {
+      item.inert = index >= slots;
+    });
+  }
+
+  function alignCarousel(project) {
+    const item = projectLinks.find((link) => link.hash === "#" + project.id).parentElement;
+    if ([...track.children].indexOf(item) >= carouselSlots()) {
+      const index = carouselItems.indexOf(item);
+      track.append(...carouselItems.slice(index), ...carouselItems.slice(0, index));
+    }
+    syncCarouselLinks();
+  }
+
+  async function stepCarousel(direction) {
+    if (carouselAnimation) return;
+    const first = track.firstElementChild;
+    const step = first.nextElementSibling.offsetLeft - first.offsetLeft;
+    if (direction < 0) track.prepend(track.lastElementChild);
+
+    if (!reducedMotion.matches) {
+      const offsets = direction < 0 ? [-step, 0] : [0, -step];
+      carouselAnimation = track.animate(
+        offsets.map((x) => ({ transform: "translateX(" + x + "px)" })),
+        { duration: 270, easing: "cubic-bezier(.22,.7,.25,1)" }
+      );
+      await carouselAnimation.finished;
+      carouselAnimation = null;
+    }
+
+    if (direction > 0) track.append(first);
+    syncCarouselLinks();
+  }
+
+  carousel.querySelectorAll("[data-project-step]").forEach((button) => {
+    button.addEventListener("click", () => stepCarousel(Number(button.dataset.projectStep)));
+  });
+
+  function setMenu(open) {
+    document.body.classList.toggle("menu-open", open);
+    menuToggle.setAttribute("aria-expanded", String(open));
+    menuToggle.setAttribute("aria-label", open ? "Close navigation" : "Open navigation");
+  }
+
+  menuToggle.addEventListener("click", () => setMenu(menuToggle.getAttribute("aria-expanded") !== "true"));
+  document.addEventListener("keydown", (event) => {
+    if (event.key === "Escape" && menuToggle.getAttribute("aria-expanded") === "true") {
+      setMenu(false);
+      menuToggle.focus();
+    }
+  });
 
   function updateNav() {
     let active = null;
@@ -29,34 +87,25 @@
     });
   }
 
-  function selectProject(project) {
-    selectedProject = project;
+  function selectProject(project, animate) {
+    const alreadySelected = project.classList.contains("is-selected");
     for (const panel of panels) {
-      panel.hidden = panel !== project && !(mobile.matches && panel.classList.contains("project-featured"));
+      panel.hidden = panel !== project;
       panel.classList.toggle("is-selected", panel === project);
     }
-
-    const hash = "#" + project.id;
-    const isFeatured = project.classList.contains("project-featured");
-    selectedStar.hidden = isFeatured;
-    if (!isFeatured) {
-      selectedStarLink.href = hash;
-      selectedStarName.textContent = project.querySelector("h3").textContent;
-    }
-
     for (const link of projectLinks) {
-      const active = link.hash === hash && (link !== selectedStarLink || !isFeatured);
-      if (active) {
-        link.setAttribute("aria-current", "location");
-        const group = link.closest(".directory-group");
-        if (group) group.open = true;
-      } else {
-        link.removeAttribute("aria-current");
-      }
+      if (link.hash === "#" + project.id) link.setAttribute("aria-current", "location");
+      else link.removeAttribute("aria-current");
+    }
+    if (animate && !alreadySelected && !reducedMotion.matches) {
+      project.animate(
+        [{ opacity: 0.2, transform: "translateY(14px)" }, { opacity: 1, transform: "translateY(0)" }],
+        { duration: 380, easing: "cubic-bezier(.22,.7,.25,1)" }
+      );
     }
   }
 
-  function showRoute({ fromConstellation = false, focus = false } = {}) {
+  function showRoute({ fromCarousel = false, focus = false } = {}) {
     const hash = window.location.hash;
     const destination = document.getElementById(hash.slice(1));
     const project = destination?.classList.contains("project-panel") ? destination : null;
@@ -71,11 +120,12 @@
       window.scrollTo({ top: 0, behavior: "instant" });
       if (focus) portal.querySelector(".portal-core").focus({ preventScroll: true });
     } else {
-      selectProject(project || featuredProject);
-      const target = project && !mobile.matches ? document.getElementById("projects") : (destination || document.getElementById("top"));
-      if (!fromConstellation || mobile.matches) {
+      selectProject(project || featuredProject, focus);
+      if (!fromCarousel) {
+        alignCarousel(project || featuredProject);
+        const target = project ? document.getElementById("projects") : (destination || document.getElementById("top"));
         target.scrollIntoView({ block: "start", behavior: "instant" });
-        if (focus) (project || target).focus({ preventScroll: true });
+        if (focus) target.focus({ preventScroll: true });
       }
     }
     updateNav();
@@ -84,6 +134,7 @@
   document.addEventListener("click", (event) => {
     const link = event.target.closest("a");
     if (!link || event.defaultPrevented || event.button !== 0 || event.metaKey || event.ctrlKey || event.shiftKey || event.altKey) return;
+    if (link.closest(".nav-links")) setMenu(false);
     if (link !== homeLink && !link.getAttribute("href")?.startsWith("#")) return;
 
     event.preventDefault();
@@ -91,7 +142,7 @@
     if (hash !== window.location.hash) {
       history.pushState(null, "", window.location.pathname + window.location.search + hash);
     }
-    showRoute({ fromConstellation: Boolean(link.closest(".project-constellation")), focus: true });
+    showRoute({ fromCarousel: Boolean(link.closest(".project-carousel")), focus: true });
   });
 
   const orbitItems = [...portal.querySelectorAll(".orbit-pill")].map((pill) => ({
@@ -99,11 +150,9 @@
     orbit: pill.closest(".orbit"),
     phase: Number(pill.dataset.phase) * Math.PI / 180
   }));
-  const motionButton = portal.querySelector(".orbit-motion");
   let rotation = 0;
   let orbitFrame = null;
   let previousFrame = null;
-  let manuallyPaused = false;
   let hoveredBubble = null;
 
   function drawOrbit() {
@@ -137,7 +186,7 @@
 
   function syncOrbitMotion() {
     const shouldAnimate = document.body.classList.contains("portal-active") &&
-      !reducedMotion.matches && !manuallyPaused && !hoveredBubble && !document.activeElement?.matches(".orbit-pill:focus-visible");
+      !reducedMotion.matches && !hoveredBubble && !document.activeElement?.matches(".orbit-pill:focus-visible");
     if (shouldAnimate && orbitFrame === null) {
       orbitFrame = requestAnimationFrame(animateOrbit);
     } else if (!shouldAnimate && orbitFrame !== null) {
@@ -161,33 +210,77 @@
     pill.addEventListener("blur", () => requestAnimationFrame(syncOrbitMotion));
   }
 
-  motionButton.addEventListener("click", () => {
-    manuallyPaused = !manuallyPaused;
-    motionButton.setAttribute("aria-pressed", String(manuallyPaused));
-    motionButton.title = manuallyPaused ? "Resume orbit" : "Pause orbit";
-    syncOrbitMotion();
-  });
-
-  function syncMotionPreference() {
-    motionButton.hidden = reducedMotion.matches;
-    syncOrbitMotion();
-  }
-
-  function seedStars() {
-    const field = portal.querySelector(".star-field");
+  function seedStars(field, count) {
     const stars = document.createDocumentFragment();
     const colors = ["#d1ffee", "#eef6ff", "#b9a7ff"];
-    for (let i = 0; i < 95; i += 1) {
+    for (let i = 0; i < count; i += 1) {
       const star = document.createElement("span");
       star.className = "portal-star";
       star.style.setProperty("--star-x", Math.random() * 100 + "%");
       star.style.setProperty("--star-y", Math.random() * 100 + "%");
       star.style.setProperty("--star-size", 0.8 + Math.random() * 2 + "px");
-      star.style.setProperty("--star-opacity", 0.14 + Math.random() * 0.55);
+      star.style.setProperty("--star-opacity", 0.24 + Math.random() * 0.62);
+      star.style.setProperty("--star-duration", 3.8 + Math.random() * 5 + "s");
+      star.style.setProperty("--star-delay", -Math.random() * 8 + "s");
       star.style.setProperty("--star-color", colors[i % colors.length]);
       stars.appendChild(star);
     }
     field.appendChild(stars);
+  }
+
+  function setupSkills() {
+    const constellation = document.querySelector(".skill-constellation");
+    const stars = constellation.querySelector(".skill-stars");
+    const marks = [...stars.children];
+    const labels = [...constellation.querySelectorAll(".skill-labels button")];
+    const descriptions = [...constellation.querySelectorAll(".skill-descriptions article")];
+    const keys = labels.map((label) => label.dataset.skill);
+
+    for (let i = keys.length - 1; i > 0; i -= 1) {
+      const other = Math.floor(Math.random() * (i + 1));
+      [keys[i], keys[other]] = [keys[other], keys[i]];
+    }
+
+    // Stagger the second set so related marks are spaced apart on both layouts.
+    const groups = keys.map((key) => marks.filter((mark) => mark.dataset.skill === key));
+    const secondRow = [...groups.slice(2), ...groups.slice(0, 2)];
+    stars.append(...groups.map(([first]) => first), ...secondRow.map(([, second]) => second));
+
+    let selected = labels[0].dataset.skill;
+    function highlight(key) {
+      for (const control of [...labels, ...marks]) {
+        control.classList.toggle("is-highlighted", control.dataset.skill === key);
+        control.setAttribute("aria-pressed", String(control.dataset.skill === selected));
+      }
+      for (const description of descriptions) description.hidden = description.id !== "skill-" + key;
+    }
+
+    for (const control of [...labels, ...marks]) {
+      control.addEventListener("pointerenter", (event) => {
+        if (event.pointerType !== "touch") highlight(control.dataset.skill);
+      });
+      control.addEventListener("focus", () => highlight(control.dataset.skill));
+      control.addEventListener("click", () => {
+        selected = control.dataset.skill;
+        highlight(selected);
+      });
+    }
+    constellation.addEventListener("pointerleave", () => highlight(selected));
+    constellation.addEventListener("focusout", (event) => {
+      if (!constellation.contains(event.relatedTarget)) highlight(selected);
+    });
+    highlight(selected);
+  }
+
+  function setupExperienceReveals() {
+    const observer = new IntersectionObserver((entries) => {
+      for (const { isIntersecting, target } of entries) {
+        if (!isIntersecting) continue;
+        target.classList.add("is-visible");
+        observer.unobserve(target);
+      }
+    }, { threshold: 0.14 });
+    document.querySelectorAll("[data-reveal]").forEach((row) => observer.observe(row));
   }
 
   const stats = {
@@ -244,16 +337,21 @@
 
   if ("scrollRestoration" in history) history.scrollRestoration = "manual";
   document.body.classList.add("portal-ready");
-  seedStars();
+  seedStars(portal.querySelector(".star-field"), 112);
+  seedStars(site.querySelector(".star-field"), 72);
+  setupSkills();
+  setupExperienceReveals();
+  syncCarouselLinks();
   readOrbit();
-  syncMotionPreference();
   showRoute();
 
   window.addEventListener("hashchange", () => showRoute({ focus: true }));
-  window.addEventListener("resize", readOrbit, { passive: true });
+  window.addEventListener("resize", () => {
+    readOrbit();
+    syncCarouselLinks();
+  }, { passive: true });
   window.addEventListener("scroll", updateNav, { passive: true });
-  mobile.addEventListener("change", () => selectProject(selectedProject));
-  reducedMotion.addEventListener("change", syncMotionPreference);
+  reducedMotion.addEventListener("change", syncOrbitMotion);
 
   for (const pill of portal.querySelectorAll("[data-stat]")) loadStat(pill);
 })();
