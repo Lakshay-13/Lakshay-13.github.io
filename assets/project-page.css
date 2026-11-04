@@ -1066,3 +1066,149 @@ h2 {
     width: 100%;
   }
 }
+
+/* The project pages use the same open starfield and artwork as the portfolio. */
+body {
+  background:
+    radial-gradient(ellipse at 18% 14%, color-mix(in srgb, var(--glow) 56%, transparent), transparent 32%),
+    radial-gradient(ellipse at 79% 21%, color-mix(in srgb, var(--accent-2) 12%, transparent), transparent 34%),
+    #030509;
+}
+
+body::before {
+  background: url("/assets/showcase/project-stars.svg") 0 0 / 1100px 840px repeat;
+  opacity: 0.68;
+}
+
+body::after {
+  opacity: 0.23;
+}
+
+.topbar {
+  top: 10px;
+  border-radius: 12px;
+  background: rgba(5, 7, 13, 0.84);
+}
+
+.chip {
+  border-radius: 8px;
+  font-weight: 650;
+}
+
+.hero {
+  min-height: min(590px, 84svh);
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1.05fr);
+  align-items: center;
+  gap: clamp(20px, 5vw, 72px);
+  padding-block: clamp(42px, 6vw, 88px);
+}
+
+.hero-copy,
+.fren-page .hero-copy {
+  overflow: visible;
+  padding: 0;
+  border: 0;
+  border-radius: 0;
+  background: none;
+  box-shadow: none;
+  backdrop-filter: none;
+}
+
+.hero .actions {
+  justify-content: flex-start;
+}
+
+.hero h1 {
+  max-width: 100%;
+  color: var(--accent);
+  font-size: clamp(2.85rem, 7vw, 6.2rem);
+  letter-spacing: -0.065em;
+}
+
+.hero .eyebrow,
+.policy .eyebrow {
+  padding: 0;
+  border: 0;
+  background: transparent;
+  letter-spacing: 0.065em;
+}
+
+.project-scene {
+  display: grid;
+  min-width: 0;
+  justify-items: center;
+  align-content: center;
+  gap: 12px;
+}
+
+.scene-image {
+  display: block;
+  width: 100%;
+  height: auto;
+  max-height: 460px;
+  object-fit: contain;
+}
+
+.project-scene .fren-codex-callout {
+  width: fit-content;
+  border-radius: 12px;
+}
+
+.section {
+  padding-top: clamp(24px, 3.3vw, 44px);
+  border-top: 1px solid var(--border);
+}
+
+.section-head h2 {
+  letter-spacing: -0.04em;
+}
+
+.feature-card,
+.story-card,
+.metric-card,
+.profile-strip {
+  border-radius: 14px;
+  background: rgba(12, 16, 25, 0.65);
+  box-shadow: none;
+}
+
+.research-poster {
+  display: grid;
+  min-height: 0;
+  width: min(100%, 960px);
+  margin: clamp(36px, 5vw, 72px) auto;
+  border-radius: 14px;
+  background: rgba(12, 16, 25, 0.82);
+}
+
+.research-poster::before {
+  display: none;
+}
+
+.research-poster img {
+  width: 100%;
+  max-height: none;
+  height: auto;
+  object-fit: contain;
+}
+
+.policy {
+  border-top: 1px solid var(--border);
+  padding-top: 24px !important;
+}
+
+@media (max-width: 760px) {
+  .hero {
+    grid-template-columns: minmax(0, 1fr);
+    min-height: 0;
+  }
+
+  .fren-page .hero {
+    min-height: 0;
+  }
+
+  .project-scene {
+    width: min(100%, 570px);
+    justify-self: center;
+  }
+}

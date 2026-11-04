@@ -162,11 +162,10 @@
   function drawOrbit() {
     for (const { pill, phase, rotate, rx, ry } of orbitItems) {
       // Place each bubble where its evenly spaced angle intersects its own ellipse.
-      const angle = phase + rotation - rotate;
-      const x = Math.cos(angle);
-      const y = Math.sin(angle);
-      const radius = 1 / Math.hypot(x / rx, y / ry);
-      pill.style.transform = "translate3d(" + x * radius + "px, " + y * radius + "px, 0) rotate(" + -rotate + "rad)";
+      const angle = phase + rotation;
+      const axisAngle = angle - rotate;
+      const radius = 1 / Math.hypot(Math.cos(axisAngle) / rx, Math.sin(axisAngle) / ry);
+      pill.style.transform = "translate3d(" + Math.cos(angle) * radius + "px, " + Math.sin(angle) * radius + "px, 0)";
     }
   }
 
@@ -293,7 +292,7 @@
       stars.append(...row.map((group) => group[index]).filter(Boolean));
     }
 
-    const targets = [...descriptions, ...marks];
+    const targets = [...descriptions, ...marks.filter((mark) => mark.matches("button"))];
     let selected = descriptions[0].dataset.skill;
     function highlight(key) {
       for (const target of targets) {
@@ -337,58 +336,68 @@
     const track = document.querySelector(".experience-track");
     const comet = track.querySelector(".experience-comet");
     const periods = [...track.querySelectorAll(".timeline-period")];
+    const earlier = track.querySelector(".earlier-roles");
     let frame = null;
+    let previousTime = null;
     let position = null;
-    let target = null;
     let activePeriod = null;
+    let anchors = [];
 
-    function draw() {
-      frame = null;
-      if (target === null) return;
-      const gap = target - (position ?? target);
-      position = Math.abs(gap) < 0.5 ? target : position + gap * 0.22;
-      comet.style.setProperty("--comet-y", position.toFixed(2) + "px");
-      comet.hidden = false;
-      if (position !== target) frame = requestAnimationFrame(draw);
+    function updateAnchors() {
+      anchors = periods
+        .filter((period) => earlier.open || !earlier.contains(period))
+        .map((period) => ({
+          period,
+          center: period.closest(".timeline-entry").offsetTop + period.offsetTop + period.offsetHeight / 2
+        }));
+      queueDraw();
     }
 
-    function syncComet() {
+    function draw(time) {
+      frame = null;
       const { top, bottom } = track.getBoundingClientRect();
-      if (reducedMotion.matches || bottom <= 0 || top >= window.innerHeight || document.body.classList.contains("portal-active")) {
-        position = target = null;
+      if (!anchors.length || reducedMotion.matches || bottom <= 0 || top >= window.innerHeight || document.body.classList.contains("portal-active")) {
+        previousTime = position = null;
         comet.hidden = true;
         activePeriod?.classList.remove("is-current-period");
         activePeriod = null;
         return;
       }
 
-      const marker = window.innerHeight * 0.55;
-      let nearest = Infinity;
-      let nextPeriod = null;
-      for (const period of periods) {
-        if (period.closest("details:not([open])")) continue;
-        const center = top + period.offsetTop + period.offsetHeight / 2;
-        const distance = Math.abs(center - marker);
-        if (distance >= nearest) continue;
-        nearest = distance;
-        target = center - top;
-        nextPeriod = period;
+      const marker = window.innerHeight * 0.52 - top;
+      const target = Math.max(anchors[0].center, Math.min(marker, anchors.at(-1).center));
+      const gap = target - (position ?? target);
+      const elapsed = previousTime === null ? 16 : Math.min(48, time - previousTime);
+      previousTime = time;
+      position = Math.abs(gap) < 0.2 ? target : position + gap * (1 - Math.exp(-elapsed / 100));
+      comet.style.setProperty("--comet-y", position.toFixed(2) + "px");
+      comet.hidden = false;
+
+      const nearest = anchors.reduce((best, next) => (
+        Math.abs(next.center - position) < Math.abs(best.center - position) ? next : best
+      )).period;
+      if (activePeriod !== nearest) {
+        activePeriod?.classList.remove("is-current-period");
+        nearest.classList.add("is-current-period");
+        activePeriod = nearest;
       }
 
-      if (activePeriod !== nextPeriod) {
-        activePeriod?.classList.remove("is-current-period");
-        activePeriod = nextPeriod;
-        activePeriod?.classList.add("is-current-period");
-      }
+      if (position !== target) queueDraw();
+      else previousTime = null;
+    }
+
+    function queueDraw() {
       if (frame === null) frame = requestAnimationFrame(draw);
     }
 
-    window.addEventListener("scroll", syncComet, { passive: true });
-    window.addEventListener("resize", syncComet, { passive: true });
-    window.addEventListener("hashchange", syncComet);
-    reducedMotion.addEventListener("change", syncComet);
-    if ("ResizeObserver" in window) new ResizeObserver(syncComet).observe(track);
-    requestAnimationFrame(syncComet);
+    window.addEventListener("scroll", queueDraw, { passive: true });
+    window.addEventListener("resize", updateAnchors, { passive: true });
+    window.addEventListener("hashchange", queueDraw);
+    earlier.addEventListener("toggle", updateAnchors);
+    reducedMotion.addEventListener("change", queueDraw);
+    if ("ResizeObserver" in window) new ResizeObserver(updateAnchors).observe(track);
+    document.fonts?.ready.then(updateAnchors);
+    updateAnchors();
   }
 
   function setupEarlierExperience() {
