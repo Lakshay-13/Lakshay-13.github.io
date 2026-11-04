@@ -819,10 +819,6 @@ section + section {
   transition: opacity 210ms ease, filter 210ms ease, box-shadow 210ms ease;
 }
 
-.skill-star-empty {
-  cursor: default;
-}
-
 .skill-star:nth-child(even) { transform: translateY(17px); }
 .skill-star:nth-child(3n + 1) { transform: translateY(-16px); }
 
