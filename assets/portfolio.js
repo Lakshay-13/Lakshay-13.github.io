@@ -212,17 +212,25 @@
 
   function seedStars(field, count) {
     const stars = document.createDocumentFragment();
-    const colors = ["#d1ffee", "#eef6ff", "#b9a7ff"];
+    const colors = ["#d1ffee", "#f5f9ff", "#cbbdff"];
     for (let i = 0; i < count; i += 1) {
       const star = document.createElement("span");
+      const size = 0.9 + Math.random() * 2.2;
+      const duration = 3 + Math.random() * 4;
+      function placeStar() {
+        star.style.setProperty("--star-x", Math.random() * 100 + "%");
+        star.style.setProperty("--star-y", Math.random() * 100 + "%");
+      }
+
       star.className = "portal-star";
-      star.style.setProperty("--star-x", Math.random() * 100 + "%");
-      star.style.setProperty("--star-y", Math.random() * 100 + "%");
-      star.style.setProperty("--star-size", 0.8 + Math.random() * 2 + "px");
-      star.style.setProperty("--star-opacity", 0.24 + Math.random() * 0.62);
-      star.style.setProperty("--star-duration", 3.8 + Math.random() * 5 + "s");
-      star.style.setProperty("--star-delay", -Math.random() * 8 + "s");
+      placeStar();
+      star.style.setProperty("--star-size", size + "px");
+      star.style.setProperty("--star-opacity", 0.42 + Math.random() * 0.56);
+      star.style.setProperty("--star-glow", size >= 2.3 ? "3px" : "0px");
+      star.style.setProperty("--star-duration", duration + "s");
+      star.style.setProperty("--star-delay", -Math.random() * duration + "s");
       star.style.setProperty("--star-color", colors[i % colors.length]);
+      star.addEventListener("animationiteration", placeStar);
       stars.appendChild(star);
     }
     field.appendChild(stars);
@@ -230,24 +238,28 @@
 
   function setupCursorTrail() {
     const layer = document.querySelector(".cursor-stars");
-    const colors = ["#eff8ff", "#aefadb", "#cab6ff"];
+    const colors = ["#edf5ff", "#c5f5de", "#cbbaff"];
     let lastBurst = -Infinity;
 
     window.addEventListener("pointermove", (event) => {
-      if (reducedMotion.matches || event.pointerType === "touch" || event.timeStamp - lastBurst < 22) return;
+      if (reducedMotion.matches || event.pointerType === "touch" || event.timeStamp - lastBurst < 26) return;
       lastBurst = event.timeStamp;
 
-      for (let index = 0; index < 3 && layer.childElementCount < 84; index += 1) {
+      for (let index = 0; index < 2 && layer.childElementCount < 84; index += 1) {
         const star = document.createElement("span");
-        const spark = index === 0 && Math.random() > 0.4;
-        star.className = spark ? "cursor-star is-spark" : "cursor-star";
-        star.style.setProperty("--x", (event.clientX + (Math.random() - 0.5) * 16) + "px");
-        star.style.setProperty("--y", (event.clientY + (Math.random() - 0.5) * 16) + "px");
-        star.style.setProperty("--dx", (Math.random() - 0.5) * 30 + "px");
-        star.style.setProperty("--dy", (Math.random() - 0.5) * 30 + "px");
-        star.style.setProperty("--color", colors[index]);
-        star.style.setProperty("--size", spark ? "6px" : (1.6 + Math.random() * 1.8) + "px");
-        star.style.setProperty("--life", (470 + Math.random() * 270) + "ms");
+        const angle = Math.random() * Math.PI * 2;
+        const spread = 9 + Math.random() * 21;
+        const drift = 12 + Math.random() * 28;
+        const size = Math.random() > 0.84 ? 1.8 + Math.random() * 0.9 : 0.8 + Math.random() * 1.1;
+        star.className = "cursor-star";
+        star.style.setProperty("--x", event.clientX + Math.cos(angle) * spread + "px");
+        star.style.setProperty("--y", event.clientY + Math.sin(angle) * spread + "px");
+        star.style.setProperty("--dx", Math.cos(angle) * drift + "px");
+        star.style.setProperty("--dy", Math.sin(angle) * drift + "px");
+        star.style.setProperty("--color", colors[Math.floor(Math.random() * colors.length)]);
+        star.style.setProperty("--size", size + "px");
+        star.style.setProperty("--opacity", 0.5 + Math.random() * 0.24);
+        star.style.setProperty("--life", 760 + Math.random() * 560 + "ms");
         star.addEventListener("animationend", () => star.remove(), { once: true });
         layer.append(star);
       }
@@ -311,6 +323,41 @@
       }
     }, { threshold: 0.16 });
     document.querySelectorAll("[data-reveal]").forEach((row) => observer.observe(row));
+  }
+
+  function setupExperienceComet() {
+    const track = document.querySelector(".experience-track");
+    const comet = track.querySelector(".experience-comet");
+    let frame = null;
+    let position = null;
+
+    function draw() {
+      frame = null;
+      const { top, bottom, height } = track.getBoundingClientRect();
+      if (reducedMotion.matches || bottom <= 0 || top >= window.innerHeight || document.body.classList.contains("portal-active")) {
+        position = null;
+        comet.hidden = true;
+        return;
+      }
+
+      const target = Math.max(8, Math.min(window.innerHeight * 0.55 - top, height - 18));
+      const gap = target - (position ?? target);
+      position = Math.abs(gap) < 0.5 ? target : position + gap * 0.24;
+      comet.style.setProperty("--comet-y", position.toFixed(2) + "px");
+      comet.hidden = false;
+      if (position !== target) queueDraw();
+    }
+
+    function queueDraw() {
+      if (frame === null) frame = requestAnimationFrame(draw);
+    }
+
+    window.addEventListener("scroll", queueDraw, { passive: true });
+    window.addEventListener("resize", queueDraw, { passive: true });
+    window.addEventListener("hashchange", queueDraw);
+    reducedMotion.addEventListener("change", queueDraw);
+    new ResizeObserver(queueDraw).observe(track);
+    queueDraw();
   }
 
   function setupEarlierExperience() {
@@ -388,6 +435,7 @@
   setupSkills();
   setupExperienceReveals();
   setupEarlierExperience();
+  setupExperienceComet();
   syncCarouselLinks();
   readOrbit();
   showRoute();
